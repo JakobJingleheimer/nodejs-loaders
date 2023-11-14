@@ -1,0 +1,16 @@
+.Foo {
+	color: red; /* something */
+}
+
+/* something else */
+.Foo > .Bar {
+	background: white;
+}
+
+.Qux .Zed {
+	translate: opacity var(--a-easing) var(--a-duration);
+}
+
+#Masthead .img {
+	max-width: 6ch;
+}

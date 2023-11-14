@@ -1,0 +1,8 @@
+mutation GetFoo($a: A!, $b: B!) {
+	foo (a: $a, b: $b) {
+		id
+		bar {
+			size
+		}
+	}
+}

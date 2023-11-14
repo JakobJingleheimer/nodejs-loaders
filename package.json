@@ -1,0 +1,30 @@
+{
+  "name": "nodejs-loaders",
+  "author": "Jacob Smith",
+  "license": "ISC",
+  "keywords": [
+    "nodejs",
+    "loaders",
+    "plugin",
+    "typescript"
+  ],
+  "exports": {
+    "dev": {
+      "mismatched-format": "./mismatched-format.mjs",
+      "svgx": "./svgx.mjs",
+      "tsx": "./tsx.mjs"
+    },
+    "testing": {
+      "css-module": "./css-module.mjs",
+      "media": "./media.mjs",
+      "text": "./text.mjs"
+    }
+  },
+  "peerDependencies": {
+    "css-parse": "^2.0.0",
+    "esbuild": "~0.19.5"
+  },
+  "dependencies": {
+    "lodash-es": "^4.17.21"
+  }
+}
