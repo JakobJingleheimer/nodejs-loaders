@@ -9,16 +9,12 @@
     "typescript"
   ],
   "exports": {
-    "dev": {
-      "mismatched-format": "./mismatched-format.mjs",
-      "svgx": "./svgx.mjs",
-      "tsx": "./tsx.mjs"
-    },
-    "testing": {
-      "css-module": "./css-module.mjs",
-      "media": "./media.mjs",
-      "text": "./text.mjs"
-    }
+    "./dev/mismatched-format": "./mismatched-format.mjs",
+    "./dev/svgx": "./svgx.mjs",
+    "./dev/tsx": "./tsx.mjs",
+    "./testing/css-module": "./css-module.mjs",
+    "./testing/media": "./media.mjs",
+    "./testing/text": "./text.mjs"
   },
   "peerDependencies": {
     "css-parse": "^2.0.0",
