@@ -9,9 +9,6 @@
     "plugin",
     "typescript"
   ],
-  "files": [
-    "*.mjs"
-  ],
   "scripts": {
     "test": "node --test ./*.spec.*"
   },
