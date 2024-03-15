@@ -26,16 +26,16 @@ describe('alias', () => {
 	before(async () => {
 		await td.replaceEsm('node:fs/promises', { readFile });
 		const nodeUrl = await import('node:url');
-		await td.replaceEsm('node:url', { ...nodeUrl, pathToFileURL() { return base } });
+		await td.replaceEsm('node:url', { ...nodeUrl, pathToFileURL() { return new URL(base) } });
 	});
 
 	describe('that are in tsconfig.json', async () => {
 		let resolve;
 
 		before(async () => {
-			td.when(readFile(td.matchers.contains(`${base}/package.json`)))
+			td.when(readFile(td.matchers.contains('/package.json')))
 				.thenReject(new ENOENT()); // shouldn't matter
-			td.when(readFile(td.matchers.contains(`${base}/tsconfig.json`)))
+			td.when(readFile(td.matchers.contains('/tsconfig.json')))
 				.thenResolve(JSON.stringify({ compilerOptions: { paths: aliases } }));
 
 			({ resolve } = await import('./alias.mjs'));
@@ -48,9 +48,9 @@ describe('alias', () => {
 		let resolve;
 
 		before(async () => {
-			td.when(readFile(td.matchers.contains(`${base}/package.json`)))
+			td.when(readFile(td.matchers.contains('/package.json')))
 				.thenResolve(JSON.stringify({ aliases }));
-			td.when(readFile(td.matchers.contains(`${base}/tsconfig.json`)))
+			td.when(readFile(td.matchers.contains('/tsconfig.json')))
 				.thenReject(new ENOENT()); // must be voided so package.json gets checked
 
 			({ resolve } = await import('./alias.mjs'));

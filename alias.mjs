@@ -1,10 +1,11 @@
 import { readFile } from 'node:fs/promises';
+import path from 'node:path';
 import { pathToFileURL, URL } from 'node:url';
 
 import _get from 'lodash-es/get.js';
 
 
-const projectRoot = pathToFileURL(process.cwd());
+const projectRoot = pathToFileURL(`${process.cwd()}/`);
 
 const aliasFieldPaths = {
   'package.json': 'aliases',
@@ -35,10 +36,10 @@ export async function resolveAliases(specifier, ctx, next) {
 }
 
 export function readConfigFile(filename) {
-  const path = (new URL(filename, projectRoot)).href;
+  const filepath = path.join(projectRoot.pathname, filename);
 
-  return readFile(path)
-    .then((str) => JSON.parse(str))
+  return readFile(filepath)
+    .then(JSON.parse)
     .then((contents) => _get(contents, aliasFieldPaths[filename]))
     .then(buildAliasMaps)
     .catch((err) => { if (err.code !== 'ENOENT') throw err });
