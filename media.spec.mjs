@@ -1,6 +1,7 @@
-import assert from 'node:assert';
+import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 
+import { assertSuffixedSpecifiers } from './assert-suffixed-specifiers.fixture.mjs';
 import { nextLoad } from './nextLoad.fixture.mjs';
 import { nextResolve } from './nextResolve.fixture.mjs';
 
@@ -12,7 +13,7 @@ describe('media loader', { concurrency: true }, () => {
 		it('should ignore unrecognised files', async () => {
 			const result = await resolve('./fixture.ext', {}, nextResolve);
 
-			assert.deepStrictEqual(result, {
+			assert.deepEqual(result, {
 				format: 'unknown',
 				url: './fixture.ext',
 			});
@@ -23,11 +24,15 @@ describe('media loader', { concurrency: true }, () => {
 				const fileUrl = `./fixture.${ext}`;
 				const result = await resolve(fileUrl, {}, nextResolve);
 
-				assert.deepStrictEqual(result, {
+				assert.deepEqual(result, {
 					format: 'media',
 					url: fileUrl,
 				});
 			}
+		});
+
+		it('should handle specifiers with appending data', async () => {
+			for (const ext of exts) await assertSuffixedSpecifiers(resolve, `./fixture.${ext}`, 'media');
 		});
 	});
 
@@ -35,7 +40,7 @@ describe('media loader', { concurrency: true }, () => {
 		it('should ignore unrecognised files', async () => {
 			const result = await load('./fixture.ext', {}, nextLoad);
 
-			assert.deepStrictEqual(result, {
+			assert.deepEqual(result, {
 				format: 'unknown',
 				source: '',
 			});
@@ -46,7 +51,7 @@ describe('media loader', { concurrency: true }, () => {
 				const fileUrl = `./fixture.${ext}`;
 				const result = await load(fileUrl, { format: 'media' }, () => { throw new Error('media file should not be read from disk'); });
 
-				assert.deepStrictEqual(result, {
+				assert.deepEqual(result, {
 					format: 'module',
 					shortCircuit: true,
 					source: `export default '${fileUrl}';`,

@@ -1,4 +1,5 @@
 {
+  "version": "0.1.1",
   "name": "nodejs-loaders",
   "author": "Jacob Smith",
   "license": "ISC",
@@ -8,6 +9,10 @@
     "plugin",
     "typescript"
   ],
+  "files": ["*.mjs"],
+  "scripts": {
+    "test": "node --test ./*.spec.*"
+  },
   "exports": {
     "./dev/mismatched-format": "./mismatched-format.mjs",
     "./dev/svgx": "./svgx.mjs",

@@ -1,4 +1,4 @@
-import assert from 'node:assert';
+import assert from 'node:assert/strict';
 import { pathToFileURL } from 'node:url';
 import { describe, it } from 'node:test';
 
@@ -12,7 +12,7 @@ describe('SVGX loader', { concurrency: true }, () => {
 		it('should ignore files that aren’t SVG', async () => {
 			const result = await load(pathToFileURL('./fixture.ext'), {}, nextLoad);
 
-			assert.deepStrictEqual(result, {
+			assert.deepEqual(result, {
 				format: 'unknown',
 				source: '',
 			});
@@ -24,8 +24,8 @@ describe('SVGX loader', { concurrency: true }, () => {
 
 			const { source } = await nextLoad(fileUrl, { format: 'jsx' });
 
-			assert.strictEqual(result.format, 'module');
-			assert.strictEqual(result.source, `export default function Fixture() { return (\n${source}); }`);
+			assert.equal(result.format, 'module');
+			assert.equal(result.source, `export default function Fixture() { return (\n${source}); }`);
 		});
 	});
 });

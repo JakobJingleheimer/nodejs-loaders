@@ -3,13 +3,16 @@
 
 import parseCSS from 'css-parse';
 
+import { stripExtras } from './parse-filename.mjs';
+
 
 export async function resolve(specifier, ctx, nextResolve) {
   const nextResult = await nextResolve(specifier);
 
-  if (!specifier.endsWith('.module.css')) return nextResult;
+  if (!stripExtras(specifier).endsWith('.module.css')) return nextResult;
 
   return {
+    ...ctx,
     format: 'cssmodule',
     url: nextResult.url,
   };

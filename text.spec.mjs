@@ -1,6 +1,7 @@
-import assert from 'node:assert';
+import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 
+import { assertSuffixedSpecifiers } from './assert-suffixed-specifiers.fixture.mjs';
 import { nextLoad } from './nextLoad.fixture.mjs';
 import { nextResolve } from './nextResolve.fixture.mjs';
 
@@ -12,7 +13,7 @@ describe('text loader', { concurrency: true }, () => {
 		it('should ignore files that aren’t text', async () => {
 			const result = await resolve('./fixture.ext', {}, nextResolve);
 
-			assert.deepStrictEqual(result, {
+			assert.deepEqual(result, {
 				format: 'unknown',
 				url: './fixture.ext',
 			});
@@ -23,10 +24,16 @@ describe('text loader', { concurrency: true }, () => {
 				const fileUrl = `./fixture${ext}`;
 				const result = await resolve(fileUrl, {}, nextResolve);
 
-				assert.deepStrictEqual(result, {
+				assert.deepEqual(result, {
 					format: exts[ext],
 					url: fileUrl,
 				});
+			}
+		});
+
+		it('should handle specifiers with appending data', async () => {
+			for (const [ext, format] of Object.entries(exts)) {
+				await assertSuffixedSpecifiers(resolve, `./fixture${ext}`, format);
 			}
 		});
 	});
@@ -35,7 +42,7 @@ describe('text loader', { concurrency: true }, () => {
 		it('should ignore files that aren’t text', async () => {
 			const result = await load('./fixture.ext', {}, nextLoad);
 
-			assert.deepStrictEqual(result, {
+			assert.deepEqual(result, {
 				format: 'unknown',
 				source: '',
 			});
@@ -48,8 +55,8 @@ describe('text loader', { concurrency: true }, () => {
 
 				const { source } = await nextLoad(fileUrl, { format: 'graphql' });
 
-				assert.strictEqual(result.format, 'module');
-				assert.strictEqual(result.source, `export default \`${source}\`;`);
+				assert.equal(result.format, 'module');
+				assert.equal(result.source, `export default \`${source}\`;`);
 			}
 		});
 	});

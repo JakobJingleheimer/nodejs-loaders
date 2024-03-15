@@ -1,5 +1,6 @@
 import containsCJS from './containsCJS.mjs';
-import parseFileExt from './parseFileExt.mjs';
+
+import { getFilenameExt } from './parse-filename.mjs';
 
 
 /**
@@ -11,7 +12,7 @@ export async function load(url, ctx, nextResolve) {
 
   // Check against the fully resolved URL, not just the specifier, in case another loader has
   // something to contribute to the resolution.
-  if (!exts.has(parseFileExt(nextResult.url).ext)) nextResult;
+  if (!exts.has(getFilenameExt(nextResult.url))) nextResult;
 
   // Ensure the ESMLoader is used to read the contents.
   // It may throw, in which case we'll probably get a telling error we can use to know it was CJS.
@@ -36,5 +37,5 @@ export async function load(url, ctx, nextResolve) {
 }
 
 const exts = new Set([
-  'js',
+  '.js',
 ]);

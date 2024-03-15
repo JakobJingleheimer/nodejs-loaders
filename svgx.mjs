@@ -1,7 +1,7 @@
 import _camelCase from 'lodash-es/camelCase.js';
 import _upperFirst from 'lodash-es/upperFirst.js';
 
-import parseFileExt from './parseFileExt.mjs';
+import { getFilenameParts } from './parse-filename.mjs';
 
 
 const nonWords = /[\W$]/;
@@ -10,10 +10,10 @@ const nonWords = /[\W$]/;
  * Read an SVG file (which is text) and build a react component that returns the SVG.
  */
 export async function load(url, ctx, next) {
-  const { ext, ...others } = parseFileExt(url);
+  const { ext, ...others } = getFilenameParts(url);
   const base = pascalCase(others.base);
 
-  if (ext !== 'svg') return next(url);
+  if (ext !== '.svg') return next(url);
 
   if (nonWords.test(base)) {
     throw new SyntaxError([
@@ -26,6 +26,7 @@ export async function load(url, ctx, next) {
   const source = `export default function ${base}() { return (\n${(await next(url, { format: 'jsx' })).source}); }`;
 
   return {
+    ...ctx,
     format: 'module',
     source,
   };

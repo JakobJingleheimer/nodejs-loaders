@@ -1,14 +1,15 @@
-import { extname } from 'node:path';
+import { getFilenameExt } from './parse-filename.mjs';
 
 
 export async function resolve(specifier, ctx, nextResolve) {
   const nextResult = await nextResolve(specifier);
 
-  const format = exts[extname(nextResult.url)];
+  const format = exts[getFilenameExt(nextResult.url)];
 
   if (!format) return nextResult;
 
   return {
+    ...ctx,
     format,
     url: nextResult.url,
   };

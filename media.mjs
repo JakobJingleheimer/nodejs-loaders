@@ -1,5 +1,6 @@
-import { extname } from 'node:path';
 import process from 'node:process';
+
+import { getFilenameExt } from './parse-filename.mjs';
 
 
 export async function resolve(specifier, ctx, nextResolve) {
@@ -7,9 +8,10 @@ export async function resolve(specifier, ctx, nextResolve) {
 
   // Check against the fully resolved URL, not just the specifier, in case another loader has
   // something to contribute to the resolution.
-  if (!exts.has(extname(nextResult.url))) return nextResult;
+  if (!exts.has(getFilenameExt(nextResult.url))) return nextResult;
 
   return {
+    ...ctx,
     format: 'media',
     url: nextResult.url,
   }

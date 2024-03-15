@@ -1,6 +1,7 @@
-import assert from 'node:assert';
+import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 
+import { assertSuffixedSpecifiers } from './assert-suffixed-specifiers.fixture.mjs';
 import { nextLoad } from './nextLoad.fixture.mjs';
 import { nextResolve } from './nextResolve.fixture.mjs';
 
@@ -12,7 +13,7 @@ describe('JSX & TypeScript loader', { concurrency: true }, () => {
 		it('should ignore files that aren’t text', async () => {
 			const result = await resolve('./fixture.ext', {}, nextResolve);
 
-			assert.deepStrictEqual(result, {
+			assert.deepEqual(result, {
 				format: 'unknown',
 				url: './fixture.ext',
 			});
@@ -23,7 +24,7 @@ describe('JSX & TypeScript loader', { concurrency: true }, () => {
 				const fileUrl = `./fixture${ext}`;
 				const result = await resolve(fileUrl, {}, nextResolve);
 
-				assert.deepStrictEqual(result, {
+				assert.deepEqual(result, {
 					format: 'jsx',
 					url: fileUrl,
 				});
@@ -35,11 +36,16 @@ describe('JSX & TypeScript loader', { concurrency: true }, () => {
 				const fileUrl = `./fixture${ext}`;
 				const result = await resolve(fileUrl, {}, nextResolve);
 
-				assert.deepStrictEqual(result, {
+				assert.deepEqual(result, {
 					format: 'tsx',
 					url: fileUrl,
 				});
 			}
+		});
+
+		it('should handle specifiers with appending data', async () => {
+			for (const ext of jsxExts) await assertSuffixedSpecifiers(resolve, `./fixture${ext}`, 'jsx');
+			for (const ext of tsxExts) await assertSuffixedSpecifiers(resolve, `./fixture${ext}`, 'tsx');
 		});
 	});
 
@@ -47,7 +53,7 @@ describe('JSX & TypeScript loader', { concurrency: true }, () => {
 		it('should ignore files that aren’t J|TSX', async () => {
 			const result = await load('./fixture.ext', {}, nextLoad);
 
-			assert.deepStrictEqual(result, {
+			assert.deepEqual(result, {
 				format: 'unknown',
 				source: '',
 			});
@@ -75,16 +81,16 @@ describe('JSX & TypeScript loader', { concurrency: true }, () => {
 			const fileUrl = './fixture.jsx';
 			const result = await load(fileUrl, { format: 'jsx' }, nextLoad);
 
-			assert.strictEqual(result.format, 'module');
-			assert.strictEqual(result.source, transpiled);
+			assert.equal(result.format, 'module');
+			assert.equal(result.source, transpiled);
 		});
 
 		it('should transpile TSX', async () => {
 			const fileUrl = './fixture.tsx';
 			const result = await load(fileUrl, { format: 'tsx' }, nextLoad);
 
-			assert.strictEqual(result.format, 'module');
-			assert.strictEqual(result.source, transpiled);
+			assert.equal(result.format, 'module');
+			assert.equal(result.source, transpiled);
 		});
 	});
 });

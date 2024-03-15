@@ -3,6 +3,9 @@ import { pathToFileURL } from 'node:url';
 
 import { transform } from 'esbuild';
 
+import { getFilenameExt } from './parse-filename.mjs';
+
+
 // This config must contain options that are compatible with esbuild's `transform` API.
 const esbuildConfig = await import(pathToFileURL(path.resolve('esbuild.config.mjs')).href)
   .then(({ default: config }) => config)
@@ -13,7 +16,7 @@ export async function resolve(specifier, ctx, nextResolve) {
   const nextResult = await nextResolve(specifier);
   // Check against the fully resolved URL, not just the specifier, in case another loader has
   // something to contribute to the resolution.
-  const ext = path.extname(nextResult.url);
+  const ext = getFilenameExt(nextResult.url);
 
   if (jsxExts.has(ext)) return {
     ...nextResult,
