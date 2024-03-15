@@ -1,59 +1,67 @@
 import { readFile } from 'node:fs/promises';
-import { fileURLToPath } from 'node:url';
+import { pathToFileURL, URL } from 'node:url';
+
+import _get from 'lodash-es/get.js';
 
 
-const projectRoot = new URL('../..', import.meta.url);
-const tsconfigUrl = fileURLToPath(new URL('tsconfig.json', projectRoot));
-const {
-  prefixAliases,
-  simpleAliases,
-} = await readFile(tsconfigUrl)
-  .then((str) => JSON.parse(str))
-  .then((contents) => contents?.compilerOptions?.paths)
-  .then(buildAliasMaps)
-  .catch((err) => { if (err.code !== 'ENOENT') throw err });
+const projectRoot = pathToFileURL(process.cwd());
 
-const hasAliases = prefixAliases.size || simpleAliases.size;
+const aliasFieldPaths = {
+  'package.json': 'aliases',
+  'tsconfig.json': 'compilerOptions.paths',
+};
 
-export async function resolve(specifier, ctx, next) {
-  if (
-    !hasAliases
-    || !specifier.startsWith('@/')
-  ) return next(specifier);
+const aliases = (
+  await readConfigFile('tsconfig.json')
+  ?? await readConfigFile('package.json')
+);
 
-  if (simpleAliases.has(specifier)) return next(simpleAliases.get(specifier));
+if (!aliases) console.warn(
+  'Alias loader was registered but no aliases were found in tsconfig.json or package.json.',
+  'This loader will behave as a noop (but you should probably remove it if you aren’t using it).',
+);
 
-  for (const [prefix, replacement] of prefixAliases) {
-    if (specifier.startsWith(prefix)) return next(specifier.replace(prefix, replacement));
-  }
-
-  throw new Error(`No match found for ${specifier}`);
+export function resolve(specifier, ctx, next) {
+  return (aliases ? resolveAliases : next)(specifier, ctx, next);
 }
 
-function buildAliasMaps(paths) {
-  const prefixAliases = new Map();
-  const simpleAliases = new Map();
-
-  const output = {
-    prefixAliases,
-    simpleAliases,
-  };
-
-  if (paths) for (const path of Object.keys(paths)) {
-    const value = paths[path][0];
-
-    if (path.endsWith('*')) {
-      prefixAliases.set(
-        path.slice(0, -1), // strip '*'
-        (new URL(value.slice(0, -1) /* strip '*' */, projectRoot)).href,
-      )
-    } else {
-      simpleAliases.set(
-        path,
-        (new URL(value, projectRoot)).href,
-      );
-    }
+export async function resolveAliases(specifier, ctx, next) {
+  for (const [key, dest] of aliases) {
+    if (specifier === key) return next(dest, ctx);
+    if (specifier.startsWith(key)) return next(specifier.replace(key, dest));
   }
 
-  return output;
+  return next(specifier);
 }
+
+export function readConfigFile(filename) {
+  const path = (new URL(filename, projectRoot)).href;
+
+  return readFile(path)
+    .then((str) => JSON.parse(str))
+    .then((contents) => _get(contents, aliasFieldPaths[filename]))
+    .then(buildAliasMaps)
+    .catch((err) => { if (err.code !== 'ENOENT') throw err });
+}
+
+function buildAliasMaps(config) {
+  if (!config) return;
+
+  const aliases = new Map();
+
+  for (const rawKey of Object.keys(config)) {
+    const alias = config[rawKey][0];
+    const isPrefix = rawKey.endsWith('*');
+
+    const key = isPrefix ? rawKey.slice(0, -1) /* strip '*' */ : rawKey;
+    const baseDest = isPrefix ? alias.slice(0, -1) /* strip '*' */ : alias;
+    const dest = baseDest[0] === '/' || URL.canParse(baseDest)
+      ? baseDest
+      : (new URL(baseDest, projectRoot)).href;
+
+    aliases.set(key, dest);
+  }
+
+  return aliases;
+}
+
