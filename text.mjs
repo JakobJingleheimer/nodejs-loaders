@@ -30,7 +30,7 @@ export async function load(url, ctx, nextLoad) {
 
 export const exts = {
   '.graphql': 'graphql',
-  '.gql': 'grqphql',
+  '.gql': 'graphql',
   '.md': 'markdown',
   '.txt': 'text',
 };
