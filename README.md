@@ -75,8 +75,8 @@ This loader does _not_ handle TypeScript's file extension nonsense. Import speci
   └ foo.ts
 ```
 
-💥 `import foo from './foo.js;`<br />
-✅ `import foo from './foo.ts;`
+💥 `import foo from './foo.js';`<br />
+✅ `import foo from './foo.ts';`
 
 <details>
 <summary>Supported file extensions</summary>
