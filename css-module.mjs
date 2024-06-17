@@ -1,7 +1,4 @@
-// This loader provides a basic facsimile of CSS Modules intended for testing.
-// Use something like esbuild to handle this in production.
-
-import parseCSS from 'css-parse';
+import postcss from 'postcss';
 
 import { stripExtras } from './parse-filename.mjs';
 
@@ -24,7 +21,7 @@ export async function load(url, ctx, nextLoad) {
   if (ctx.format !== 'cssmodule') return nextResult;
 
   const rawSource = '' + nextResult.source;
-  const parsed = parseCssToObject(rawSource);
+  const parsed = await parseCssToObject(rawSource);
 
   return {
     format: 'json',
@@ -32,13 +29,16 @@ export async function load(url, ctx, nextLoad) {
   };
 }
 
-function parseCssToObject(rawSource) {
+async function parseCssToObject(rawSource) {
   const output = new Map(); // Map is best for mutation
 
-  for (const rule of parseCSS(rawSource).stylesheet.rules) {
+  const postcssResult = await postcss.parse(rawSource).toJSON();
+
+
+  for (const rule of postcssResult.nodes) {
     if (rule.type !== 'rule') continue;
 
-    const classnames = rule.selectors[0].match(SELECTOR_TO_CLASS_NAME_RGX) ?? new Array()
+    const classnames = rule.selector.match(SELECTOR_TO_CLASS_NAME_RGX) ?? new Array()
 
     for (const classname of classnames) output.set(classname, classname);
   }
