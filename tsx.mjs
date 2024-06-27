@@ -1,16 +1,6 @@
-import path from 'node:path';
-import { pathToFileURL } from 'node:url';
-
-import { transform } from 'esbuild';
+import { transform } from '@swc/core';
 
 import { getFilenameExt } from './parse-filename.mjs';
-
-
-// This config must contain options that are compatible with esbuild's `transform` API.
-const esbuildConfig = await import(pathToFileURL(path.resolve('esbuild.config.mjs')).href)
-  .then(({ default: config }) => config)
-  .catch(() => process.emitWarning('No esbuild config found in project root. Using default config.'));
-
 
 export async function resolve(specifier, ctx, nextResolve) {
   const nextResult = await nextResolve(specifier);
@@ -38,36 +28,41 @@ export async function load(url, ctx, nextLoad) {
   const nextResult = await nextLoad(url, { format });
   let rawSource = ''+nextResult.source; // byte array → string
 
-  if (config.jsx === 'transform') rawSource = `import * as React from 'react';\n${rawSource}`;
 
-  const { code: source, warnings } = await transform(rawSource, config)
-    .catch(({ errors }) => {
-      for (const {
-        location: { column, line, lineText },
-        text,
-      } of errors) {
-        console.error(`TranspileError: ${text}\n    at ${url}:${line}:${column}\n    at: ${lineText}\n`);
+  /**
+   * @type {import('@swc/core').Options}
+   */
+  const config = {
+    swcrc: true, // auto-detect `.swcrc`
+    sourceMaps: false,
+    minify: false,
+    jsc: {
+      parser: {
+        syntax: ctx.format === 'jsx' ? 'ecmascript' : 'typescript',
+        jsx: ctx.format === 'jsx',
+        tsx: ctx.format === 'tsx',
+      },
+      transform: {
+        react: {
+          runtime: 'automatic',
+          pragma: 'React.createElement',
+          pragmaFrag: 'React.Fragment',
+          development: true,
+          useBuiltins: true,
+        },
       }
+    }
+  };
 
-      return {};
-    });
+  //console.log('config', config);
 
-  if (warnings?.length) console.warn(...warnings);
+  const { code: source } = await transform(rawSource, config);
 
   return {
     format,
     source,
   };
 }
-
-const config = {
-  jsx: 'automatic',
-  jsxDev: true,
-  jsxFactory: 'React.createElement',
-  loader: 'tsx',
-  minify: true,
-  ...esbuildConfig,
-};
 
 export const jsxExts = new Set([
   '.jsx',
