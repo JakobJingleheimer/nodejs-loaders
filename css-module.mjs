@@ -1,3 +1,6 @@
+// This loader provides a basic facsimile of CSS Modules intended for testing.
+// Use something like esbuild, postcss to handle this in production.
+
 import postcss from 'postcss';
 
 import { stripExtras } from './parse-filename.mjs';
