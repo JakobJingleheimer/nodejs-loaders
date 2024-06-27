@@ -1,35 +1,35 @@
 {
-  "version": "1.0.0",
-  "name": "nodejs-loaders",
-  "author": "Jacob Smith",
-  "license": "ISC",
-  "keywords": [
-    "nodejs",
-    "loaders",
-    "plugin",
-    "typescript"
-  ],
-  "scripts": {
-    "test": "node --test ./*.spec.*"
-  },
-  "exports": {
-    "./dev/alias": "./alias.mjs",
-    "./dev/mismatched-format": "./mismatched-format.mjs",
-    "./dev/svgx": "./svgx.mjs",
-    "./dev/tsx": "./tsx.mjs",
-    "./testing/css-module": "./css-module.mjs",
-    "./testing/media": "./media.mjs",
-    "./testing/text": "./text.mjs"
-  },
-  "peerDependencies": {
-    "css-parse": "^2.0.0",
-    "esbuild": "~0.19.5"
-  },
-  "dependencies": {
-    "lodash-es": "^4.17.21"
-  },
-  "devDependencies": {
-    "@types/node": "^20.11.28",
-    "testdouble": "^3.20.1"
-  }
+	"version": "1.0.0",
+	"name": "nodejs-loaders",
+	"author": "Jacob Smith",
+	"license": "ISC",
+	"keywords": ["nodejs", "loaders", "plugin", "typescript"],
+	"scripts": {
+		"test": "node --test ./*.spec.*",
+		"format": "npx @biomejs/biome format --write",
+		"format:check": "npx @biomejs/biome format",
+		"lint": "npx @biomejs/biome lint --write",
+		"lint:check": "npx @biomejs/biome lint"
+	},
+	"exports": {
+		"./dev/alias": "./alias.mjs",
+		"./dev/mismatched-format": "./mismatched-format.mjs",
+		"./dev/svgx": "./svgx.mjs",
+		"./dev/tsx": "./tsx.mjs",
+		"./testing/css-module": "./css-module.mjs",
+		"./testing/media": "./media.mjs",
+		"./testing/text": "./text.mjs"
+	},
+	"peerDependencies": {
+		"css-parse": "^2.0.0",
+		"esbuild": "~0.19.5"
+	},
+	"dependencies": {
+		"lodash-es": "^4.17.21"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.8.2",
+		"@types/node": "^20.11.28",
+		"testdouble": "^3.20.1"
+	}
 }
