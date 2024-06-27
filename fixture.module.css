@@ -14,3 +14,11 @@
 #Masthead .img {
 	max-width: 6ch;
 }
+
+.nested	{
+	/* something */
+	
+	&:hover {
+		/* something else */
+	}
+}
