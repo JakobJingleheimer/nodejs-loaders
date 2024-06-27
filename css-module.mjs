@@ -24,7 +24,7 @@ export async function load(url, ctx, nextLoad) {
   if (ctx.format !== 'cssmodule') return nextResult;
 
   const rawSource = '' + nextResult.source;
-  const parsed = await parseCssToObject(rawSource);
+  const parsed = parseCssToObject(rawSource);
 
   return {
     format: 'json',
@@ -32,10 +32,10 @@ export async function load(url, ctx, nextLoad) {
   };
 }
 
-async function parseCssToObject(rawSource) {
+function parseCssToObject(rawSource) {
   const output = new Map(); // Map is best for mutation
 
-  const postcssResult = await postcss.parse(rawSource).toJSON();
+  const postcssResult = postcss.parse(rawSource).toJSON();
 
 
   for (const rule of postcssResult.nodes) {

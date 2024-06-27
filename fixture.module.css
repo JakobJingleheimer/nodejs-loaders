@@ -16,9 +16,13 @@
 }
 
 .nested	{
-	/* something */
+	background: red;
 	
 	&:hover {
-		/* something else */
+		background: blue;
+	}
+
+	.something {
+		width: 100%;
 	}
 }
