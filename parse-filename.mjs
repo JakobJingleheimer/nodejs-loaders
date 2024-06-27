@@ -1,5 +1,4 @@
-import path from 'node:path';
-
+import path from "node:path";
 
 /**
  * Some loaders may append query parameters or anchors (URLs allow that). That will dupe
@@ -12,17 +11,17 @@ export function getFilenameExt(f) {
 }
 
 export function stripExtras(f) {
-  return f.split('?')[0].split('#')[0];
+	return f.split("?")[0].split("#")[0];
 }
 
 export function getFilenameParts(resolvedUrl) {
-  const url = new URL(resolvedUrl);
+	const url = new URL(resolvedUrl);
 
-  const ext = getFilenameExt(url.pathname);
-  const base = path.basename(url.pathname, ext);
+	const ext = getFilenameExt(url.pathname);
+	const base = path.basename(url.pathname, ext);
 
-  return {
-    base,
-    ext,
-  };
+	return {
+		base,
+		ext,
+	};
 }

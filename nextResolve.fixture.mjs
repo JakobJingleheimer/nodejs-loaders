@@ -1,4 +1,4 @@
 export const nextResolve = (s) => ({
-	format: 'unknown',
+	format: "unknown",
 	url: s,
 });
