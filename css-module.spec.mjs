@@ -61,6 +61,7 @@ describe('css-module loader', { concurrency: true }, () => {
 				Zed: 'Zed',
 				img: 'img',
 				nested: 'nested',
+				something: 'something'
 			}));
 		});
 	});

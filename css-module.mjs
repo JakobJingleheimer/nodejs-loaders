@@ -1,5 +1,5 @@
 // This loader provides a basic facsimile of CSS Modules intended for testing.
-// Use something like esbuild to handle this in production.
+// Use something like esbuild, postcss to handle this in production.
 
 import postcss from 'postcss';
 
@@ -37,16 +37,19 @@ function parseCssToObject(rawSource) {
 
   const postcssResult = postcss.parse(rawSource).toJSON();
 
+  for (const rule of postcssResult.nodes) parseCssToObjectRecursive(rule, output);
 
-  for (const rule of postcssResult.nodes) {
-    if (rule.type !== 'rule') continue;
+  return Object.fromEntries(output);
+}
 
-    const classnames = rule.selector.match(SELECTOR_TO_CLASS_NAME_RGX) ?? new Array()
+function parseCssToObjectRecursive(node, output) {
+  if (node.type === 'rule') {
+    const classnames = node.selector.match(SELECTOR_TO_CLASS_NAME_RGX) ?? new Array();
 
     for (const classname of classnames) output.set(classname, classname);
   }
 
-  return Object.fromEntries(output);
+  if (node.nodes) for (const child of node.nodes) parseCssToObjectRecursive(child, output);
 }
 
 /**
