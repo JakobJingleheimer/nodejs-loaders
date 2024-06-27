@@ -59,23 +59,25 @@ describe('JSX & TypeScript loader', { concurrency: true }, () => {
 			});
 		});
 
-		// This verifies that esbuild.config.mjs is being loaded correctly because the one in this repo
-		// disables minification, but the loader's default config enables it.
 		const transpiled = [
-			'import { jsxDEV } from "react/jsx-dev-runtime";',
-			'export function Greet({ name }) {',
-			'  return /* @__PURE__ */ jsxDEV("h1", { children: [',
-			'    "Hello ",',
-			'    name',
-			'  ] }, void 0, true, {',
-			'    fileName: "<stdin>",',
-			'    lineNumber: 2,',
-			'    columnNumber: 10',
-			'  }, this);',
+			'import { jsxDEV as _jsxDEV } from "react/jsx-dev-runtime";',
+			'export function Greet(param) {',
+			'    var name = param.name;',
+			'    return /*#__PURE__*/ _jsxDEV("h1", {',
+			'        children: [',
+			'            "Hello ",',
+			'            name',
+			'        ]',
+			'    }, void 0, true, {',
+			'        fileName: "<anon>",',
+			'        lineNumber: 2,',
+			'        columnNumber: 10',
+			'    }, this);',
 			'}',
-			'Greet.displayName = "Greet";',
+			'Greet.displayName = \'Greet\';',
 			'', //EoF
 		].join('\n');
+
 
 		it('should transpile JSX', async () => {
 			const fileUrl = './fixture.jsx';

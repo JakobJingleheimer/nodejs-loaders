@@ -65,7 +65,7 @@ Note to package authors reading this: The simplest fix here is to distribute onl
 
 ## JSX / TS(X)
 
-This loader checks for a `esbuild.config.mjs` in the project root (if you want to keep it elsewhere, consider a symlink in the project root pointing to its actual location); only options for [esbuild's "transform" API](https://esbuild.github.io/api/#transform) are valid (esbuild handles looking for a tsconfig). When none is found, it uses a few necessary default.
+This loader check for a `.swcrc` in the project root (if you want to keep it elsewhere, consider a symlink in the project root pointing to its actual location); only options for [swc's "transform" API](https://swc.rs/docs/configuring-swc) are valid (swc handles looking for a tsconfig). When none is found, it uses a few necessary default.
 
 This loader does _not_ handle TypeScript's file extension nonsense. Import specifiers must use the actual file extension of the file actually on disk:
 
