@@ -60,6 +60,8 @@ describe('css-module loader', { concurrency: true }, () => {
 				Qux: 'Qux',
 				Zed: 'Zed',
 				img: 'img',
+				nested: 'nested',
+				something: 'something'
 			}));
 		});
 	});

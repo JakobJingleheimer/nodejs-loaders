@@ -14,3 +14,15 @@
 #Masthead .img {
 	max-width: 6ch;
 }
+
+.nested	{
+	background: red;
+	
+	&:hover {
+		background: blue;
+	}
+
+	.something {
+		width: 100%;
+	}
+}
