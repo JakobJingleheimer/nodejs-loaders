@@ -104,11 +104,23 @@ This loads the module as a plain-object of simple key-value pairs of the css spe
 ```css
 /* main.module.css */
 #Bar { font-weight: bold }
-.Foo { text-decoration: none }
+
+.Foo {
+  text-decoration: none
+
+  .Baz { color: red }
+}
+
+.Qux .Zed { font-size: 1.1em }
 ```
 
 ```js
-import styles from 'main.module.css'; // styles = { Bar: 'Bar', Foo: 'Foo' }
+import styles from 'main.module.css';
+
+styles.Bar; // 'Bar'
+styles.Baz; // 'Baz'
+styles.Foo; // 'Foo'
+styles.Zed; // 'Zed'
 ```
 
 This ensures snapshots are unaffected by unrelated changes.
