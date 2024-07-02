@@ -63,6 +63,9 @@ This loader detects the explosion and re-instructs node to ignore the misconfigu
 
 Note to package authors reading this: The simplest fix here is to distribute only CJS. See [_Configuring CommonJS & ES Modules for Node.js_](https://dev.to/jakobjingleheimer/configuring-commonjs-es-modules-for-nodejs-12ed) for a thorough explanation of options.
 
+> [!IMPORTANT]
+> Node.js now has experimental support that better handles this via [`--experimental-detect-module`](https://nodejs.org/api/cli.html#--experimental-detect-module). This loader may be re-purposed to address the root of the problem instead: that `mismatched-example`'s configuration is wrong.
+
 ## JSX / TS(X)
 
 This loader checks for a `esbuild.config.mjs` in the project root (if you want to keep it elsewhere, consider a symlink in the project root pointing to its actual location); only options for [esbuild's "transform" API](https://esbuild.github.io/api/#transform) are valid (esbuild handles looking for a tsconfig). When none is found, it uses a few necessary default.
