@@ -50,8 +50,8 @@ describe('JSX & TypeScript loader', { concurrency: true }, () => {
 	});
 
 	describe('load', () => {
-		it('should ignore files that aren’t J|TSX', async () => {
-			const result = await load('./fixture.ext', {}, nextLoad);
+		it('should ignore files that aren’t J|TSX', () => {
+			const result = load('./fixture.ext', {}, nextLoad);
 
 			assert.deepEqual(result, {
 				format: 'unknown',
@@ -77,17 +77,17 @@ describe('JSX & TypeScript loader', { concurrency: true }, () => {
 			'', //EoF
 		].join('\n');
 
-		it('should transpile JSX', async () => {
+		it('should transpile JSX', () => {
 			const fileUrl = './fixture.jsx';
-			const result = await load(fileUrl, { format: 'jsx' }, nextLoad);
+			const result = load(fileUrl, { format: 'jsx' }, nextLoad);
 
 			assert.equal(result.format, 'module');
 			assert.equal(result.source, transpiled);
 		});
 
-		it('should transpile TSX', async () => {
+		it('should transpile TSX', () => {
 			const fileUrl = './fixture.tsx';
-			const result = await load(fileUrl, { format: 'tsx' }, nextLoad);
+			const result = load(fileUrl, { format: 'tsx' }, nextLoad);
 
 			assert.equal(result.format, 'module');
 			assert.equal(result.source, transpiled);
