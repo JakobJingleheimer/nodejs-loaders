@@ -33,7 +33,7 @@ export async function load(url, ctx, nextLoad) {
    * @type {import('@swc/core').Options}
    */
   const config = {
-    swcrc: true, // auto-detect `.swcrc`
+    swcrc: true,
     sourceMaps: false,
     minify: false,
     jsc: {
@@ -53,8 +53,6 @@ export async function load(url, ctx, nextLoad) {
       }
     }
   };
-
-  //console.log('config', config);
 
   const { code: source } = await transform(rawSource, config);
 
