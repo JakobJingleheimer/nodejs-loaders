@@ -22,8 +22,8 @@
     "./testing/text": "./text.mjs"
   },
   "peerDependencies": {
-    "@swc/core": "^1.6.5",
-    "css-parse": "^2.0.0"
+    "postcss": "~8.4.38",
+    "esbuild": "~0.19.5"
   },
   "dependencies": {
     "lodash-es": "^4.17.21"

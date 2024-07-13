@@ -63,6 +63,9 @@ This loader detects the explosion and re-instructs node to ignore the misconfigu
 
 Note to package authors reading this: The simplest fix here is to distribute only CJS. See [_Configuring CommonJS & ES Modules for Node.js_](https://dev.to/jakobjingleheimer/configuring-commonjs-es-modules-for-nodejs-12ed) for a thorough explanation of options.
 
+> [!IMPORTANT]
+> Node.js now has experimental support that better handles this via [`--experimental-detect-module`](https://nodejs.org/api/cli.html#--experimental-detect-module). This loader may be re-purposed to address the root of the problem instead: that `mismatched-example`'s configuration is wrong.
+
 ## JSX / TS(X)
 
 This loader check for a `.swcrc` in the project root (if you want to keep it elsewhere, consider a symlink in the project root pointing to its actual location); only options for [swc's "transform" API](https://swc.rs/docs/configuring-swc) are valid (swc handles looking for a tsconfig). When none is found, it uses a few necessary default.
@@ -104,11 +107,23 @@ This loads the module as a plain-object of simple key-value pairs of the css spe
 ```css
 /* main.module.css */
 #Bar { font-weight: bold }
-.Foo { text-decoration: none }
+
+.Foo {
+  text-decoration: none
+
+  .Baz { color: red }
+}
+
+.Qux .Zed { font-size: 1.1em }
 ```
 
 ```js
-import styles from 'main.module.css'; // styles = { Bar: 'Bar', Foo: 'Foo' }
+import styles from 'main.module.css';
+
+styles.Bar; // 'Bar'
+styles.Baz; // 'Baz'
+styles.Foo; // 'Foo'
+styles.Zed; // 'Zed'
 ```
 
 This ensures snapshots are unaffected by unrelated changes.
