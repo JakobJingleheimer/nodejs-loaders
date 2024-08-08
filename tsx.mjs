@@ -30,6 +30,10 @@ export async function load(url, ctx, nextLoad) {
 
 
   /**
+   * SWC configuration object.
+   * By default, SWC will use the `swcrc` file if it exists and override the options below.
+   * 
+   * @see https://swc.rs/docs/configuring-swc
    * @type {import('@swc/core').Options}
    */
   const config = {
