@@ -1,5 +1,7 @@
 # Nodejs Loaders
 
+<img src="./logo.svg" height="100" width="100" alt="" />
+
 This package provides a variety of loaders to facilitate a quick and easy local development and CI testing environment.
 
 ## Local dev
