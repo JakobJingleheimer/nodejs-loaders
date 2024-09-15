@@ -1,9 +1,9 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 
-import { assertSuffixedSpecifiers } from './assert-suffixed-specifiers.fixture.mjs';
-import { nextLoad } from './nextLoad.fixture.mjs';
-import { nextResolve } from './nextResolve.fixture.mjs';
+import { assertSuffixedSpecifiers } from '../../fixtures/assert-suffixed-specifiers.fixture.mjs';
+import { nextLoad } from '../../fixtures/nextLoad.fixture.mjs';
+import { nextResolve } from '../../fixtures/nextResolve.fixture.mjs';
 
 import { exts, load, resolve } from './media.mjs';
 
@@ -11,11 +11,11 @@ import { exts, load, resolve } from './media.mjs';
 describe('media loader', { concurrency: true }, () => {
 	describe('resolve', () => {
 		it('should ignore unrecognised files', async () => {
-			const result = await resolve('./fixture.ext', {}, nextResolve);
+			const result = await resolve('../../fixtures/fixture.ext', {}, nextResolve);
 
 			assert.deepEqual(result, {
 				format: 'unknown',
-				url: './fixture.ext',
+				url: '../../fixtures/fixture.ext',
 			});
 		});
 
@@ -38,7 +38,7 @@ describe('media loader', { concurrency: true }, () => {
 
 	describe('load', () => {
 		it('should ignore unrecognised files', async () => {
-			const result = await load('./fixture.ext', {}, nextLoad);
+			const result = await load('../../fixtures/fixture.ext', {}, nextLoad);
 
 			assert.deepEqual(result, {
 				format: 'unknown',

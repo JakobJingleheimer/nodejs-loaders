@@ -1,0 +1,26 @@
+{
+	"version": "1.0.0",
+	"name": "@nodejs-loaders/media",
+	"type": "module",
+	"author": "Jacob Smith",
+	"maintainers": [
+		"Augustin Mauroy"
+	],
+  "license": "ISC",
+	"main": "./media.mjs",
+	"keywords": [
+		"audio",
+		"customisation hook",
+		"images",
+		"video",
+		"loader",
+		"media",
+		"nodejs"
+	],
+	"dependencies": {
+		"@nodejs-loaders/parse-filename": "1.0.0"
+	},
+	"devDependencies": {
+		"@types/node": "^20.11.28"
+	}
+}

@@ -1,0 +1,24 @@
+{
+	"version": "2.0.0",
+	"name": "@nodejs-loaders/alias",
+	"type": "module",
+	"author": "Jacob Smith",
+	"maintainers": [
+		"Augustin Mauroy"
+	],
+  "license": "ISC",
+	"main": "./alias.mjs",
+	"keywords": [
+		"customisation hook",
+		"loader",
+		"nodejs",
+		"path alias"
+	],
+	"dependencies": {
+		"lodash.get": "^4.4.2"
+	},
+	"devDependencies": {
+		"@types/node": "^20.11.28",
+		"testdouble": "^3.20.1"
+	}
+}

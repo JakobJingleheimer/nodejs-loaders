@@ -1,7 +1,7 @@
-import _camelCase from 'lodash-es/camelCase.js';
-import _upperFirst from 'lodash-es/upperFirst.js';
+import _camelCase from 'lodash.camelcase';
+import _upperFirst from 'lodash.upperfirst';
 
-import { getFilenameParts } from './parse-filename.mjs';
+import { getFilenameParts } from '@nodejs-loaders/parse-filename';
 
 
 const nonWords = /[\W$]/;

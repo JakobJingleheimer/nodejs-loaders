@@ -1,9 +1,9 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 
-import { assertSuffixedSpecifiers } from './assert-suffixed-specifiers.fixture.mjs';
-import { nextLoad } from './nextLoad.fixture.mjs';
-import { nextResolve } from './nextResolve.fixture.mjs';
+import { assertSuffixedSpecifiers } from '../../fixtures/assert-suffixed-specifiers.fixture.mjs';
+import { nextLoad } from '../../fixtures/nextLoad.fixture.mjs';
+import { nextResolve } from '../../fixtures/nextResolve.fixture.mjs';
 
 import { jsxExts, tsxExts, load, resolve } from './tsx.mjs';
 
@@ -21,7 +21,7 @@ describe('JSX & TypeScript loader', { concurrency: true }, () => {
 
 		it('should recognise JSX files', async () => {
 			for (const ext of jsxExts) {
-				const fileUrl = `./fixture${ext}`;
+				const fileUrl = import.meta.resolve(`./fixture${ext}`);
 				const result = await resolve(fileUrl, {}, nextResolve);
 
 				assert.deepEqual(result, {
@@ -33,7 +33,7 @@ describe('JSX & TypeScript loader', { concurrency: true }, () => {
 
 		it('should recognise TypeScript files', async () => {
 			for (const ext of tsxExts) {
-				const fileUrl = `./fixture${ext}`;
+				const fileUrl = import.meta.resolve(`./fixture${ext}`);
 				const result = await resolve(fileUrl, {}, nextResolve);
 
 				assert.deepEqual(result, {
@@ -51,7 +51,7 @@ describe('JSX & TypeScript loader', { concurrency: true }, () => {
 
 	describe('load', () => {
 		it('should ignore files that aren’t J|TSX', async () => {
-			const result = await load('./fixture.ext', {}, nextLoad);
+			const result = await load('../../fixtures/fixture.ext', {}, nextLoad);
 
 			assert.deepEqual(result, {
 				format: 'unknown',
@@ -78,7 +78,7 @@ describe('JSX & TypeScript loader', { concurrency: true }, () => {
 		].join('\n');
 
 		it('should transpile JSX', async () => {
-			const fileUrl = './fixture.jsx';
+			const fileUrl = import.meta.resolve('./fixture.jsx');
 			const result = await load(fileUrl, { format: 'jsx' }, nextLoad);
 
 			assert.equal(result.format, 'module');
@@ -86,7 +86,7 @@ describe('JSX & TypeScript loader', { concurrency: true }, () => {
 		});
 
 		it('should transpile TSX', async () => {
-			const fileUrl = './fixture.tsx';
+			const fileUrl = import.meta.resolve('./fixture.tsx');
 			const result = await load(fileUrl, { format: 'tsx' }, nextLoad);
 
 			assert.equal(result.format, 'module');

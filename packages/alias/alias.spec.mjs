@@ -7,7 +7,7 @@ import {
 
 import * as td from 'testdouble';
 
-import { nextResolve } from './nextResolve.fixture.mjs';
+import { nextResolve } from '../../fixtures/nextResolve.fixture.mjs';
 
 
 describe('alias', () => {
