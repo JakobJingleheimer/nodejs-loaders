@@ -26,3 +26,10 @@ node
 * [CSS Modules loader](./packages/css-module/)
 * [Media loader](./packages/media/)
 * [Text loader](./packages/text/)
+
+## Official Loaders
+
+These loaders are officially maintained by their respective projects and are recommended, 'cause they are the most up-to-date and have the best support.
+
+* [MDX loader](https://mdxjs.com/packages/node-loader/)
+* [SWC register](https://github.com/swc-project/swc-node/tree/master/packages/register#swc-noderegister)
