@@ -1,0 +1,27 @@
+{
+	"version": "1.0.0",
+	"name": "@nodejs-loaders/css-module",
+	"type": "module",
+	"author": "Jacob Smith",
+	"maintainers": [
+		"Augustin Mauroy"
+	],
+  "license": "ISC",
+	"main": "./css-module.mjs",
+  "keywords": [
+		"customisation hook",
+		"css modules",
+    "loader",
+    "nodejs"
+  ],
+	"dependencies": {
+		"@nodejs-loaders/parse-filename": "1.0.0"
+	},
+	"peerDependencies": {
+		"postcss": "~8.4.38"
+	},
+	"devDependencies": {
+		"@types/node": "^20.11.28",
+		"testdouble": "^3.20.1"
+	}
+}

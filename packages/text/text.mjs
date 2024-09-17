@@ -1,4 +1,4 @@
-import { getFilenameExt } from './parse-filename.mjs';
+import { getFilenameExt } from '@nodejs-loaders/parse-filename';
 
 
 export async function resolve(specifier, ctx, nextResolve) {

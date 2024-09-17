@@ -1,0 +1,26 @@
+{
+	"version": "1.0.0",
+	"name": "@nodejs-loaders/tsx",
+	"type": "module",
+	"author": "Jacob Smith",
+	"maintainers": [
+		"Augustin Mauroy"
+	],
+  "license": "ISC",
+	"main": "./tsx.mjs",
+	"keywords": [
+		"customisation hook",
+		"loader",
+		"nodejs",
+		"typescript"
+	],
+	"dependencies": {
+		"@nodejs-loaders/parse-filename": "1.0.0"
+	},
+	"peerDependencies": {
+		"esbuild": "~0.19.5"
+	},
+	"devDependencies": {
+		"@types/node": "^20.11.28"
+	}
+}

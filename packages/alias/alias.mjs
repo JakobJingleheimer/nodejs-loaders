@@ -2,7 +2,7 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { pathToFileURL, URL } from 'node:url';
 
-import _get from 'lodash-es/get.js';
+import _get from 'lodash.get';
 
 
 const projectRoot = pathToFileURL(`${process.cwd()}/`);

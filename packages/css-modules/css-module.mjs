@@ -3,7 +3,7 @@
 
 import postcss from 'postcss';
 
-import { stripExtras } from './parse-filename.mjs';
+import { stripExtras } from '@nodejs-loaders/parse-filename';
 
 
 export async function resolve(specifier, ctx, nextResolve) {

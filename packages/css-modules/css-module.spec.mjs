@@ -1,9 +1,9 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 
-import { assertSuffixedSpecifiers } from './assert-suffixed-specifiers.fixture.mjs';
-import { nextResolve } from './nextResolve.fixture.mjs';
-import { nextLoad } from './nextLoad.fixture.mjs';
+import { assertSuffixedSpecifiers } from '../../fixtures/assert-suffixed-specifiers.fixture.mjs';
+import { nextResolve } from '../../fixtures/nextResolve.fixture.mjs';
+import { nextLoad } from '../../fixtures/nextLoad.fixture.mjs';
 
 import { resolve, load } from './css-module.mjs';
 
@@ -29,11 +29,11 @@ describe('css-module loader', { concurrency: true }, () => {
 		});
 
 		it('should ignore files that aren’t css at all', async () => {
-			const result = await resolve('./fixture.ext', {}, nextResolve);
+			const result = await resolve('../../fixtures/fixture.ext', {}, nextResolve);
 
 			assert.deepEqual(result, {
 				format: 'unknown',
-				url: './fixture.ext',
+				url: '../../fixtures/fixture.ext',
 			});
 		});
 

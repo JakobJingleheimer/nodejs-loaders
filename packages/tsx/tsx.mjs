@@ -3,7 +3,7 @@ import { pathToFileURL } from 'node:url';
 
 import { transform } from 'esbuild';
 
-import { getFilenameExt } from './parse-filename.mjs';
+import { getFilenameExt } from '@nodejs-loaders/parse-filename';
 
 
 // This config must contain options that are compatible with esbuild's `transform` API.
