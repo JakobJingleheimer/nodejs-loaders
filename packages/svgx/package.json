@@ -1,25 +1,22 @@
 {
-	"version": "1.0.0",
-	"name": "@nodejs-loaders/svgx",
-	"type": "module",
-	"author": "Jacob Smith",
-	"maintainers": [
-		"Augustin Mauroy"
-	],
+  "version": "1.0.0",
+  "name": "@nodejs-loaders/svgx",
+  "type": "module",
+  "author": "Jacob Smith",
+  "maintainers": [
+    "Augustin Mauroy"
+  ],
   "license": "ISC",
-	"main": "./svgx.mjs",
-	"keywords": [
-		"customisation hook",
-		"nodejs",
-		"loader",
-		"svg as jsx"
-	],
-	"dependencies": {
-		"lodash.camelcase": "~4.3.0",
-		"lodash.upperfirst": "~4.3.1",
-		"@nodejs-loaders/parse-filename": "1.0.0"
-	},
-	"devDependencies": {
-		"@types/node": "^20.11.28"
-	}
+  "main": "./svgx.mjs",
+  "keywords": [
+    "customisation hook",
+    "nodejs",
+    "loader",
+    "svg as jsx"
+  ],
+  "dependencies": {
+    "lodash.camelcase": "~4.3.0",
+    "lodash.upperfirst": "~4.3.1",
+    "@nodejs-loaders/parse-filename": "1.0.0"
+  }
 }

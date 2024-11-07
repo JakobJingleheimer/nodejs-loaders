@@ -1,23 +1,20 @@
 {
-	"version": "1.0.0",
-	"name": "@nodejs-loaders/text",
-	"type": "module",
-	"author": "Jacob Smith",
-	"maintainers": [
-		"Augustin Mauroy"
-	],
+  "version": "1.0.0",
+  "name": "@nodejs-loaders/text",
+  "type": "module",
+  "author": "Jacob Smith",
+  "maintainers": [
+    "Augustin Mauroy"
+  ],
   "license": "ISC",
-	"main": "./text.mjs",
-	"keywords": [
-		"customisation hook",
-		"loader",
-		"nodejs",
-		"plain text"
-	],
-	"dependencies": {
-		"@nodejs-loaders/parse-filename": "1.0.0"
-	},
-	"devDependencies": {
-		"@types/node": "^20.11.28"
-	}
+  "main": "./text.mjs",
+  "keywords": [
+    "customisation hook",
+    "loader",
+    "nodejs",
+    "plain text"
+  ],
+  "dependencies": {
+    "@nodejs-loaders/parse-filename": "1.0.0"
+  }
 }

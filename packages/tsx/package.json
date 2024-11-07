@@ -22,8 +22,5 @@
 	},
 	"peerDependencies": {
 		"esbuild": "~0.19.5"
-	},
-	"devDependencies": {
-		"@types/node": "^20.11.28"
 	}
 }

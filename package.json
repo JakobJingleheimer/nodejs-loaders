@@ -2,9 +2,9 @@
   "version": "2.0.0",
   "name": "nodejs-loaders",
   "author": "Jacob Smith",
-	"maintainers": [
-		"Augustin Mauroy"
-	],
+  "maintainers": [
+    "Augustin Mauroy"
+  ],
   "license": "ISC",
   "keywords": [
     "customisation hooks",
@@ -20,5 +20,8 @@
   },
   "workspaces": [
     "./packages/*"
-  ]
+  ],
+  "devDependencies": {
+    "@types/node": "^22.9.0"
+  }
 }

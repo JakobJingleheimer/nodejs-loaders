@@ -1,14 +1,11 @@
 {
-	"version": "1.0.0",
-	"name": "@nodejs-loaders/parse-filename",
-	"type": "module",
-	"author": "Jacob Smith",
-	"maintainers": [
-		"Augustin Mauroy"
-	],
+  "version": "1.0.0",
+  "name": "@nodejs-loaders/parse-filename",
+  "type": "module",
+  "author": "Jacob Smith",
+  "maintainers": [
+    "Augustin Mauroy"
+  ],
   "license": "ISC",
-	"main": "./parse-filename.mjs",
-	"devDependencies": {
-		"@types/node": "^20.11.28"
-	}
+  "main": "./parse-filename.mjs"
 }
