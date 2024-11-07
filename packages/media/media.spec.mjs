@@ -38,7 +38,7 @@ describe('media loader', { concurrency: true }, () => {
 
 	describe('load', () => {
 		it('should ignore unrecognised files', async () => {
-			const result = await load('../../fixtures/fixture.ext', {}, nextLoad);
+			const result = await load(import.meta.resolve('../../fixtures/fixture.ext'), {}, nextLoad);
 
 			assert.deepEqual(result, {
 				format: 'unknown',
@@ -48,13 +48,15 @@ describe('media loader', { concurrency: true }, () => {
 
 		it('should return the resolved URL for the media file', async () => {
 			for (const ext of exts) {
-				const fileUrl = `./fixture.${ext}`;
-				const result = await load(fileUrl, { format: 'media' }, () => { throw new Error('media file should not be read from disk'); });
+				const fileUrl = import.meta.resolve(`./fixture${ext}`);
+				const result = await load(fileUrl, { format: 'media' }, () => {
+					throw new Error('media file should not be read from disk');
+				});
 
 				assert.deepEqual(result, {
 					format: 'module',
 					shortCircuit: true,
-					source: `export default '${fileUrl}';`,
+					source: `export default 'file://[…]/packages/media/fixture${ext}';`,
 				});
 			}
 		});
