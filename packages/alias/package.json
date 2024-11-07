@@ -1,5 +1,5 @@
 {
-	"version": "2.0.0",
+	"version": "1.0.0",
 	"name": "@nodejs-loaders/alias",
 	"type": "module",
 	"author": "Jacob Smith",
@@ -18,7 +18,6 @@
 		"lodash.get": "^4.4.2"
 	},
 	"devDependencies": {
-		"@types/node": "^20.11.28",
 		"testdouble": "^3.20.1"
 	}
 }
