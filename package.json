@@ -15,6 +15,9 @@
   "scripts": {
     "test": "node --test --test-only ./packages/*/*.spec.*"
   },
+  "repository": {
+    "url": "https://github.com/JakobJingleheimer/nodejs-loaders"
+  },
   "workspaces": [
     "./packages/*"
   ]
