@@ -44,14 +44,14 @@ describe('css-module loader', { concurrency: true }, () => {
 
 	describe('load', () => {
 		it('should ignore files that aren’t css-modules', async () => {
-			const result = await load('./fixture.js', { format: 'commonjs' }, nextLoad);
+			const result = await load(import.meta.resolve('./fixture.js'), { format: 'commonjs' }, nextLoad);
 
 			assert.equal(result.format, 'commonjs');
 			assert.equal(result.source, `export = 'foo';\n`);
 		});
 
 		it('should handle files with nested and non-nested comments', async () => {
-			const result = await load('./fixture.module.css', { format: 'cssmodule' }, nextLoad);
+			const result = await load(import.meta.resolve('./fixture.module.css'), { format: 'cssmodule' }, nextLoad);
 
 			assert.equal(result.format, 'json');
 			assert.deepEqual(result.source, JSON.stringify({

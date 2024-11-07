@@ -15,11 +15,16 @@ export function stripExtras(f) {
   return f.split('?')[0].split('#')[0];
 }
 
+/**
+ * @param {`/${string}` | URL['href']} resolvedUrl
+ */
 export function getFilenameParts(resolvedUrl) {
-  const url = new URL(resolvedUrl);
+  const pathname = URL.canParse(resolvedUrl)
+    ? (new URL(resolvedUrl)).pathname
+    : resolvedUrl;
 
-  const ext = getFilenameExt(url.pathname);
-  const base = path.basename(url.pathname, ext);
+  const ext = getFilenameExt(pathname);
+  const base = path.basename(pathname, ext);
 
   return {
     base,
