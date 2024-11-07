@@ -3,7 +3,7 @@ import process from 'node:process';
 import { getFilenameExt } from '@nodejs-loaders/parse-filename';
 
 
-export async function resolve(specifier, ctx, nextResolve) {
+async function resolveMedia(specifier, ctx, nextResolve) {
   const nextResult = await nextResolve(specifier);
 
   // Check against the fully resolved URL, not just the specifier, in case another loader has
@@ -16,8 +16,9 @@ export async function resolve(specifier, ctx, nextResolve) {
     url: nextResult.url,
   }
 }
+export { resolveMedia as resolve }
 
-export async function load(url, ctx, nextLoad) {
+async function loadMedia(url, ctx, nextLoad) {
   if (ctx.format !== 'media') return nextLoad(url);
 
   const source = `export default '${url.replace(cwd, '[…]')}';`;
@@ -28,6 +29,7 @@ export async function load(url, ctx, nextLoad) {
     source,
   };
 }
+export { loadMedia as load }
 
 const cwd = process.cwd();
 

@@ -1,7 +1,7 @@
 import { getFilenameExt } from '@nodejs-loaders/parse-filename';
 
 
-export async function resolve(specifier, ctx, nextResolve) {
+async function resolveText(specifier, ctx, nextResolve) {
   const nextResult = await nextResolve(specifier);
 
   const format = exts[getFilenameExt(nextResult.url)];
@@ -14,8 +14,9 @@ export async function resolve(specifier, ctx, nextResolve) {
     url: nextResult.url,
   };
 }
+export { resolveText as resolve }
 
-export async function load(url, ctx, nextLoad) {
+async function loadText(url, ctx, nextLoad) {
   const nextResult = await nextLoad(url, ctx);
 
   if (!formats.has(ctx.format)) return nextResult;
@@ -27,6 +28,7 @@ export async function load(url, ctx, nextLoad) {
     source,
   };
 }
+export { loadText as load }
 
 export const exts = {
   '.graphql': 'graphql',

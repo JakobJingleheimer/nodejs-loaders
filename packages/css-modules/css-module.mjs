@@ -6,7 +6,7 @@ import postcss from 'postcss';
 import { stripExtras } from '@nodejs-loaders/parse-filename';
 
 
-export async function resolve(specifier, ctx, nextResolve) {
+async function resolveCSSModule(specifier, ctx, nextResolve) {
   const nextResult = await nextResolve(specifier);
 
   if (!stripExtras(specifier).endsWith('.module.css')) return nextResult;
@@ -17,8 +17,9 @@ export async function resolve(specifier, ctx, nextResolve) {
     url: nextResult.url,
   };
 }
+export { resolveCSSModule as resolve }
 
-export async function load(url, ctx, nextLoad) {
+async function loadCSSModule(url, ctx, nextLoad) {
   const nextResult = await nextLoad(url, ctx);
 
   if (ctx.format !== 'cssmodule') return nextResult;
@@ -31,6 +32,7 @@ export async function load(url, ctx, nextLoad) {
     source: JSON.stringify(parsed),
   };
 }
+export { loadCSSModule as load }
 
 function parseCssToObject(rawSource) {
   const output = new Map(); // Map is best for mutation

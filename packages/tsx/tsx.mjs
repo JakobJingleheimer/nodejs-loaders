@@ -32,7 +32,7 @@ function findEsbuildConfig(parentURL) {
   }, esbuildConfig);
 }
 
-export async function resolve(specifier, ctx, nextResolve) {
+async function resolveTSX(specifier, ctx, nextResolve) {
   const nextResult = await nextResolve(specifier);
   // Check against the fully resolved URL, not just the specifier, in case another loader has
   // something to contribute to the resolution.
@@ -50,8 +50,9 @@ export async function resolve(specifier, ctx, nextResolve) {
 
   return nextResult;
 }
+export { resolveTSX as resolve }
 
-export async function load(url, ctx, nextLoad) {
+async function loadTSX(url, ctx, nextLoad) {
   if (!formats.has(ctx.format)) return nextLoad(url); // not j|tsx
 
   const format = 'module';
@@ -81,6 +82,7 @@ export async function load(url, ctx, nextLoad) {
     source,
   };
 }
+export { loadTSX as load }
 
 export const jsxExts = new Set([
   '.jsx',

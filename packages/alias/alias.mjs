@@ -22,9 +22,10 @@ if (!aliases) console.warn(
   'This loader will behave as a noop (but you should probably remove it if you aren’t using it).',
 );
 
-export function resolve(specifier, ctx, next) {
+function resolveAlias(specifier, ctx, next) {
   return (aliases ? resolveAliases : next)(specifier, ctx, next);
 }
+export { resolveAlias as resolve }
 
 export async function resolveAliases(specifier, ctx, next) {
   for (const [key, dest] of aliases) {
@@ -65,4 +66,3 @@ function buildAliasMaps(config) {
 
   return aliases;
 }
-
