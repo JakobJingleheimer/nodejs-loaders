@@ -14,7 +14,7 @@ describe('css-module loader', { concurrency: true }, () => {
 			const result = await resolve('./fixture.module.css', {}, nextResolve);
 
 			assert.deepEqual(result, {
-				format: 'cssmodule',
+				format: 'css-module',
 				url: './fixture.module.css',
 			});
 		});
@@ -38,7 +38,7 @@ describe('css-module loader', { concurrency: true }, () => {
 		});
 
 		it('should handle specifiers with appending data', async () => {
-			await assertSuffixedSpecifiers(resolve, './fixture.module.css', 'cssmodule');
+			await assertSuffixedSpecifiers(resolve, './fixture.module.css', 'css-module');
 		});
 	});
 
@@ -51,7 +51,7 @@ describe('css-module loader', { concurrency: true }, () => {
 		});
 
 		it('should handle files with nested and non-nested comments', async () => {
-			const result = await load(import.meta.resolve('./fixture.module.css'), { format: 'cssmodule' }, nextLoad);
+			const result = await load(import.meta.resolve('./fixture.module.css'), { format: 'css-module' }, nextLoad);
 
 			assert.equal(result.format, 'json');
 			assert.deepEqual(result.source, JSON.stringify({
