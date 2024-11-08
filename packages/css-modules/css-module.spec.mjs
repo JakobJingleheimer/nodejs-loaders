@@ -1,9 +1,9 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 
-import { assertSuffixedSpecifiers } from './assert-suffixed-specifiers.fixture.mjs';
-import { nextResolve } from './nextResolve.fixture.mjs';
-import { nextLoad } from './nextLoad.fixture.mjs';
+import { assertSuffixedSpecifiers } from '../../fixtures/assert-suffixed-specifiers.fixture.mjs';
+import { nextResolve } from '../../fixtures/nextResolve.fixture.mjs';
+import { nextLoad } from '../../fixtures/nextLoad.fixture.mjs';
 
 import { resolve, load } from './css-module.mjs';
 
@@ -14,7 +14,7 @@ describe('css-module loader', { concurrency: true }, () => {
 			const result = await resolve('./fixture.module.css', {}, nextResolve);
 
 			assert.deepEqual(result, {
-				format: 'cssmodule',
+				format: 'css-module',
 				url: './fixture.module.css',
 			});
 		});
@@ -29,29 +29,29 @@ describe('css-module loader', { concurrency: true }, () => {
 		});
 
 		it('should ignore files that aren’t css at all', async () => {
-			const result = await resolve('./fixture.ext', {}, nextResolve);
+			const result = await resolve('../../fixtures/fixture.ext', {}, nextResolve);
 
 			assert.deepEqual(result, {
 				format: 'unknown',
-				url: './fixture.ext',
+				url: '../../fixtures/fixture.ext',
 			});
 		});
 
 		it('should handle specifiers with appending data', async () => {
-			await assertSuffixedSpecifiers(resolve, './fixture.module.css', 'cssmodule');
+			await assertSuffixedSpecifiers(resolve, './fixture.module.css', 'css-module');
 		});
 	});
 
 	describe('load', () => {
 		it('should ignore files that aren’t css-modules', async () => {
-			const result = await load('./fixture.js', { format: 'commonjs' }, nextLoad);
+			const result = await load(import.meta.resolve('./fixture.js'), { format: 'commonjs' }, nextLoad);
 
 			assert.equal(result.format, 'commonjs');
 			assert.equal(result.source, `export = 'foo';\n`);
 		});
 
 		it('should handle files with nested and non-nested comments', async () => {
-			const result = await load('./fixture.module.css', { format: 'cssmodule' }, nextLoad);
+			const result = await load(import.meta.resolve('./fixture.module.css'), { format: 'css-module' }, nextLoad);
 
 			assert.equal(result.format, 'json');
 			assert.deepEqual(result.source, JSON.stringify({

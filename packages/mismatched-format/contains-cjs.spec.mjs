@@ -1,9 +1,10 @@
 import assert from 'node:assert';
 import { describe, it } from 'node:test';
 
-import containsCJS from './containsCJS.mjs';
+import { containsCJS } from './contains-cjs.mjs';
 
-describe('containsCJS()', () => {
+
+describe('Contains CJS()', () => {
   describe('exports', () => {
     const matches = [
       'exports.foo =',

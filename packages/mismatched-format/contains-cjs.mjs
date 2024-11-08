@@ -1,4 +1,4 @@
-export default function containsCJS(source) {
+export function containsCJS(source) {
   const src = '' + source;
 
   if (EXPORTS_PROPERTY.test(src)) return true;

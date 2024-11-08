@@ -1,8 +1,7 @@
 import assert from 'node:assert/strict';
-import { pathToFileURL } from 'node:url';
 import { describe, it } from 'node:test';
 
-import { nextLoad } from './nextLoad.fixture.mjs';
+import { nextLoad } from '../../fixtures/nextLoad.fixture.mjs';
 
 import { load } from './svgx.mjs';
 
@@ -10,7 +9,7 @@ import { load } from './svgx.mjs';
 describe('SVGX loader', { concurrency: true }, () => {
 	describe('load', () => {
 		it('should ignore files that aren’t SVG', async () => {
-			const result = await load(pathToFileURL('./fixture.ext'), {}, nextLoad);
+			const result = await load(import.meta.resolve('../../fixtures/fixture.ext'), {}, nextLoad);
 
 			assert.deepEqual(result, {
 				format: 'unknown',
@@ -18,8 +17,8 @@ describe('SVGX loader', { concurrency: true }, () => {
 			});
 		});
 
-		it('should transpile the SVG to a JSX moduele', async () => {
-			const fileUrl = pathToFileURL('./fixture.svg');
+		it('should transpile the SVG to a JSX module', async () => {
+			const fileUrl = import.meta.resolve('./fixture.svg');
 			const result = await load(fileUrl, { format: 'jsx' }, nextLoad);
 
 			const { source } = await nextLoad(fileUrl, { format: 'jsx' });

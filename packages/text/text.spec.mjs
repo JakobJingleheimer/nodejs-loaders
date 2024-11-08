@@ -1,9 +1,9 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 
-import { assertSuffixedSpecifiers } from './assert-suffixed-specifiers.fixture.mjs';
-import { nextLoad } from './nextLoad.fixture.mjs';
-import { nextResolve } from './nextResolve.fixture.mjs';
+import { assertSuffixedSpecifiers } from '../../fixtures/assert-suffixed-specifiers.fixture.mjs';
+import { nextLoad } from '../../fixtures/nextLoad.fixture.mjs';
+import { nextResolve } from '../../fixtures/nextResolve.fixture.mjs';
 
 import { exts, load, resolve } from './text.mjs';
 
@@ -40,7 +40,7 @@ describe('text loader', { concurrency: true }, () => {
 
 	describe('load', () => {
 		it('should ignore files that aren’t text', async () => {
-			const result = await load('./fixture.ext', {}, nextLoad);
+			const result = await load(import.meta.resolve('../../fixtures/fixture.ext'), {}, nextLoad);
 
 			assert.deepEqual(result, {
 				format: 'unknown',
@@ -50,7 +50,7 @@ describe('text loader', { concurrency: true }, () => {
 
 		it('should generate a module from the text file', async () => {
 			for (const ext of Object.keys(exts)) {
-				const fileUrl = `./fixture${ext}`;
+				const fileUrl = import.meta.resolve(`./fixture${ext}`);
 				const result = await load(fileUrl, { format: 'graphql' }, nextLoad);
 
 				const { source } = await nextLoad(fileUrl, { format: 'graphql' });

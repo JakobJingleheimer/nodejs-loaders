@@ -1,18 +1,38 @@
-import path from 'node:path';
-import { pathToFileURL } from 'node:url';
+import { createRequire, findPackageJSON } from 'node:module';
+import { fileURLToPath, } from 'node:url';
 
 import { transform } from 'esbuild';
 
-import { getFilenameExt } from './parse-filename.mjs';
+import { getFilenameExt } from '@nodejs-loaders/parse-filename';
 
 
 // This config must contain options that are compatible with esbuild's `transform` API.
-const esbuildConfig = await import(pathToFileURL(path.resolve('esbuild.config.mjs')).href)
-  .then(({ default: config }) => config)
-  .catch(() => process.emitWarning('No esbuild config found in project root. Using default config.'));
+let esbuildConfig;
+function findEsbuildConfig(parentURL) {
+  if (esbuildConfig != null) return esbuildConfig;
 
+  const esBuildConfigLocus = findPackageJSON(parentURL)
+    .replace('package.json', 'esbuild.config.mjs');
 
-export async function resolve(specifier, ctx, nextResolve) {
+  const req = createRequire(fileURLToPath(parentURL));
+  try {
+    esbuildConfig = req(esBuildConfigLocus).default;
+  } catch (err) {
+    if (err.code !== 'ENOENT') throw err;
+
+    process.emitWarning('No esbuild config found in project root. Using default config.')
+  }
+
+  return esbuildConfig = Object.assign({
+    jsx: 'automatic',
+    jsxDev: true,
+    jsxFactory: 'React.createElement',
+    loader: 'tsx',
+    minify: true,
+  }, esbuildConfig);
+}
+
+async function resolveTSX(specifier, ctx, nextResolve) {
   const nextResult = await nextResolve(specifier);
   // Check against the fully resolved URL, not just the specifier, in case another loader has
   // something to contribute to the resolution.
@@ -30,17 +50,20 @@ export async function resolve(specifier, ctx, nextResolve) {
 
   return nextResult;
 }
+export { resolveTSX as resolve }
 
-export async function load(url, ctx, nextLoad) {
+async function loadTSX(url, ctx, nextLoad) {
   if (!formats.has(ctx.format)) return nextLoad(url); // not j|tsx
 
   const format = 'module';
   const nextResult = await nextLoad(url, { format });
   let rawSource = ''+nextResult.source; // byte array → string
 
-  if (config.jsx === 'transform') rawSource = `import * as React from 'react';\n${rawSource}`;
+  findEsbuildConfig(ctx.parentURL);
 
-  const { code: source, warnings } = await transform(rawSource, config)
+  if (esbuildConfig.jsx === 'transform') rawSource = `import * as React from 'react';\n${rawSource}`;
+
+  const { code: source, warnings } = await transform(rawSource, esbuildConfig)
     .catch(({ errors }) => {
       for (const {
         location: { column, line, lineText },
@@ -59,15 +82,7 @@ export async function load(url, ctx, nextLoad) {
     source,
   };
 }
-
-const config = {
-  jsx: 'automatic',
-  jsxDev: true,
-  jsxFactory: 'React.createElement',
-  loader: 'tsx',
-  minify: true,
-  ...esbuildConfig,
-};
+export { loadTSX as load }
 
 export const jsxExts = new Set([
   '.jsx',
