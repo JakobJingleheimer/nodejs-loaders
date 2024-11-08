@@ -13,6 +13,7 @@ node
   --loader=@nodejs-loaders/alias \
   --loader=@nodejs-loaders/tsx \
   --loader=@nodejs-loaders/svgx \
+  --loader=@nodejs-loaders/mismatched-format \
 # sequence here is NOT important:
   --loader=@nodejs-loaders/css-module \
   --loader=@nodejs-loaders/media \

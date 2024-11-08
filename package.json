@@ -13,7 +13,7 @@
     "plugin"
   ],
   "scripts": {
-    "test": "node --test --test-only ./packages/*/*.spec.*"
+    "test": "node --experimental-test-module-mocks --test --test-only ./packages/*/*.spec.*"
   },
   "repository": {
     "url": "https://github.com/JakobJingleheimer/nodejs-loaders"
