@@ -29,7 +29,7 @@
     "lodash-es": "^4.17.21"
   },
   "devDependencies": {
-    "@types/node": "^20.11.28",
+    "@types/node": "^22.9.0",
     "testdouble": "^3.20.1"
   },
   "repository": {
