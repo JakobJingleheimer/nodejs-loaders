@@ -19,8 +19,5 @@
   },
   "peerDependencies": {
     "postcss": "~8.4.38"
-  },
-  "devDependencies": {
-    "testdouble": "^3.20.1"
   }
 }
