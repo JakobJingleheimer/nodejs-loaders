@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@types/node": "^20.11.28",
-    "testdouble": "^3.20.1"
+    "testdouble": "^3.20.2"
   },
   "repository": {
     "url": "https://github.com/JakobJingleheimer/nodejs-loaders"
