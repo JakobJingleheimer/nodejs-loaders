@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "name": "nodejs-loaders",
   "author": "Jacob Smith",
   "license": "ISC",
@@ -31,5 +31,8 @@
   "devDependencies": {
     "@types/node": "^20.11.28",
     "testdouble": "^3.20.1"
+  },
+  "repository": {
+    "url": "https://github.com/JakobJingleheimer/nodejs-loaders"
   }
 }

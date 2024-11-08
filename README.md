@@ -1,5 +1,7 @@
 # Nodejs Loaders
 
+<img src="./logo.svg" height="100" width="100" alt="" />
+
 [![npm version](https://img.shields.io/npm/v/nodejs-loaders.svg)](https://www.npmjs.com/package/nodejs-loaders)
 ![size](https://img.shields.io/github/languages/code-size/JakobJingleheimer/nodejs-loaders)
 ![coverage](https://img.shields.io/coverallsCoverage/github/JakobJingleheimer/nodejs-loaders)
