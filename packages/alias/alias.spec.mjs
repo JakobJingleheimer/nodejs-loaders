@@ -2,16 +2,16 @@ import assert from 'node:assert/strict';
 import {
 	before,
 	describe,
+	mock,
 	test,
 } from 'node:test';
-
-import * as td from 'testdouble';
 
 import { nextResolve } from '../../fixtures/nextResolve.fixture.mjs';
 
 
 describe('alias', () => {
-	const readFile = td.func('mock_readFile');
+	/** @type {MockFunctionContext<NoOpFunction>} */
+	let mock_readFile;
 	const base = 'file://';
 	const aliases = {
 		'…/*': ['./src/*'],
@@ -24,19 +24,25 @@ describe('alias', () => {
 	}
 
 	before(async () => {
-		await td.replaceEsm('node:fs/promises', { readFile });
-		const nodeUrl = await import('node:url');
-		await td.replaceEsm('node:url', { ...nodeUrl, pathToFileURL() { return new URL(base) } });
+		const readFile = mock.fn(function mock_readFile() {});
+		mock_readFile = readFile.mock;
+		mock.module('node:fs/promises', { namedExports: { readFile } });
+		mock.module('node:url', {
+			namedExports: {
+				...(await import('node:url')),
+				pathToFileURL() { return new URL(base) },
+			},
+		});
 	});
 
 	describe('that are in tsconfig.json', async () => {
 		let resolve;
 
 		before(async () => {
-			td.when(readFile(td.matchers.contains('/package.json')))
-				.thenReject(new ENOENT()); // shouldn't matter
-			td.when(readFile(td.matchers.contains('/tsconfig.json')))
-				.thenResolve(JSON.stringify({ compilerOptions: { paths: aliases } }));
+			mock_readFile.mockImplementation(async function mock_readFile(p) {
+				if (p.includes('/package.json')) throw new ENOENT(); // shouldn't matter
+				if (p.includes('/tsconfig.json')) return JSON.stringify({ compilerOptions: { paths: aliases } });
+			});
 
 			({ resolve } = await import('./alias.mjs'));
 		});
@@ -48,10 +54,10 @@ describe('alias', () => {
 		let resolve;
 
 		before(async () => {
-			td.when(readFile(td.matchers.contains('/package.json')))
-				.thenResolve(JSON.stringify({ aliases }));
-			td.when(readFile(td.matchers.contains('/tsconfig.json')))
-				.thenReject(new ENOENT()); // must be voided so package.json gets checked
+			mock_readFile.mockImplementation(async function mock_readFile(p) {
+				if (p.includes('/tsconfig.json')) throw new ENOENT(); // must be voided so package.json gets checked
+				if (p.includes('/package.json')) return JSON.stringify({ paths: aliases });
+			});
 
 			({ resolve } = await import('./alias.mjs'));
 		});
