@@ -33,6 +33,7 @@ If your project contains erroneous specifiers like above, use the [correct-ts-sp
 
 ## Alternatives
 
+* [Node's built-in support](https://nodejs.org/api/typescript.html) (via [amaro](https://github.com/nodejs/amaro)). `@nodejs-loader/tsx` currently supports more than Amaro.
+* [SWC register](https://github.com/swc-project/swc-node/tree/master/packages/register#swc-noderegister)
 * [ts-node](https://typestrong.org/ts-node/docs/), it's bigger because they support old node versions. It's also based on typescript.
 * [tsx](https://github.com/privatenumber/tsx), it's bigger because they inlude more features such as a cli. It's also based on esbuild.
-* [SWC register](https://github.com/swc-project/swc-node/tree/master/packages/register#swc-noderegister)
