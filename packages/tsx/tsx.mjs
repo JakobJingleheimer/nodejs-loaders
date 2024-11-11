@@ -1,36 +1,9 @@
-import { createRequire, findPackageJSON } from 'node:module';
-import { fileURLToPath, } from 'node:url';
-
 import { transform } from 'esbuild';
 
 import { getFilenameExt } from '@nodejs-loaders/parse-filename';
 
+import { findEsbuildConfig } from './find-esbuild-config.mjs';
 
-// This config must contain options that are compatible with esbuild's `transform` API.
-let esbuildConfig;
-function findEsbuildConfig(parentURL) {
-  if (esbuildConfig != null) return esbuildConfig;
-
-  const esBuildConfigLocus = findPackageJSON(parentURL)
-    .replace('package.json', 'esbuild.config.mjs');
-
-  const req = createRequire(fileURLToPath(parentURL));
-  try {
-    esbuildConfig = req(esBuildConfigLocus).default;
-  } catch (err) {
-    if (err.code !== 'ENOENT') throw err;
-
-    process.emitWarning('No esbuild config found in project root. Using default config.')
-  }
-
-  return esbuildConfig = Object.assign({
-    jsx: 'automatic',
-    jsxDev: true,
-    jsxFactory: 'React.createElement',
-    loader: 'tsx',
-    minify: true,
-  }, esbuildConfig);
-}
 
 async function resolveTSX(specifier, ctx, nextResolve) {
   const nextResult = await nextResolve(specifier);
@@ -59,7 +32,7 @@ async function loadTSX(url, ctx, nextLoad) {
   const nextResult = await nextLoad(url, { format });
   let rawSource = ''+nextResult.source; // byte array → string
 
-  findEsbuildConfig(ctx.parentURL);
+  const esbuildConfig = findEsbuildConfig(ctx.parentURL);
 
   if (esbuildConfig.jsx === 'transform') rawSource = `import * as React from 'react';\n${rawSource}`;
 
