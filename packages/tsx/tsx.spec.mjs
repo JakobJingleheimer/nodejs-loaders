@@ -94,5 +94,7 @@ describe('JSX & TypeScript loader', { concurrency: true }, () => {
 			assert.equal(result.format, 'module');
 			assert.equal(result.source, transpiled);
 		});
+
+		it.todo('should log transpile errors');
 	});
 });
