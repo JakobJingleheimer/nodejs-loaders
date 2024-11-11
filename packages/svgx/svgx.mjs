@@ -11,18 +11,18 @@ const nonWords = /[\W$]/;
  */
 async function loadSVGX(url, ctx, next) {
   const { ext, ...others } = getFilenameParts(url);
-  const base = pascalCase(others.base);
 
   if (ext !== '.svg') return next(url);
 
-  if (nonWords.test(base)) {
+	if (nonWords.test(others.base)) {
     throw new SyntaxError([
       'Cannot generate a react component name from filename',
-      `"${base}"`,
+      `"${others.base}"`,
       'as it contains character(s) illegal for JavaScript identifiers',
     ].join(' '));
   }
 
+  const base = pascalCase(others.base);
   const source = `export default function ${base}() { return (\n${(await next(url, { format: 'jsx' })).source}); }`;
 
   return {
