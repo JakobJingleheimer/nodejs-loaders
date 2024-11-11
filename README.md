@@ -2,6 +2,9 @@
 
 <img src="./logo.svg" height="100" width="100" alt="" />
 
+![coverage](https://img.shields.io/coverallsCoverage/github/JakobJingleheimer/nodejs-loaders)
+![tests](https://github.com/JakobJingleheimer/nodejs-loaders/actions/workflows/ci.yml/badge.svg)
+
 This package provides a variety of loaders to facilitate a quick and easy CI testing environment.
 
 > [!WARNING]
