@@ -10,7 +10,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  test:
 
     runs-on: ubuntu-latest
 
@@ -26,5 +26,24 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm ci
+    - name: npm clean install
+      run: npm ci
     - run: npm test
+    - name: Publish coverage to Coveralls ${{ matrix.test_number }}
+      uses: coverallsapp/github-action@v2
+      with:
+        flag-name: run-${{ join(matrix.*, '-') }}
+        file: ./coverage.lcov
+        format: lcov
+        parallel: true
+
+  finish:
+    needs: test
+    if: ${{ success() }}
+    runs-on: ubuntu-latest
+    steps:
+    - name: Coveralls Finished
+      uses: coverallsapp/github-action@v2
+      with:
+        parallel-finished: true
+        carryforward: "run-1,run-2"
