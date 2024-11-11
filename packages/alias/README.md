@@ -2,6 +2,9 @@
 
 <img src="../../logo.svg" height="100" width="100" alt="" />
 
+[![npm version](https://img.shields.io/npm/v/nodejs-loaders/alias.svg)](https://www.npmjs.com/package/nodejs-loaders/alias)
+![size](https://img.shields.io/github/languages/code-size/JakobJingleheimer/nodejs-loaders/alias)
+
 **Environments**: dev, test
 
 This loader facilitates TypeScript's [`paths`](https://www.typescriptlang.org/docs/handbook/modules/reference.html#paths), handling the (important) half of work TypeScript ignores. It looks for a `tsconfig.json` in the project root (the current working directory) and builds aliases from `compilerOptions.paths` if it exists. If your tsconfig lives in a different location, create a symlink to it from your project root.

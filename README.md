@@ -27,13 +27,14 @@ node
 * [Alias loader](./packages/alias/)
 * [JSX / TSX loader](./packages/tsx/)
 * [SVGX loader](./packages/svgx/)
+* [Mismatched format loader](./packages/mismatched-format/)
 * [CSS Modules loader](./packages/css-module/)
 * [Media loader](./packages/media/)
 * [Text loader](./packages/text/)
 
-## Official Loaders
+## Project-official loaders
 
-These loaders are officially maintained by their respective projects and are recommended, 'cause they are the most up-to-date and have the best support.
+These loaders are officially maintained by their respective projects and are recommended (they're the most up-to-date and have the best support).
 
 * [MDX loader](https://mdxjs.com/packages/node-loader/)
 * [SWC register](https://github.com/swc-project/swc-node/tree/master/packages/register#swc-noderegister)

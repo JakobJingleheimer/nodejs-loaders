@@ -2,6 +2,9 @@
 
 <img src="../../logo.svg" height="100" width="100" alt="" />
 
+[![npm version](https://img.shields.io/npm/v/nodejs-loaders/mismatched-format.svg)](https://www.npmjs.com/package/nodejs-loaders/mismatched-format)
+![size](https://img.shields.io/github/languages/code-size/JakobJingleheimer/nodejs-loaders/mismatched-format)
+
 **Environments**: dev, test
 
 > [!important]
