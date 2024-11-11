@@ -10,7 +10,7 @@
     "typescript"
   ],
   "scripts": {
-    "test": "node --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=./lcov.coverage --test ./*.spec.*"
+    "test": "node --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=./coverage.lcov --test ./*.spec.*"
   },
   "exports": {
     "./dev/alias": "./alias.mjs",
