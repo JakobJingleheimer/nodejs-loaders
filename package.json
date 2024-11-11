@@ -9,7 +9,7 @@
   "keywords": [
     "customisation hooks",
     "loaders",
-    "nodejs",
+    "node.js",
     "plugin"
   ],
   "scripts": {

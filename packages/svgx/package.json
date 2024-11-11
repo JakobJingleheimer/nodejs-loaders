@@ -10,8 +10,8 @@
   "main": "./svgx.mjs",
   "keywords": [
     "customisation hook",
-    "nodejs",
     "loader",
+    "node.js",
     "svg as jsx"
   ],
   "dependencies": {

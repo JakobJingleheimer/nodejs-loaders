@@ -15,7 +15,7 @@
     "video",
     "loader",
     "media",
-    "nodejs"
+    "node.js"
   ],
   "dependencies": {
     "@nodejs-loaders/parse-filename": "1.0.0"

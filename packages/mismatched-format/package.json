@@ -12,7 +12,7 @@
 		"customisation hook",
 		"loader",
 		"misconfiguration",
-		"nodejs"
+		"node.js"
 	],
 	"dependencies": {
     "@nodejs-loaders/parse-filename": "1.0.0"
