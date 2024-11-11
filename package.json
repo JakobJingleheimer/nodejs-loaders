@@ -13,7 +13,7 @@
     "plugin"
   ],
   "scripts": {
-    "test": "node --experimental-test-coverage --experimental-test-module-mocks --test --test-coverage-include='packages/**/*' --test-coverage-exclude='**/*.spec.mjs' --test-coverage-exclude='**/*.test.mjs' './packages/*/*.spec.mjs' './packages/*/*.test.mjs'"
+    "test": "node --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=./coverage.lcov --test-reporter=spec --test-reporter-destination=stdout --experimental-test-module-mocks --test --test-coverage-include='packages/**/*' --test-coverage-exclude='**/*.spec.mjs' --test-coverage-exclude='**/*.test.mjs' './packages/*/*.spec.mjs' './packages/*/*.test.mjs'"
   },
   "repository": {
     "url": "https://github.com/JakobJingleheimer/nodejs-loaders"
