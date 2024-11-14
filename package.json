@@ -1,38 +1,27 @@
 {
-  "version": "1.1.0",
+  "version": "2.0.0",
   "name": "nodejs-loaders",
   "author": "Jacob Smith",
+  "maintainers": [
+    "Augustin Mauroy"
+  ],
   "license": "ISC",
   "keywords": [
-    "nodejs",
+    "customisation hooks",
     "loaders",
-    "plugin",
-    "typescript"
+    "node.js",
+    "plugin"
   ],
   "scripts": {
-    "test": "node --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=./coverage.lcov --test ./*.spec.*"
-  },
-  "exports": {
-    "./dev/alias": "./alias.mjs",
-    "./dev/mismatched-format": "./mismatched-format.mjs",
-    "./dev/svgx": "./svgx.mjs",
-    "./dev/tsx": "./tsx.mjs",
-    "./testing/css-module": "./css-module.mjs",
-    "./testing/media": "./media.mjs",
-    "./testing/text": "./text.mjs"
-  },
-  "peerDependencies": {
-    "postcss": "~8.4.38",
-    "esbuild": "~0.19.5"
-  },
-  "dependencies": {
-    "lodash-es": "^4.17.21"
-  },
-  "devDependencies": {
-    "@types/node": "^20.11.28",
-    "testdouble": "^3.20.1"
+    "test": "node --no-warnings --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=./coverage.lcov --test-reporter=spec --test-reporter-destination=stdout --experimental-test-module-mocks --test --test-coverage-include='packages/**/*' --test-coverage-exclude='**/*.spec.mjs' --test-coverage-exclude='**/*.test.mjs' './packages/*/*.spec.mjs' './packages/*/*.test.mjs'"
   },
   "repository": {
     "url": "https://github.com/JakobJingleheimer/nodejs-loaders"
+  },
+  "workspaces": [
+    "./packages/*"
+  ],
+  "devDependencies": {
+    "@types/node": "^22.9.0"
   }
 }
