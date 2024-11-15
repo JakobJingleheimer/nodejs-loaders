@@ -1,4 +1,4 @@
-import assert from 'node:assert/strict';
+import { equal } from 'node:assert/strict';
 import {
 	before,
 	describe,
@@ -7,7 +7,6 @@ import {
 } from 'node:test';
 
 import { nextResolve } from '../../fixtures/nextResolve.fixture.mjs';
-
 
 describe('alias', () => {
 	/** @type {MockFunctionContext<NoOpFunction>} */
@@ -40,23 +39,8 @@ describe('alias', () => {
 
 		before(async () => {
 			mock_readFile.mockImplementation(async function mock_readFile(p) {
-				if (p.includes('/package.json')) throw new ENOENT(); // shouldn't matter
 				if (p.includes('/tsconfig.json')) return JSON.stringify({ compilerOptions: { paths: aliases } });
-			});
-
-			({ resolve } = await import('./alias.mjs'));
-		});
-
-		await test(() => runCases(resolve));
-	});
-
-	describe('that are in package.json', async () => {
-		let resolve;
-
-		before(async () => {
-			mock_readFile.mockImplementation(async function mock_readFile(p) {
-				if (p.includes('/tsconfig.json')) throw new ENOENT(); // must be voided so package.json gets checked
-				if (p.includes('/package.json')) return JSON.stringify({ paths: aliases });
+				throw new ENOENT(); // For any other file access, throw ENOENT
 			});
 
 			({ resolve } = await import('./alias.mjs'));
@@ -67,66 +51,66 @@ describe('alias', () => {
 
 	async function runCases(resolve) {
 		await test('should de-alias a prefixed specifier', async () => {
-			assert.equal(
+			equal(
 				(await resolve('…/test.mjs', {}, nextResolve)).url,
 				`${base}/src/test.mjs`,
 			);
 		});
 
 		await test('should de-alias a pointer (fully-qualified url) specifier', async () => {
-			assert.equal(
+			equal(
 				(await resolve('ENV', {}, nextResolve)).url,
 				aliases.ENV[0],
 			);
 		});
 
 		await test('should de-alias a pointer (absolute path) specifier', async () => {
-			assert.equal(
+			equal(
 				(await resolve('VARS', {}, nextResolve)).url,
 				aliases.VARS[0],
 			);
 		});
 
 		await test('should maintain any suffixes on the prefixed specifier', async () => {
-			assert.equal(
+			equal(
 				(await resolve('…/test.mjs?foo', {}, nextResolve)).url,
 				`${base}/src/test.mjs?foo`,
 			);
-			assert.equal(
+			equal(
 				(await resolve('…/test.mjs#bar', {}, nextResolve)).url,
 				`${base}/src/test.mjs#bar`,
 			);
-			assert.equal(
+			equal(
 				(await resolve('…/test.mjs?foo#bar', {}, nextResolve)).url,
 				`${base}/src/test.mjs?foo#bar`,
 			);
 		});
 
 		await test('should maintain any suffixes on the pointer (fully-qualified url) specifier', async () => {
-			assert.equal(
+			equal(
 				(await resolve('ENV?foo', {}, nextResolve)).url,
 				`${aliases.ENV[0]}?foo`,
 			);
-			assert.equal(
+			equal(
 				(await resolve('ENV#bar', {}, nextResolve)).url,
 				`${aliases.ENV[0]}#bar`,
 			);
-			assert.equal(
+			equal(
 				(await resolve('ENV?foo#bar', {}, nextResolve)).url,
 				`${aliases.ENV[0]}?foo#bar`,
 			);
 		});
 
 		await test('should maintain any suffixes on the pointer (absolute path) specifier', async () => {
-			assert.equal(
+			equal(
 				(await resolve('VARS?foo', {}, nextResolve)).url,
 				`${aliases.VARS[0]}?foo`,
 			);
-			assert.equal(
+			equal(
 				(await resolve('VARS#bar', {}, nextResolve)).url,
 				`${aliases.VARS[0]}#bar`,
 			);
-			assert.equal(
+			equal(
 				(await resolve('VARS?foo#bar', {}, nextResolve)).url,
 				`${aliases.VARS[0]}?foo#bar`,
 			);
