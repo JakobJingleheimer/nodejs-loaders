@@ -9,8 +9,8 @@
 
 This loader facilitates TypeScript's [`paths`](https://www.typescriptlang.org/docs/handbook/modules/reference.html#paths), handling the (important) half of work TypeScript ignores. It looks for a `tsconfig.json` in the project root (the current working directory) and builds aliases from `compilerOptions.paths` if it exists. If your tsconfig lives in a different location, create a symlink to it from your project root.
 
-> [!TIP]
-> **If you're not using TypeScript**, consider using Node.js's [subpath imports](https://nodejs.org/api/packages.html#subpath-imports).
+> [!CAUTION]
+> **If you're not using TypeScript**, consider using Node.js's [subpath imports](https://nodejs.org/api/packages.html#subpath-imports). It's more performant and doesn't require a loader.
 
 ## A simple prefix
 
@@ -19,7 +19,7 @@ This is commonly used to reference the project root; common prefixes are `@/` (o
 > [!TIP]
 > Due to package namespacing (aka ["scopes"](https://docs.npmjs.com/about-scopes)) it may be best to avoid using the "at" symbol (`@`) since that could lead to confusion over what is a package and what is an alias (especially if you eventually add a package named with the alias you're using). You should similarly avoid the octothorpe/hash symbol (`#`) because that is used by Node.js's sub-path imports.
 
-> [!IMPORTANT]
+> [!NOTE]
 > When configuring these aliases, ensure astrisks (`*`) are used correctly; configuring this for TypeScript can be extremely confusing. See [_Why are these tsconfig paths not working?_](https://stackoverflow.com/q/50679031) for some of the litany of ways configuration can fail.
 
 ## A pointer

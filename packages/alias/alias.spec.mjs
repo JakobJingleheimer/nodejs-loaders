@@ -1,4 +1,4 @@
-import { equal } from 'node:assert/strict';
+import assert from 'node:assert/strict';
 import {
 	before,
 	describe,
@@ -34,6 +34,11 @@ describe('alias', () => {
 		});
 	});
 
+	/**
+	 * This sub suite tests isn't important
+	 * But it's just to give context of where did the aliases come from
+	 * In the past they were a support of aliases in the package.json
+	 */
 	describe('that are in tsconfig.json', async () => {
 		let resolve;
 
@@ -46,74 +51,70 @@ describe('alias', () => {
 			({ resolve } = await import('./alias.mjs'));
 		});
 
-		await test(() => runCases(resolve));
-	});
-
-	async function runCases(resolve) {
 		await test('should de-alias a prefixed specifier', async () => {
-			equal(
+			assert.equal(
 				(await resolve('…/test.mjs', {}, nextResolve)).url,
 				`${base}/src/test.mjs`,
 			);
 		});
 
 		await test('should de-alias a pointer (fully-qualified url) specifier', async () => {
-			equal(
+			assert.equal(
 				(await resolve('ENV', {}, nextResolve)).url,
 				aliases.ENV[0],
 			);
 		});
 
 		await test('should de-alias a pointer (absolute path) specifier', async () => {
-			equal(
+			assert.equal(
 				(await resolve('VARS', {}, nextResolve)).url,
 				aliases.VARS[0],
 			);
 		});
 
 		await test('should maintain any suffixes on the prefixed specifier', async () => {
-			equal(
+			assert.equal(
 				(await resolve('…/test.mjs?foo', {}, nextResolve)).url,
 				`${base}/src/test.mjs?foo`,
 			);
-			equal(
+			assert.equal(
 				(await resolve('…/test.mjs#bar', {}, nextResolve)).url,
 				`${base}/src/test.mjs#bar`,
 			);
-			equal(
+			assert.equal(
 				(await resolve('…/test.mjs?foo#bar', {}, nextResolve)).url,
 				`${base}/src/test.mjs?foo#bar`,
 			);
 		});
 
 		await test('should maintain any suffixes on the pointer (fully-qualified url) specifier', async () => {
-			equal(
+			assert.equal(
 				(await resolve('ENV?foo', {}, nextResolve)).url,
 				`${aliases.ENV[0]}?foo`,
 			);
-			equal(
+			assert.equal(
 				(await resolve('ENV#bar', {}, nextResolve)).url,
 				`${aliases.ENV[0]}#bar`,
 			);
-			equal(
+			assert.equal(
 				(await resolve('ENV?foo#bar', {}, nextResolve)).url,
 				`${aliases.ENV[0]}?foo#bar`,
 			);
 		});
 
 		await test('should maintain any suffixes on the pointer (absolute path) specifier', async () => {
-			equal(
+			assert.equal(
 				(await resolve('VARS?foo', {}, nextResolve)).url,
 				`${aliases.VARS[0]}?foo`,
 			);
-			equal(
+			assert.equal(
 				(await resolve('VARS#bar', {}, nextResolve)).url,
 				`${aliases.VARS[0]}#bar`,
 			);
-			equal(
+			assert.equal(
 				(await resolve('VARS?foo#bar', {}, nextResolve)).url,
 				`${aliases.VARS[0]}?foo#bar`,
 			);
 		});
-	}
+	});
 });

@@ -7,10 +7,6 @@ import _get from 'lodash.get';
 
 const projectRoot = pathToFileURL(`${process.cwd()}/`);
 
-const aliasFieldPaths = {
-  'tsconfig.json': 'compilerOptions.paths',
-};
-
 const aliases = await readConfigFile('tsconfig.json')
 
 if (!aliases) console.warn(
@@ -37,7 +33,8 @@ export function readConfigFile(filename) {
 
   return readFile(filepath)
     .then(JSON.parse)
-    .then((contents) => _get(contents, aliasFieldPaths[filename]))
+		// Get the `compilerOptions.paths` object from the parsed JSON
+    .then((contents) => _get(contents, 'compilerOptions.paths'))
     .then(buildAliasMaps)
     .catch((err) => { if (err.code !== 'ENOENT') throw err });
 }
