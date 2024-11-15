@@ -10,7 +10,7 @@
 This loader facilitates TypeScript's [`paths`](https://www.typescriptlang.org/docs/handbook/modules/reference.html#paths), handling the (important) half of work TypeScript ignores. It looks for a `tsconfig.json` in the project root (the current working directory) and builds aliases from `compilerOptions.paths` if it exists. If your tsconfig lives in a different location, create a symlink to it from your project root.
 
 > [!CAUTION]
-> **If you're not using TypeScript**, consider using Node.js's [subpath imports](https://nodejs.org/api/packages.html#subpath-imports). It's more performant and doesn't require a loader.
+> **Consider using Node.js's [subpath imports](https://nodejs.org/api/packages.html#subpath-imports). It's more performant and doesn't require a loader. If you are using `tsc` for type-checking, set [compilerOptions.moduleResolution to `node16` or higher](https://www.typescriptlang.org/docs/handbook/modules/reference.html#packagejson-imports-and-self-name-imports).
 
 ## A simple prefix
 
