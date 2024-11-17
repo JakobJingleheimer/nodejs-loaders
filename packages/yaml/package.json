@@ -1,0 +1,24 @@
+{
+	"name": "@nodejs-loaders/yaml",
+	"description": "YAML loader for Node.js",
+	"version": "1.0.0",
+	"type": "module",
+	"author": "Augustin Mauroy",
+	"maintainers": [
+		"Jacob Smith"
+	],
+	"license": "ISC",
+	"keywords": [
+		"customisation hook",
+		"loader",
+		"node.js",
+		"yaml"
+	],
+	"engines": {
+		"node": ">20"
+	},
+	"dependencies": {
+		"@nodejs-loaders/parse-filename": "1.0.0",
+		"yaml": "^2.6.0"
+	}
+}
