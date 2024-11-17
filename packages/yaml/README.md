@@ -7,7 +7,7 @@
 
 **Environment**: test, development, maybe production (but carfully)
 
-This loader allow you to import YAML files as plain objects. It uses the `js-yaml` package to parse the YAML files. This is useful for configuration files, or any other data that is more easily represented in YAML than JSON.
+This loader allow you to import [YAML](https://yaml.org) files as plain objects. It uses the `js-yaml` package to parse the YAML files. This is useful for configuration files, or any other data that is more easily represented in YAML than JSON.
 
 ```yaml
 # config.yaml
