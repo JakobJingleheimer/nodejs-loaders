@@ -4,9 +4,7 @@ import { styleText } from 'node:util';
 import { compile, preprocess } from 'svelte/compiler'
 import { getFilenameExt } from '@nodejs-loaders/parse-filename';
 
-import { findSvelteKitConfig } from './svelte-kit-config.js';
-
-const svelteKitConfig = await readFile(findSvelteKitConfig(), 'utf8').then(JSON.parse).catch(() => ({}));
+import { findSvelteKitConfig } from './find-sveltekit-config.mjs';
 
 /**
  * @type {import('node:module').ResolveHook}
@@ -33,6 +31,7 @@ export { resolveSvelte  as resolve };
 async function loadSvelte(url, ctx, defaultLoad) {
 	if (ctx.format !== 'svelte') return defaultLoad(url);
 
+	const svelteKitConfig = await readFile(findSvelteKitConfig(ctx.parentURL), 'utf8').then(JSON.parse).catch(() => ({}));
 	const format = 'module';
 	const nextResult = await nextLoad(url, { format });
   	const rawSource = ''+nextResult.source; // byte array → string
