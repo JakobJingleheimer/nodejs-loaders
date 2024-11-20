@@ -10,7 +10,7 @@ const projectRoot = pathToFileURL(`${process.cwd()}/`);
 const aliases = await readConfigFile('tsconfig.json')
 
 if (!aliases) console.warn(
-  'Alias loader was registered but no aliases were found in tsconfig.json',
+  'Alias loader was registered but no "paths" were found in tsconfig.json',
   'This loader will behave as a noop (but you should probably remove it if you aren’t using it).',
 );
 
