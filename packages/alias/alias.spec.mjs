@@ -34,11 +34,6 @@ describe('alias', () => {
 		});
 	});
 
-	/**
-	 * This sub suite tests isn't important
-	 * But it's just to give context of where did the aliases come from
-	 * In the past they were a support of aliases in the package.json
-	 */
 	describe('that are in tsconfig.json', async () => {
 		let resolve;
 
