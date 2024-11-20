@@ -8,7 +8,6 @@ import {
 
 import { nextResolve } from '../../fixtures/nextResolve.fixture.mjs';
 
-
 describe('alias', () => {
 	/** @type {MockFunctionContext<NoOpFunction>} */
 	let mock_readFile;
@@ -40,32 +39,13 @@ describe('alias', () => {
 
 		before(async () => {
 			mock_readFile.mockImplementation(async function mock_readFile(p) {
-				if (p.includes('/package.json')) throw new ENOENT(); // shouldn't matter
 				if (p.includes('/tsconfig.json')) return JSON.stringify({ compilerOptions: { paths: aliases } });
+				throw new ENOENT(); // For any other file access, throw ENOENT
 			});
 
 			({ resolve } = await import('./alias.mjs'));
 		});
 
-		await test(() => runCases(resolve));
-	});
-
-	describe('that are in package.json', async () => {
-		let resolve;
-
-		before(async () => {
-			mock_readFile.mockImplementation(async function mock_readFile(p) {
-				if (p.includes('/tsconfig.json')) throw new ENOENT(); // must be voided so package.json gets checked
-				if (p.includes('/package.json')) return JSON.stringify({ paths: aliases });
-			});
-
-			({ resolve } = await import('./alias.mjs'));
-		});
-
-		await test(() => runCases(resolve));
-	});
-
-	async function runCases(resolve) {
 		await test('should de-alias a prefixed specifier', async () => {
 			assert.equal(
 				(await resolve('…/test.mjs', {}, nextResolve)).url,
@@ -131,5 +111,5 @@ describe('alias', () => {
 				`${aliases.VARS[0]}?foo#bar`,
 			);
 		});
-	}
+	});
 });
