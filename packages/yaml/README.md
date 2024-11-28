@@ -5,7 +5,7 @@
 [![npm version](https://img.shields.io/npm/v/nodejs-loaders/yaml.svg)](https://www.npmjs.com/package/nodejs-loaders/yaml)
 ![size](https://img.shields.io/github/languages/code-size/JakobJingleheimer/nodejs-loaders/yaml)
 
-**Environment**: test, development, maybe production (but carfully)
+**Environment**: test, development, maybe production (but carefully)
 
 This loader allow you to import [YAML](https://yaml.org) files as plain objects. It uses the `js-yaml` package to parse the YAML files. This is useful for configuration files, or any other data that is more easily represented in YAML than JSON.
 
