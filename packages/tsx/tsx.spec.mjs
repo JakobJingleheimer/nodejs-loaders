@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import process from 'node:process';
 import { describe, it, mock } from 'node:test';
 
 import { assertSuffixedSpecifiers } from '../../fixtures/assert-suffixed-specifiers.fixture.mjs';
@@ -8,6 +9,7 @@ import { nextResolve } from '../../fixtures/nextResolve.fixture.mjs';
 import { jsxExts, tsxExts, load, resolve } from './tsx.mjs';
 
 
+if (process.version.startsWith('v23')) {
 describe('JSX & TypeScript loader', { concurrency: true }, () => {
 	describe('resolve', () => {
 		it('should ignore files that aren’t text', async () => {
@@ -119,3 +121,4 @@ describe('JSX & TypeScript loader', { concurrency: true }, () => {
 		});
 	});
 });
+}
