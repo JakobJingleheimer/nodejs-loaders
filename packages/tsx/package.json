@@ -22,5 +22,8 @@
 	},
 	"peerDependencies": {
 		"esbuild": "~0.19.5"
-	}
+	},
+  "repository": {
+    "url": "https://github.com/JakobJingleheimer/nodejs-loaders"
+  }
 }

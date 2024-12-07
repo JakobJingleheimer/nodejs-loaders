@@ -7,5 +7,8 @@
     "Augustin Mauroy"
   ],
   "license": "ISC",
-  "main": "./parse-filename.mjs"
+  "main": "./parse-filename.mjs",
+  "repository": {
+    "url": "https://github.com/JakobJingleheimer/nodejs-loaders"
+  }
 }
