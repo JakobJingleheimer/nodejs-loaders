@@ -12,8 +12,6 @@ jobs:
       contents: read
       id-token: write
     steps:
-      - run: echo "pkg_name=${GITHUB_REF_NAME##*@}" >> "$GITHUB_ENV"
-      - run: echo "pkg_version=${GITHUB_REF_NAME%@*}" >> "$GITHUB_ENV"
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
@@ -21,6 +19,8 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - run: npm ci
       - name: Publish $pkg_name $pkg_version with provenance
-        run : npm publish --access public --provenance --workspace="packages/$pkg_name"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          pkg_name: ${GITHUB_REF_NAME##*@}
+          pkg_version: ${GITHUB_REF_NAME%@*}
+        run : npm publish --access public --provenance --workspace="packages/$pkg_name"
