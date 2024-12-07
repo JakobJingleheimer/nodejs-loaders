@@ -7,6 +7,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        pkg:
+          - name: ${GITHUB_REF_NAME##*@}
+          - version: ${GITHUB_REF_NAME%@*}
+
     permissions:
       contents: read
       id-token: write
@@ -17,7 +24,7 @@ jobs:
           node-version-file: '.nvmrc'
           registry-url: 'https://registry.npmjs.org'
       - run: npm ci
-      - name: Publish ${GITHUB_REF_NAME##*@} with provenance
-        run : npm publish --access public --provenance --workspace=\"packages/${GITHUB_REF_NAME##*@}\"
+      - name: Publish ${{ matrix.pkg.name }} ${{ matrix.pkg.version }} with provenance
+        run : npm publish --access public --provenance --workspace="packages/${{ matrix.pkg.name }}"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
