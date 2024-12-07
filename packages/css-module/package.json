@@ -19,5 +19,8 @@
   },
   "peerDependencies": {
     "postcss": "~8.4.38"
+  },
+  "repository": {
+    "url": "https://github.com/JakobJingleheimer/nodejs-loaders"
   }
 }
