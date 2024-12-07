@@ -8,12 +8,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        pkg:
-          - name: ${GITHUB_REF_NAME##*@}
-          - version: ${GITHUB_REF_NAME%@*}
-
     permissions:
       contents: read
       id-token: write
