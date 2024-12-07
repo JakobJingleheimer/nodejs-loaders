@@ -20,7 +20,7 @@ jobs:
           node-version-file: '.nvmrc'
           registry-url: 'https://registry.npmjs.org'
       - run: npm ci
-      - name: Publish ${pkg_name} ${pkg_version} with provenance
-        run : npm publish --access public --provenance --workspace="packages/${pkg_name}"
+      - name: Publish $pkg_name $pkg_version with provenance
+        run : npm publish --access public --provenance --workspace="packages/$pkg_name"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
