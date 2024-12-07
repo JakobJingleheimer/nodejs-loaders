@@ -18,5 +18,8 @@
     "lodash.camelcase": "~4.3.0",
     "lodash.upperfirst": "~4.3.1",
     "@nodejs-loaders/parse-filename": "1.0.0"
+  },
+  "repository": {
+    "url": "https://github.com/JakobJingleheimer/nodejs-loaders"
   }
 }
