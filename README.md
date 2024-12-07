@@ -1,6 +1,6 @@
 # Nodejs Loaders
 
-<img src="./logo.svg" height="100" width="100" alt="" />
+<img src="https://raw.githubusercontent.com/JakobJingleheimer/nodejs-loaders/refs/heads/main/logo.svg" height="100" width="100" alt="@node.js loaders logo" />
 
 ![coverage](https://img.shields.io/coverallsCoverage/github/JakobJingleheimer/nodejs-loaders)
 ![tests](https://github.com/JakobJingleheimer/nodejs-loaders/actions/workflows/ci.yml/badge.svg)

@@ -17,7 +17,7 @@ jobs:
           node-version-file: '.nvmrc'
           registry-url: 'https://registry.npmjs.org'
       - run: npm ci
-      - name: Get the name of the package
-        run : npm publish --workspace=\"packages/${GITHUB_REF_NAME##*@}\"
+      - name: Publish ${GITHUB_REF_NAME##*@} with provenance
+        run : npm publish --access public --provenance --workspace=\"packages/${GITHUB_REF_NAME##*@}\"
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} --provenance --access public
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
