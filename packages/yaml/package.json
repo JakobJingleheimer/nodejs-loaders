@@ -20,5 +20,8 @@
 	"dependencies": {
 		"@nodejs-loaders/parse-filename": "1.0.0",
 		"yaml": "^2.6.0"
-	}
+	},
+    "repository": {
+        "url": "https://github.com/JakobJingleheimer/nodejs-loaders"
+    }
 }
