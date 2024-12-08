@@ -31,11 +31,9 @@ describe('YAML loader', { concurrency: true }, () => {
 	});
 
 	it('should load and parse YAML content', async () => {
-		const url = './test.yaml';
-		const ctx = { format: 'yaml' };
 		const nextLoad = async (url, options) => ({ source: 'key: value' });
 
-		const result = await load(url, ctx, nextLoad);
+		const result = await load('./test.yaml', { format: 'yaml' }, nextLoad);
 		assert.deepEqual(result.source, { key: 'value' });
 	});
 
