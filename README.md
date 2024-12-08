@@ -21,6 +21,7 @@ node
   --loader=@nodejs-loaders/css-module \
   --loader=@nodejs-loaders/media \
   --loader=@nodejs-loaders/text \
+	--loader=@nodejs-loaders/yaml \
   ./main.js
 ```
 
@@ -31,6 +32,7 @@ node
 * [CSS Modules loader](./packages/css-module/)
 * [Media loader](./packages/media/)
 * [Text loader](./packages/text/)
+* [YAML loader](./packages/yaml/)
 
 ## Project-official loaders
 
