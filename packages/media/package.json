@@ -6,15 +6,7 @@
     "maintainers": ["Augustin Mauroy"],
     "license": "ISC",
     "main": "./media.mjs",
-    "keywords": [
-        "audio",
-        "customisation hook",
-        "images",
-        "video",
-        "loader",
-        "media",
-        "node.js"
-    ],
+    "keywords": ["audio", "customisation hook", "images", "video", "loader", "media", "node.js"],
     "dependencies": {
         "@nodejs-loaders/parse-filename": "1.0.0"
     },

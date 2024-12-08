@@ -9,34 +9,32 @@ let esbuildConfig;
  * @param {URL['href']} parentURL
  */
 export function findEsbuildConfig(parentURL) {
-    if (esbuildConfig != null) return esbuildConfig;
+	if (esbuildConfig != null) return esbuildConfig;
 
-    const esBuildConfigLocus = findPackageJSON(parentURL)?.replace(
-        'package.json',
-        'esbuild.config.mjs',
-    );
-    const req = createRequire(fileURLToPath(parentURL));
+	const esBuildConfigLocus = findPackageJSON(parentURL)?.replace(
+		'package.json',
+		'esbuild.config.mjs',
+	);
+	const req = createRequire(fileURLToPath(parentURL));
 
-    try {
-        esbuildConfig = req(esBuildConfigLocus)?.default;
-    } catch (err) {
-        if (err.code !== 'ENOENT') throw err;
+	try {
+		esbuildConfig = req(esBuildConfigLocus)?.default;
+	} catch (err) {
+		if (err.code !== 'ENOENT') throw err;
 
-        process.emitWarning(
-            'No esbuild config found in project root. Using default config.',
-        );
-    }
+		process.emitWarning('No esbuild config found in project root. Using default config.');
+	}
 
-    esbuildConfig = Object.assign(
-        {
-            jsx: 'automatic',
-            jsxDev: true,
-            jsxFactory: 'React.createElement',
-            loader: 'tsx',
-            minify: true,
-        },
-        esbuildConfig,
-    );
+	esbuildConfig = Object.assign(
+		{
+			jsx: 'automatic',
+			jsxDev: true,
+			jsxFactory: 'React.createElement',
+			loader: 'tsx',
+			minify: true,
+		},
+		esbuildConfig,
+	);
 
-    return esbuildConfig;
+	return esbuildConfig;
 }
