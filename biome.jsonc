@@ -9,7 +9,7 @@
         "indentWidth": 4,
         "lineEnding": "lf",
         "lineWidth": 100,
-        "indentStyle": "space",
+        "indentStyle": "tab",
         "enabled": true
     },
     // Rules for the linter
