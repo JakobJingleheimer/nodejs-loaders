@@ -3,7 +3,7 @@ import { describe, it } from 'node:test';
 import { resolve, load } from './yaml.mjs';
 
 describe('YAML loader', { concurrency: true }, () => {
-	it('should resolve .yaml files', async () => {
+	it('should resolve a ".yaml"', async () => {
 		const specifier = './test.yaml';
 		const ctx = {};
 		const nextResolve = async (specifier) => ({ url: specifier });
