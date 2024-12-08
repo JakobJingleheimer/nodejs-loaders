@@ -45,6 +45,11 @@
             "enabled": true
         }
     },
+    "organizeImports": {
+        // disable for now, because it's can't fix automatically
+        // So it's enoying to see the warning
+        "enabled": false
+    },
     "json": {
         "formatter": {
             "enabled": true

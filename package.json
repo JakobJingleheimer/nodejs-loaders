@@ -7,11 +7,12 @@
     "keywords": ["customisation hooks", "loaders", "node.js", "plugin"],
     "scripts": {
         "test": "node --no-warnings --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=./coverage.lcov --test-reporter=spec --test-reporter-destination=stdout --experimental-test-module-mocks --test --test-coverage-include='packages/**/*' --test-coverage-exclude='**/*.spec.mjs' --test-coverage-exclude='**/*.test.mjs' './packages/*/*.spec.mjs' './packages/*/*.test.mjs'",
-        "format:fix": "biome format --fix ./",
-        "format": "biome format ./",
-        "lint:fix": "biome lint --fix ./",
-        "lint": "biome lint ./",
-        "pre-commit": "node --run lint:fix; node --run format:fix"
+        "biome:format:fix": "biome format --fix ./",
+        "biome:format": "biome format ./",
+        "biome:lint:fix": "biome lint --fix ./",
+        "biome:lint": "biome lint ./",
+        "biome:ci": "biome ci ./",
+        "pre-commit": "node --run biome:lint:fix; node --run biome:format:fix"
     },
     "repository": {
         "url": "https://github.com/JakobJingleheimer/nodejs-loaders"
