@@ -21,7 +21,7 @@ describe('YAML loader', { concurrency: true }, () => {
 		assert.equal(result.format, 'yaml');
 	});
 
-	it('should not resolve non-yaml files', async () => {
+	it('should ignore a non-yaml file', async () => {
 		const specifier = './test.txt';
 		const ctx = {};
 		const nextResolve = async (specifier) => ({ url: specifier });
