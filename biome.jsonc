@@ -8,8 +8,8 @@
         "useEditorconfig": true,
         "indentWidth": 4,
         "lineEnding": "lf",
-        "lineWidth": 80,
-        "indentStyle": "space",
+        "lineWidth": 100,
+        "indentStyle": "tab",
         "enabled": true
     },
     // Rules for the linter
@@ -46,7 +46,7 @@
         }
     },
     "organizeImports": {
-        // disable for now, because it's can't fix automatically
+        // disable for now, because it can't fix automatically
         // So it's enoying to see the warning
         "enabled": false
     },
