@@ -1,11 +1,5 @@
 import assert from 'node:assert/strict';
-import {
-	before,
-	describe,
-	it,
-	mock,
-} from 'node:test';
-
+import { before, describe, it, mock } from 'node:test';
 
 describe('finding an ESbuild config', () => {
 	/** @type {MockFunctionContext<NoOpFunction>} */
@@ -25,17 +19,24 @@ describe('finding an ESbuild config', () => {
 		const createRequire = mock.fn();
 		mock_createRequire = createRequire.mock;
 
-		mock.module('node:process', { namedExports: { emitWarning }});
-		mock.module('node:module', { namedExports: {
-			createRequire,
-			findPackageJSON,
-		}});
+		mock.module('node:process', { namedExports: { emitWarning } });
+		mock.module('node:module', {
+			namedExports: {
+				createRequire,
+				findPackageJSON,
+			},
+		});
 
 		({ findEsbuildConfig } = await import('./find-esbuild-config.mjs'));
 	});
 
 	it('should warn when no config is found', () => {
-		mock_createRequire.mockImplementationOnce(() => function mock_require() { throw { code: 'ENOENT' } });
+		mock_createRequire.mockImplementationOnce(
+			() =>
+				function mock_require() {
+					throw { code: 'ENOENT' };
+				},
+		);
 
 		findEsbuildConfig(import.meta.url);
 

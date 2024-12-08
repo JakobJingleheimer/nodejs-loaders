@@ -1,23 +1,16 @@
 {
-	"version": "1.0.0",
-	"name": "@nodejs-loaders/alias",
-	"type": "module",
-	"author": "Jacob Smith",
-	"maintainers": [
-		"Augustin Mauroy"
-	],
-  "license": "ISC",
-	"main": "./alias.mjs",
-	"keywords": [
-		"customisation hook",
-		"loader",
-		"node.js",
-		"path alias"
-	],
-	"dependencies": {
-		"lodash.get": "^4.4.2"
-	},
-  "repository": {
-    "url": "https://github.com/JakobJingleheimer/nodejs-loaders"
-  }
+    "version": "1.0.0",
+    "name": "@nodejs-loaders/alias",
+    "type": "module",
+    "author": "Jacob Smith",
+    "maintainers": ["Augustin Mauroy"],
+    "license": "ISC",
+    "main": "./alias.mjs",
+    "keywords": ["customisation hook", "loader", "node.js", "path alias"],
+    "dependencies": {
+        "lodash.get": "^4.4.2"
+    },
+    "repository": {
+        "url": "https://github.com/JakobJingleheimer/nodejs-loaders"
+    }
 }

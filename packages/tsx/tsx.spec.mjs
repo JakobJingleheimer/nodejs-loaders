@@ -2,7 +2,9 @@ if (process.version.startsWith('v23')) {
 	const assert = await import('node:assert/strict');
 	const { describe, it, mock } = await import('node:test');
 
-	const { assertSuffixedSpecifiers } = await import('../../fixtures/assert-suffixed-specifiers.fixture.mjs');
+	const { assertSuffixedSpecifiers } = await import(
+		'../../fixtures/assert-suffixed-specifiers.fixture.mjs'
+	);
 	const { nextLoad } = await import('../../fixtures/nextLoad.fixture.mjs');
 	const { nextResolve } = await import('../../fixtures/nextResolve.fixture.mjs');
 
@@ -44,8 +46,10 @@ if (process.version.startsWith('v23')) {
 			});
 
 			it('should handle specifiers with appending data', async () => {
-				for (const ext of jsxExts) await assertSuffixedSpecifiers(resolve, `./fixture${ext}`, 'jsx');
-				for (const ext of tsxExts) await assertSuffixedSpecifiers(resolve, `./fixture${ext}`, 'tsx');
+				for (const ext of jsxExts)
+					await assertSuffixedSpecifiers(resolve, `./fixture${ext}`, 'jsx');
+				for (const ext of tsxExts)
+					await assertSuffixedSpecifiers(resolve, `./fixture${ext}`, 'tsx');
 			});
 		});
 
@@ -53,7 +57,11 @@ if (process.version.startsWith('v23')) {
 			const parentURL = import.meta.url;
 
 			it('should ignore files that aren’t J|TSX', async () => {
-				const result = await load(import.meta.resolve('../../fixtures/fixture.ext'), {}, nextLoad);
+				const result = await load(
+					import.meta.resolve('../../fixtures/fixture.ext'),
+					{},
+					nextLoad,
+				);
 
 				assert.deepEqual(result, {
 					format: 'unknown',
@@ -96,10 +104,11 @@ if (process.version.startsWith('v23')) {
 			});
 
 			it('should log transpile errors', async () => {
-				const badJSX = `const Foo (a) => (<div />)`; // missing `=`
+				const badJSX = 'const Foo (a) => (<div />)'; // missing `=`
 				const orig_consoleError = console.error;
 
-				const consoleErr = globalThis.console.error = mock.fn();
+				// biome-ignore lint/suspicious/noAssignInExpressions: this is a test
+				const consoleErr = (globalThis.console.error = mock.fn());
 
 				await load(
 					'whatever.tsx',

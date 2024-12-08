@@ -1,11 +1,5 @@
 import assert from 'node:assert/strict';
-import {
-	before,
-	describe,
-	it,
-	mock,
-} from 'node:test';
-
+import { before, describe, it, mock } from 'node:test';
 
 describe('Mismatched format loader (unit)', () => {
 	/** @type {import('./mismatched-format.mjs').load} */
@@ -23,37 +17,33 @@ describe('Mismatched format loader (unit)', () => {
 
 	describe('when "esm" is actually cjs', () => {
 		it('should detect and report the corrected format', async () => {
-			mock__containsCJS.mockImplementationOnce(function mock__containsCJS() { return true });
-			const result = await load(
-				import.meta.resolve('./unimportant.js'),
-				{},
-				async () => ({
-					format: 'module',
-					source: '"unimportant"',
-				}),
-			);
+			mock__containsCJS.mockImplementationOnce(function mock__containsCJS() {
+				return true;
+			});
+			const result = await load(import.meta.resolve('./unimportant.js'), {}, async () => ({
+				format: 'module',
+				source: '"unimportant"',
+			}));
 
 			assert.equal(result.format, 'commonjs');
 		});
 
 		it('should detect and report the corrected format', async () => {
-			mock__containsCJS.mockImplementationOnce(function mock__containsCJS() { return false });
-			const result = await load(
-				import.meta.resolve('./unimportant.js'),
-				{},
-				async () => { throw new Error('require and import') },
-			);
+			mock__containsCJS.mockImplementationOnce(function mock__containsCJS() {
+				return false;
+			});
+			const result = await load(import.meta.resolve('./unimportant.js'), {}, async () => {
+				throw new Error('require and import');
+			});
 
 			assert.equal(result.format, 'commonjs');
 		});
 
 		it('should detect and report the corrected format', async () => {
-			mock__containsCJS.mockImplementationOnce(() => false)
-			const result = await load(
-				import.meta.resolve('./unimportant.js'),
-				{},
-				async () => { throw new Error('CommonJS') },
-			);
+			mock__containsCJS.mockImplementationOnce(() => false);
+			const result = await load(import.meta.resolve('./unimportant.js'), {}, async () => {
+				throw new Error('CommonJS');
+			});
 
 			assert.equal(result.format, 'commonjs');
 		});

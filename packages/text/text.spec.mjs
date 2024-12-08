@@ -7,7 +7,6 @@ import { nextResolve } from '../../fixtures/nextResolve.fixture.mjs';
 
 import { exts, load, resolve } from './text.mjs';
 
-
 describe('text loader', { concurrency: true }, () => {
 	describe('resolve', () => {
 		it('should ignore files that aren’t text', async () => {
@@ -40,7 +39,11 @@ describe('text loader', { concurrency: true }, () => {
 
 	describe('load', () => {
 		it('should ignore files that aren’t text', async () => {
-			const result = await load(import.meta.resolve('../../fixtures/fixture.ext'), {}, nextLoad);
+			const result = await load(
+				import.meta.resolve('../../fixtures/fixture.ext'),
+				{},
+				nextLoad,
+			);
 
 			assert.deepEqual(result, {
 				format: 'unknown',
@@ -53,7 +56,9 @@ describe('text loader', { concurrency: true }, () => {
 				const fileUrl = import.meta.resolve(`./fixture${ext}`);
 				const result = await load(fileUrl, { format: 'graphql' }, nextLoad);
 
-				const { source } = await nextLoad(fileUrl, { format: 'graphql' });
+				const { source } = await nextLoad(fileUrl, {
+					format: 'graphql',
+				});
 
 				assert.equal(result.format, 'module');
 				assert.equal(result.source, `export default \`${source}\`;`);
