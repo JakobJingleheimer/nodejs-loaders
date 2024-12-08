@@ -12,7 +12,7 @@ describe('YAML loader', { concurrency: true }, () => {
 		assert.equal(result.format, 'yaml');
 	});
 
-	it('should resolve .yml files', async () => {
+	it('should resolve a ".yml" file', async () => {
 		const specifier = './test.yml';
 		const ctx = {};
 		const nextResolve = async (specifier) => ({ url: specifier });
