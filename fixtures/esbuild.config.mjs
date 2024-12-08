@@ -1,3 +1,3 @@
 export default {
-	minify: false,
-}
+    minify: false,
+};

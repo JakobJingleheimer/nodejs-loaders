@@ -1,33 +1,24 @@
 {
-  "version": "2.0.0",
-  "name": "nodejs-loaders",
-  "author": "Jacob Smith",
-  "maintainers": [
-    "Augustin Mauroy"
-  ],
-  "license": "ISC",
-  "keywords": [
-    "customisation hooks",
-    "loaders",
-    "node.js",
-    "plugin"
-  ],
-  "scripts": {
-    "test": "node --no-warnings --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=./coverage.lcov --test-reporter=spec --test-reporter-destination=stdout --experimental-test-module-mocks --test --test-coverage-include='packages/**/*' --test-coverage-exclude='**/*.spec.mjs' --test-coverage-exclude='**/*.test.mjs' './packages/*/*.spec.mjs' './packages/*/*.test.mjs'",
-    "format:fix": "biome format --fix ./",
-    "format": "biome format ./",
-    "lint:fix": "biome lint --fix ./",
-    "lint": "biome lint ./",
-    "pre-commit": "node --run lint:fix; node --run format:fix"
-  },
-  "repository": {
-    "url": "https://github.com/JakobJingleheimer/nodejs-loaders"
-  },
-  "workspaces": [
-    "./packages/*"
-  ],
-  "devDependencies": {
-    "@biomejs/biome": "^1.9.4",
-    "@types/node": "^22.10.1"
-  }
+    "version": "2.0.0",
+    "name": "nodejs-loaders",
+    "author": "Jacob Smith",
+    "maintainers": ["Augustin Mauroy"],
+    "license": "ISC",
+    "keywords": ["customisation hooks", "loaders", "node.js", "plugin"],
+    "scripts": {
+        "test": "node --no-warnings --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=./coverage.lcov --test-reporter=spec --test-reporter-destination=stdout --experimental-test-module-mocks --test --test-coverage-include='packages/**/*' --test-coverage-exclude='**/*.spec.mjs' --test-coverage-exclude='**/*.test.mjs' './packages/*/*.spec.mjs' './packages/*/*.test.mjs'",
+        "format:fix": "biome format --fix ./",
+        "format": "biome format ./",
+        "lint:fix": "biome lint --fix ./",
+        "lint": "biome lint ./",
+        "pre-commit": "node --run lint:fix; node --run format:fix"
+    },
+    "repository": {
+        "url": "https://github.com/JakobJingleheimer/nodejs-loaders"
+    },
+    "workspaces": ["./packages/*"],
+    "devDependencies": {
+        "@biomejs/biome": "^1.9.4",
+        "@types/node": "^22.10.1"
+    }
 }

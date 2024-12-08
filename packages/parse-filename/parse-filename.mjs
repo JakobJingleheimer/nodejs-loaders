@@ -1,6 +1,5 @@
 import path from 'node:path';
 
-
 /**
  * Some loaders may append query parameters or anchors (URLs allow that). That will dupe
  * path.extname, String::endsWith, etc.
@@ -8,26 +7,26 @@ import path from 'node:path';
  * @returns {string}
  */
 export function getFilenameExt(f) {
-	return path.extname(stripExtras(f));
+    return path.extname(stripExtras(f));
 }
 
 export function stripExtras(f) {
-  return f.split('?')[0].split('#')[0];
+    return f.split('?')[0].split('#')[0];
 }
 
 /**
  * @param {`/${string}` | URL['href']} resolvedUrl
  */
 export function getFilenameParts(resolvedUrl) {
-  const pathname = URL.canParse(resolvedUrl)
-    ? (new URL(resolvedUrl)).pathname
-    : resolvedUrl;
+    const pathname = URL.canParse(resolvedUrl)
+        ? new URL(resolvedUrl).pathname
+        : resolvedUrl;
 
-  const ext = getFilenameExt(pathname);
-  const base = path.basename(pathname, ext);
+    const ext = getFilenameExt(pathname);
+    const base = path.basename(pathname, ext);
 
-  return {
-    base,
-    ext,
-  };
+    return {
+        base,
+        ext,
+    };
 }
