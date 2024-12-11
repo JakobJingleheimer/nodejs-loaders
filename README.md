@@ -38,3 +38,4 @@ These loaders are officially maintained by their respective projects and are rec
 
 * [MDX loader](https://mdxjs.com/packages/node-loader/)
 * [SWC register](https://github.com/swc-project/swc-node/tree/master/packages/register#swc-noderegister)
+* [Aurelia loader](https://github.com/aurelia/loader-nodejs)
