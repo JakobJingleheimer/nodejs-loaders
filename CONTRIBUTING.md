@@ -72,6 +72,49 @@ Before merging a pull request, make sure the following requirements are met:
 - 24 hours after approval and no objections, the pull request can be merged
 - All tests pass
 
+## Introduce a New Loader
+
+If you want to introduce a new loader, please follow the steps below:
+
+- Open an issue to discuss the new loader
+  - Describe the use case for the new loader
+	- What problem does it solve?
+	- What are the benefits of the new loader?
+	- Which dependencies will be required?
+- Once the issue is approved, make changes to the codebase
+- Open a pull request
+- Once the pull request is approved, the new loader will be merged
+- Let's realease it.
+
+### Create a New Loader
+
+1. Create a new directory in the `packages` directory with the name of the loader
+2. Create the package.json file
+```json
+{
+	"version": "1.0.0",
+	"name": "@nodejs-loaders/your-loader",
+	"type": "module",
+	"author": "Your Name",
+	"maintainers": [
+		"Jacob Smith",
+		"Augustin Mauroy"
+	],
+  "license": "ISC",
+	"main": "./your-loader.mjs",
+  "repository": {
+    "url": "https://github.com/JakobJingleheimer/nodejs-loaders"
+  }
+}
+```
+
+> [!NOTE]
+> The `repository.url` field must be present. It's use for generating the provenance signature.
+
+3. Create the loader
+
+4. Write unit tests
+
 ## [Developer's Certificate of Origin 1.1](https://developercertificate.org)
 
 ```
