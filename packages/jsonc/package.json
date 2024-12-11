@@ -19,6 +19,7 @@
 		"url": "https://github.com/JakobJingleheimer/nodejs-loaders"
 	},
 	"dependencies": {
-		"@nodejs-loaders/parse-filename": "1.0.0"
+		"@nodejs-loaders/parse-filename": "1.0.0",
+		"strip-json-comments": "^5.0.0"
 	}
 }

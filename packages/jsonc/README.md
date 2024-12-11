@@ -11,5 +11,4 @@
 <summary>Supported file extensions</summary>
 
 * `.jsonc`
-* `.json5`
 </details>
