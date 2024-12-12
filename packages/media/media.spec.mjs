@@ -10,7 +10,11 @@ import { exts, load, resolve } from './media.mjs';
 describe('media loader', { concurrency: true }, () => {
 	describe('resolve', () => {
 		it('should ignore unrecognised files', async () => {
-			const result = await resolve('../../fixtures/fixture.ext', {}, nextResolve);
+			const result = await resolve(
+				'../../fixtures/fixture.ext',
+				{},
+				nextResolve,
+			);
 
 			assert.deepEqual(result, {
 				format: 'unknown',

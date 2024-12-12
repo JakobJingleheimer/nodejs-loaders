@@ -28,7 +28,11 @@ describe('css-module loader', { concurrency: true }, () => {
 		});
 
 		it('should ignore files that aren’t css at all', async () => {
-			const result = await resolve('../../fixtures/fixture.ext', {}, nextResolve);
+			const result = await resolve(
+				'../../fixtures/fixture.ext',
+				{},
+				nextResolve,
+			);
 
 			assert.deepEqual(result, {
 				format: 'unknown',
@@ -37,7 +41,11 @@ describe('css-module loader', { concurrency: true }, () => {
 		});
 
 		it('should handle specifiers with appending data', async () => {
-			await assertSuffixedSpecifiers(resolve, './fixture.module.css', 'css-module');
+			await assertSuffixedSpecifiers(
+				resolve,
+				'./fixture.module.css',
+				'css-module',
+			);
 		});
 	});
 

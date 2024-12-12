@@ -18,7 +18,9 @@ export function stripExtras(f) {
  * @param {`/${string}` | URL['href']} resolvedUrl
  */
 export function getFilenameParts(resolvedUrl) {
-	const pathname = URL.canParse(resolvedUrl) ? new URL(resolvedUrl).pathname : resolvedUrl;
+	const pathname = URL.canParse(resolvedUrl)
+		? new URL(resolvedUrl).pathname
+		: resolvedUrl;
 
 	const ext = getFilenameExt(pathname);
 	const base = path.basename(pathname, ext);

@@ -58,7 +58,10 @@ describe('alias', () => {
 		});
 
 		await test('should de-alias a pointer (absolute path) specifier', async () => {
-			assert.equal((await resolve('VARS', {}, nextResolve)).url, aliases.VARS[0]);
+			assert.equal(
+				(await resolve('VARS', {}, nextResolve)).url,
+				aliases.VARS[0],
+			);
 		});
 
 		await test('should maintain any suffixes on the prefixed specifier', async () => {
@@ -77,8 +80,14 @@ describe('alias', () => {
 		});
 
 		await test('should maintain any suffixes on the pointer (fully-qualified url) specifier', async () => {
-			assert.equal((await resolve('ENV?foo', {}, nextResolve)).url, `${aliases.ENV[0]}?foo`);
-			assert.equal((await resolve('ENV#bar', {}, nextResolve)).url, `${aliases.ENV[0]}#bar`);
+			assert.equal(
+				(await resolve('ENV?foo', {}, nextResolve)).url,
+				`${aliases.ENV[0]}?foo`,
+			);
+			assert.equal(
+				(await resolve('ENV#bar', {}, nextResolve)).url,
+				`${aliases.ENV[0]}#bar`,
+			);
 			assert.equal(
 				(await resolve('ENV?foo#bar', {}, nextResolve)).url,
 				`${aliases.ENV[0]}?foo#bar`,

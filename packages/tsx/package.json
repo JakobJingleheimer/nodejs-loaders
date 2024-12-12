@@ -1,22 +1,22 @@
 {
-    "version": "1.0.0",
-    "name": "@nodejs-loaders/tsx",
-    "type": "module",
-    "author": "Jacob Smith",
-    "maintainers": ["Augustin Mauroy"],
-    "license": "ISC",
-    "main": "./tsx.mjs",
-    "keywords": ["customisation hook", "loader", "node.js", "typescript"],
-    "engines": {
-        "node": "^23.2 || ^22.13"
-    },
-    "dependencies": {
-        "@nodejs-loaders/parse-filename": "1.0.0"
-    },
-    "peerDependencies": {
-        "esbuild": "~0.19.5"
-    },
-    "repository": {
-        "url": "https://github.com/JakobJingleheimer/nodejs-loaders"
-    }
+  "version": "1.0.0",
+  "name": "@nodejs-loaders/tsx",
+  "type": "module",
+  "author": "Jacob Smith",
+  "maintainers": ["Augustin Mauroy"],
+  "license": "ISC",
+  "main": "./tsx.mjs",
+  "keywords": ["customisation hook", "loader", "node.js", "typescript"],
+  "engines": {
+    "node": "^23.2 || ^22.13"
+  },
+  "dependencies": {
+    "@nodejs-loaders/parse-filename": "1.0.0"
+  },
+  "peerDependencies": {
+    "esbuild": "~0.19.5"
+  },
+  "repository": {
+    "url": "https://github.com/JakobJingleheimer/nodejs-loaders"
+  }
 }

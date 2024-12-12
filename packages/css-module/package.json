@@ -1,19 +1,19 @@
 {
-    "version": "1.0.0",
-    "name": "@nodejs-loaders/css-module",
-    "type": "module",
-    "author": "Jacob Smith",
-    "maintainers": ["Augustin Mauroy"],
-    "license": "ISC",
-    "main": "./css-module.mjs",
-    "keywords": ["customisation hook", "css modules", "loader", "node.js"],
-    "dependencies": {
-        "@nodejs-loaders/parse-filename": "1.0.0"
-    },
-    "peerDependencies": {
-        "postcss": "~8.4.38"
-    },
-    "repository": {
-        "url": "https://github.com/JakobJingleheimer/nodejs-loaders"
-    }
+  "version": "1.0.0",
+  "name": "@nodejs-loaders/css-module",
+  "type": "module",
+  "author": "Jacob Smith",
+  "maintainers": ["Augustin Mauroy"],
+  "license": "ISC",
+  "main": "./css-module.mjs",
+  "keywords": ["customisation hook", "css modules", "loader", "node.js"],
+  "dependencies": {
+    "@nodejs-loaders/parse-filename": "1.0.0"
+  },
+  "peerDependencies": {
+    "postcss": "~8.4.38"
+  },
+  "repository": {
+    "url": "https://github.com/JakobJingleheimer/nodejs-loaders"
+  }
 }

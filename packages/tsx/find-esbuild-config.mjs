@@ -22,7 +22,9 @@ export function findEsbuildConfig(parentURL) {
 	} catch (err) {
 		if (err.code !== 'ENOENT') throw err;
 
-		process.emitWarning('No esbuild config found in project root. Using default config.');
+		process.emitWarning(
+			'No esbuild config found in project root. Using default config.',
+		);
 	}
 
 	esbuildConfig = Object.assign(

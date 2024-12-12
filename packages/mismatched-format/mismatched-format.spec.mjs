@@ -20,10 +20,14 @@ describe('Mismatched format loader (unit)', () => {
 			mock__containsCJS.mockImplementationOnce(function mock__containsCJS() {
 				return true;
 			});
-			const result = await load(import.meta.resolve('./unimportant.js'), {}, async () => ({
-				format: 'module',
-				source: '"unimportant"',
-			}));
+			const result = await load(
+				import.meta.resolve('./unimportant.js'),
+				{},
+				async () => ({
+					format: 'module',
+					source: '"unimportant"',
+				}),
+			);
 
 			assert.equal(result.format, 'commonjs');
 		});
@@ -32,18 +36,26 @@ describe('Mismatched format loader (unit)', () => {
 			mock__containsCJS.mockImplementationOnce(function mock__containsCJS() {
 				return false;
 			});
-			const result = await load(import.meta.resolve('./unimportant.js'), {}, async () => {
-				throw new Error('require and import');
-			});
+			const result = await load(
+				import.meta.resolve('./unimportant.js'),
+				{},
+				async () => {
+					throw new Error('require and import');
+				},
+			);
 
 			assert.equal(result.format, 'commonjs');
 		});
 
 		it('should detect and report the corrected format', async () => {
 			mock__containsCJS.mockImplementationOnce(() => false);
-			const result = await load(import.meta.resolve('./unimportant.js'), {}, async () => {
-				throw new Error('CommonJS');
-			});
+			const result = await load(
+				import.meta.resolve('./unimportant.js'),
+				{},
+				async () => {
+					throw new Error('CommonJS');
+				},
+			);
 
 			assert.equal(result.format, 'commonjs');
 		});

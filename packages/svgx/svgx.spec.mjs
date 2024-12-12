@@ -36,9 +36,11 @@ describe('SVGX loader', { concurrency: true }, () => {
 		it('should throw a helpful error when a valid component name cannot be derived', async () => {
 			const fileUrl = import.meta.resolve('./fixtur$e.svg');
 
-			const { message } = await load(fileUrl, { format: 'jsx' }, nextLoad).catch(
-				(err) => err,
-			);
+			const { message } = await load(
+				fileUrl,
+				{ format: 'jsx' },
+				nextLoad,
+			).catch((err) => err);
 
 			assert.match(message, /component name/);
 			assert.match(message, /fixtur\$e/);

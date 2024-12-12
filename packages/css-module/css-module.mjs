@@ -38,19 +38,22 @@ function parseCssToObject(rawSource) {
 
 	const postcssResult = postcss.parse(rawSource).toJSON();
 
-	for (const rule of postcssResult.nodes) parseCssToObjectRecursive(rule, output);
+	for (const rule of postcssResult.nodes)
+		parseCssToObjectRecursive(rule, output);
 
 	return Object.fromEntries(output);
 }
 
 function parseCssToObjectRecursive(node, output) {
 	if (node.type === 'rule') {
-		const classnames = node.selector.match(SELECTOR_TO_CLASS_NAME_RGX) ?? new Array();
+		const classnames =
+			node.selector.match(SELECTOR_TO_CLASS_NAME_RGX) ?? new Array();
 
 		for (const classname of classnames) output.set(classname, classname);
 	}
 
-	if (node.nodes) for (const child of node.nodes) parseCssToObjectRecursive(child, output);
+	if (node.nodes)
+		for (const child of node.nodes) parseCssToObjectRecursive(child, output);
 }
 
 /**

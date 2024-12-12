@@ -13,7 +13,8 @@ export function containsCJS(source) {
 /**
  * `exports.foo =` and friends
  */
-const EXPORTS_PROPERTY = /(?<!(\/\/.*|\*.*))exports(:?\.\w+|\[(:?'|")?.*(:?'|")?\])? *=(?!=)/;
+const EXPORTS_PROPERTY =
+	/(?<!(\/\/.*|\*.*))exports(:?\.\w+|\[(:?'|")?.*(:?'|")?\])? *=(?!=)/;
 
 /**
  * `Object.defineProperty(exports,` and friends

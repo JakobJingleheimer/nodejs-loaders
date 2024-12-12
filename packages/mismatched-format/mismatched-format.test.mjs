@@ -40,7 +40,9 @@ describe('Mismatched format loader (e2e)', () => {
 
 		it('should handle `require()` within a comment', async () => {
 			const result = await load(
-				import.meta.resolve('./fixtures/actually-esm/require-in-comment.esm.js'),
+				import.meta.resolve(
+					'./fixtures/actually-esm/require-in-comment.esm.js',
+				),
 				{},
 				nextLoad,
 			);

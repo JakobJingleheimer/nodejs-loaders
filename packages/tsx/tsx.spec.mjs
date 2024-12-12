@@ -6,7 +6,9 @@ if (process.version.startsWith('v23')) {
 		'../../fixtures/assert-suffixed-specifiers.fixture.mjs'
 	);
 	const { nextLoad } = await import('../../fixtures/nextLoad.fixture.mjs');
-	const { nextResolve } = await import('../../fixtures/nextResolve.fixture.mjs');
+	const { nextResolve } = await import(
+		'../../fixtures/nextResolve.fixture.mjs'
+	);
 
 	const { jsxExts, tsxExts, load, resolve } = await import('./tsx.mjs');
 
@@ -89,7 +91,11 @@ if (process.version.startsWith('v23')) {
 
 			it('should transpile JSX', async () => {
 				const fileUrl = import.meta.resolve('./fixture.jsx');
-				const result = await load(fileUrl, { format: 'jsx', parentURL }, nextLoad);
+				const result = await load(
+					fileUrl,
+					{ format: 'jsx', parentURL },
+					nextLoad,
+				);
 
 				assert.equal(result.format, 'module');
 				assert.equal(result.source, transpiled);
@@ -97,7 +103,11 @@ if (process.version.startsWith('v23')) {
 
 			it('should transpile TSX', async () => {
 				const fileUrl = import.meta.resolve('./fixture.tsx');
-				const result = await load(fileUrl, { format: 'tsx', parentURL }, nextLoad);
+				const result = await load(
+					fileUrl,
+					{ format: 'tsx', parentURL },
+					nextLoad,
+				);
 
 				assert.equal(result.format, 'module');
 				assert.equal(result.source, transpiled);

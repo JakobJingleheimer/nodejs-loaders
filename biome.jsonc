@@ -1,64 +1,59 @@
 {
-    "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
-    "files": {
-        "ignore": ["**/fixture/**", "**/fixture.*"],
-        "include": ["**/*.js", "**/*.mjs", "**/*.cjs", "**/*.css", "**/*.json"]
-    },
-    "formatter": {
-        "useEditorconfig": true,
-        "indentWidth": 4,
-        "lineEnding": "lf",
-        "lineWidth": 100,
-        "indentStyle": "tab",
-        "enabled": true
-    },
-    // Rules for the linter
-    "linter": {
-        "rules": {
-            "style": {
-                "useImportType": "error",
-                "useNodeAssertStrict": "error",
-                "useNodejsImportProtocol": "error",
-                "useTemplate": "off"
-            },
-            "suspicious": {
-                "noExplicitAny": "error",
-                "noEmptyBlock": "error",
-                "noDuplicateAtImportRules": "error",
-                "noDuplicateObjectKeys": "error"
-            },
-            "correctness": {
-                "noUnusedVariables": "off",
-                "useArrayLiterals": "off",
-                "noUnknownFunction": "error"
-            }
-        }
-    },
-    // Language specific settings
-    "javascript": {
-        "formatter": {
-            "semicolons": "always",
-            "quoteStyle": "single",
-            "trailingCommas": "all"
-        },
-        "linter": {
-            "enabled": true
-        }
-    },
-    "organizeImports": {
-        // disable for now, because it can't fix automatically
-        // So it's enoying to see the warning
-        "enabled": false
-    },
-    "json": {
-        "formatter": {
-            "enabled": true,
-            "indentStyle": "space"
-        }
-    },
-    // VSC specific settings
-    "vcs": {
-        "enabled": true,
-        "clientKind": "git"
-    }
+	"$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+	"files": {
+		"ignore": ["**/fixture/**", "**/fixture.*"],
+		"include": ["**/*.js", "**/*.mjs", "**/*.cjs", "**/*.css", "**/*.json"]
+	},
+	"formatter": {
+		"useEditorconfig": true,
+		"enabled": true
+	},
+	// Rules for the linter
+	"linter": {
+		"rules": {
+			"style": {
+				"useImportType": "error",
+				"useNodeAssertStrict": "error",
+				"useNodejsImportProtocol": "error",
+				"useTemplate": "off"
+			},
+			"suspicious": {
+				"noExplicitAny": "error",
+				"noEmptyBlock": "error",
+				"noDuplicateAtImportRules": "error",
+				"noDuplicateObjectKeys": "error"
+			},
+			"correctness": {
+				"noUnusedVariables": "off",
+				"useArrayLiterals": "off",
+				"noUnknownFunction": "error"
+			}
+		}
+	},
+	// Language specific settings
+	"javascript": {
+		"formatter": {
+			"semicolons": "always",
+			"quoteStyle": "single",
+			"trailingCommas": "all"
+		},
+		"linter": {
+			"enabled": true
+		}
+	},
+	"organizeImports": {
+		// disable for now, because it can't fix automatically
+		// So it's enoying to see the warning
+		"enabled": false
+	},
+	"json": {
+		"formatter": {
+			"enabled": true
+		}
+	},
+	// VSC specific settings
+	"vcs": {
+		"enabled": true,
+		"clientKind": "git"
+	}
 }

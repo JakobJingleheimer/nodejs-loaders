@@ -38,20 +38,21 @@ async function loadTSX(url, ctx, nextLoad) {
 	if (esbuildConfig.jsx === 'transform')
 		rawSource = `import * as React from 'react';\n${rawSource}`;
 
-	const { code: source, warnings } = await transform(rawSource, esbuildConfig).catch(
-		({ errors }) => {
-			for (const {
-				location: { column, line, lineText },
-				text,
-			} of errors) {
-				console.error(
-					`TranspileError: ${text}\n    at ${url}:${line}:${column}\n    at: ${lineText}\n`,
-				);
-			}
+	const { code: source, warnings } = await transform(
+		rawSource,
+		esbuildConfig,
+	).catch(({ errors }) => {
+		for (const {
+			location: { column, line, lineText },
+			text,
+		} of errors) {
+			console.error(
+				`TranspileError: ${text}\n    at ${url}:${line}:${column}\n    at: ${lineText}\n`,
+			);
+		}
 
-			return {};
-		},
-	);
+		return {};
+	});
 
 	if (warnings?.length) console.warn(...warnings);
 
