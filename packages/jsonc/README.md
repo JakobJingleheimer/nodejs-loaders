@@ -21,6 +21,9 @@ import data from './data.jsonc' with { type: 'jsonc' };
 }
 ```
 
+> [!WARNING]
+> The `jsonc` import attribute is required to use this loader and case-sensitive. So make sure to use `jsonc` and not `JSONC` or `Jsonc`.
+
 <details>
 <summary>Supported file extensions</summary>
 
