@@ -19,6 +19,7 @@ node
   --loader=@nodejs-loaders/mismatched-format \
 # sequence here is NOT important:
   --loader=@nodejs-loaders/css-module \
+	--loader=@nodejs-loaders/jsonc \
   --loader=@nodejs-loaders/media \
   --loader=@nodejs-loaders/text \
   ./main.js
@@ -29,6 +30,7 @@ node
 * [SVGX loader](./packages/svgx/)
 * [Mismatched format loader](./packages/mismatched-format/)
 * [CSS Modules loader](./packages/css-module/)
+* [JSONC loader](./packages/jsonc/)
 * [Media loader](./packages/media/)
 * [Text loader](./packages/text/)
 

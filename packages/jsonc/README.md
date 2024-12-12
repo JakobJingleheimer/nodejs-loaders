@@ -7,6 +7,20 @@
 
 **Environments**: dev, test
 
+To import JSONC files when using this loader, you will have to use `jsonc` as the file extension **and** in the [import attribute](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import/with).
+
+```js
+import data from './data.jsonc' with { type: 'jsonc' };
+```
+
+```jsonc
+{
+  // JSONC file
+  "key": "value"
+  /* comment */
+}
+```
+
 <details>
 <summary>Supported file extensions</summary>
 
