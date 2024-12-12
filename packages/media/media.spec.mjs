@@ -7,11 +7,14 @@ import { nextResolve } from '../../fixtures/nextResolve.fixture.mjs';
 
 import { exts, load, resolve } from './media.mjs';
 
-
 describe('media loader', { concurrency: true }, () => {
 	describe('resolve', () => {
 		it('should ignore unrecognised files', async () => {
-			const result = await resolve('../../fixtures/fixture.ext', {}, nextResolve);
+			const result = await resolve(
+				'../../fixtures/fixture.ext',
+				{},
+				nextResolve,
+			);
 
 			assert.deepEqual(result, {
 				format: 'unknown',
@@ -32,13 +35,18 @@ describe('media loader', { concurrency: true }, () => {
 		});
 
 		it('should handle specifiers with appending data', async () => {
-			for (const ext of exts) await assertSuffixedSpecifiers(resolve, `./fixture.${ext}`, 'media');
+			for (const ext of exts)
+				await assertSuffixedSpecifiers(resolve, `./fixture.${ext}`, 'media');
 		});
 	});
 
 	describe('load', () => {
 		it('should ignore unrecognised files', async () => {
-			const result = await load(import.meta.resolve('../../fixtures/fixture.ext'), {}, nextLoad);
+			const result = await load(
+				import.meta.resolve('../../fixtures/fixture.ext'),
+				{},
+				nextLoad,
+			);
 
 			assert.deepEqual(result, {
 				format: 'unknown',

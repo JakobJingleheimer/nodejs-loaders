@@ -2,7 +2,6 @@ import assert from 'node:assert/strict';
 
 import { nextResolve } from './nextResolve.fixture.mjs';
 
-
 export async function assertSuffixedSpecifiers(resolve, baseSpecifier, format) {
 	for (const suffix of suffixes) {
 		const specifier = `${baseSpecifier}${suffix}`;
@@ -14,8 +13,4 @@ export async function assertSuffixedSpecifiers(resolve, baseSpecifier, format) {
 	}
 }
 
-const suffixes = new Array(
-	'?foo',
-	'#bar',
-	'?foo#bar',
-);
+const suffixes = new Array('?foo', '#bar', '?foo#bar');

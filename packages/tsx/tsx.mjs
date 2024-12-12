@@ -4,67 +4,67 @@ import { getFilenameExt } from '@nodejs-loaders/parse-filename';
 
 import { findEsbuildConfig } from './find-esbuild-config.mjs';
 
-
 async function resolveTSX(specifier, ctx, nextResolve) {
-  const nextResult = await nextResolve(specifier);
-  // Check against the fully resolved URL, not just the specifier, in case another loader has
-  // something to contribute to the resolution.
-  const ext = getFilenameExt(nextResult.url);
+	const nextResult = await nextResolve(specifier);
+	// Check against the fully resolved URL, not just the specifier, in case another loader has
+	// something to contribute to the resolution.
+	const ext = getFilenameExt(nextResult.url);
 
-  if (jsxExts.has(ext)) return {
-    ...nextResult,
-    format: 'jsx',
-  };
+	if (jsxExts.has(ext))
+		return {
+			...nextResult,
+			format: 'jsx',
+		};
 
-  if (tsxExts.has(ext)) return {
-    ...nextResult,
-    format: 'tsx',
-  };
+	if (tsxExts.has(ext))
+		return {
+			...nextResult,
+			format: 'tsx',
+		};
 
-  return nextResult;
+	return nextResult;
 }
-export { resolveTSX as resolve }
+export { resolveTSX as resolve };
 
 async function loadTSX(url, ctx, nextLoad) {
-  if (!formats.has(ctx.format)) return nextLoad(url); // not j|tsx
+	if (!formats.has(ctx.format)) return nextLoad(url); // not j|tsx
 
-  const format = 'module';
-  const nextResult = await nextLoad(url, { format });
-  let rawSource = ''+nextResult.source; // byte array → string
+	const format = 'module';
+	const nextResult = await nextLoad(url, { format });
+	let rawSource = '' + nextResult.source; // byte array → string
 
-  const esbuildConfig = findEsbuildConfig(ctx.parentURL);
+	const esbuildConfig = findEsbuildConfig(ctx.parentURL);
 
-  if (esbuildConfig.jsx === 'transform') rawSource = `import * as React from 'react';\n${rawSource}`;
+	if (esbuildConfig.jsx === 'transform')
+		rawSource = `import * as React from 'react';\n${rawSource}`;
 
-  const { code: source, warnings } = await transform(rawSource, esbuildConfig)
-    .catch(({ errors }) => {
-      for (const {
-        location: { column, line, lineText },
-        text,
-      } of errors) {
-        console.error(`TranspileError: ${text}\n    at ${url}:${line}:${column}\n    at: ${lineText}\n`);
-      }
+	const { code: source, warnings } = await transform(
+		rawSource,
+		esbuildConfig,
+	).catch(({ errors }) => {
+		for (const {
+			location: { column, line, lineText },
+			text,
+		} of errors) {
+			console.error(
+				`TranspileError: ${text}\n    at ${url}:${line}:${column}\n    at: ${lineText}\n`,
+			);
+		}
 
-      return {};
-    });
+		return {};
+	});
 
-  if (warnings?.length) console.warn(...warnings);
+	if (warnings?.length) console.warn(...warnings);
 
-  return {
-    format,
-    source,
-  };
+	return {
+		format,
+		source,
+	};
 }
-export { loadTSX as load }
+export { loadTSX as load };
 
-export const jsxExts = new Set([
-  '.jsx',
-]);
+export const jsxExts = new Set(['.jsx']);
 
-export const tsxExts = new Set([
-  '.mts',
-  '.ts',
-  '.tsx',
-]);
+export const tsxExts = new Set(['.mts', '.ts', '.tsx']);
 
 const formats = new Set(['jsx', 'tsx']);
