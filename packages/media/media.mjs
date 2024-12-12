@@ -2,7 +2,9 @@ import process from 'node:process';
 
 import { getFilenameExt } from '@nodejs-loaders/parse-filename';
 
-
+/**
+ * @type {import('node:module').ResolveHook}
+ */
 async function resolveMedia(specifier, ctx, nextResolve) {
   const nextResult = await nextResolve(specifier);
 
@@ -18,6 +20,9 @@ async function resolveMedia(specifier, ctx, nextResolve) {
 }
 export { resolveMedia as resolve }
 
+/**
+ * @type {import('node:module').LoadHook}
+ */
 async function loadMedia(url, ctx, nextLoad) {
   if (ctx.format !== 'media') return nextLoad(url);
 

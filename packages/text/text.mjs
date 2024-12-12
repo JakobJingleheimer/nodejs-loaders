@@ -1,6 +1,8 @@
 import { getFilenameExt } from '@nodejs-loaders/parse-filename';
 
-
+/**
+ * @type {import('node:module').ResolveHook}
+ */
 async function resolveText(specifier, ctx, nextResolve) {
   const nextResult = await nextResolve(specifier);
 
@@ -16,6 +18,9 @@ async function resolveText(specifier, ctx, nextResolve) {
 }
 export { resolveText as resolve }
 
+/**
+ * @type {import('node:module').LoadHook}
+ */
 async function loadText(url, ctx, nextLoad) {
   const nextResult = await nextLoad(url, ctx);
 

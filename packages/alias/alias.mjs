@@ -14,6 +14,9 @@ if (!aliases) console.warn(
   'This loader will behave as a noop (but you should probably remove it if you aren’t using it).',
 );
 
+/**
+ * @type {import('node:module').ResolveHook}
+ */
 function resolveAlias(specifier, ctx, next) {
   return (aliases ? resolveAliases : next)(specifier, ctx, next);
 }
