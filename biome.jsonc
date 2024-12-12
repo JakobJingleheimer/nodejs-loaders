@@ -5,6 +5,7 @@
 		"include": ["**/*.js", "**/*.mjs", "**/*.cjs", "**/*.css", "**/*.json"]
 	},
 	"formatter": {
+		// don't use biome config but use .editorconfig
 		"useEditorconfig": true,
 		"enabled": true
 	},

@@ -1,4 +1,4 @@
 {
-  "name": "erroneously-cjs",
-  "type": "commonjs"
+    "name": "erroneously-cjs",
+    "type": "commonjs"
 }
