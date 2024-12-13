@@ -5,11 +5,23 @@ import { getFilenameExt } from '@nodejs-loaders/parse-filename';
 import { findEsbuildConfig } from './find-esbuild-config.mjs';
 
 
+/**
+ * The load hook needs to know the parent URL to find the esbuild config.
+ * But the resolve hook doesn't have access to the parent URL.
+ * If you try to pass it as return value from the resolve hook, it will be overwritten by node
+ */
+let parentURL = null;
+
+/**
+ * @type {import('node:module').ResolveHook}
+ */
 async function resolveTSX(specifier, ctx, nextResolve) {
   const nextResult = await nextResolve(specifier);
   // Check against the fully resolved URL, not just the specifier, in case another loader has
   // something to contribute to the resolution.
   const ext = getFilenameExt(nextResult.url);
+
+	parentURL = ctx.parentURL;
 
   if (jsxExts.has(ext)) return {
     ...nextResult,
@@ -25,6 +37,9 @@ async function resolveTSX(specifier, ctx, nextResolve) {
 }
 export { resolveTSX as resolve }
 
+/**
+ * @type {import('node:module').LoadHook}
+ */
 async function loadTSX(url, ctx, nextLoad) {
   if (!formats.has(ctx.format)) return nextLoad(url); // not j|tsx
 
@@ -32,7 +47,7 @@ async function loadTSX(url, ctx, nextLoad) {
   const nextResult = await nextLoad(url, { format });
   let rawSource = ''+nextResult.source; // byte array → string
 
-  const esbuildConfig = findEsbuildConfig(ctx.parentURL);
+	const esbuildConfig = findEsbuildConfig(parentURL);
 
   if (esbuildConfig.jsx === 'transform') rawSource = `import * as React from 'react';\n${rawSource}`;
 

@@ -6,7 +6,7 @@
 	"maintainers": [
 		"Augustin Mauroy"
 	],
-  "license": "ISC",
+    "license": "ISC",
 	"main": "./tsx.mjs",
 	"keywords": [
 		"customisation hook",
@@ -23,7 +23,10 @@
 	"peerDependencies": {
 		"esbuild": "~0.19.5"
 	},
-  "repository": {
-    "url": "https://github.com/JakobJingleheimer/nodejs-loaders"
-  }
+    "repository": {
+        "url": "https://github.com/JakobJingleheimer/nodejs-loaders"
+    },
+    "scripts": {
+        "e2e": "node --import=\"./r.mjs\" e2e.mjs"
+    }
 }
