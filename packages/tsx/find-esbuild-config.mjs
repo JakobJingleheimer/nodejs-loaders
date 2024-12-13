@@ -1,5 +1,4 @@
-import { createRequire, findPackageJSON } from 'node:module';
-import process from 'node:process';
+import { createRequire} from 'node:module';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
@@ -12,8 +11,8 @@ let esbuildConfig;
 export function findEsbuildConfig(parentURL){
   if (esbuildConfig != null) return esbuildConfig
 
-	const esBuildConfigLocus = findPackageJSON(parentURL, "base:")
-		?.replace('package.json', 'esbuild.config.mjs');
+	const absolutePath = path.resolve(fileURLToPath(parentURL));
+	const esBuildConfigLocus = absolutePath.replace(/\/[^/]+$/, '/esbuild.config.mjs');
 
 	const req = createRequire(fileURLToPath(parentURL));
   try {

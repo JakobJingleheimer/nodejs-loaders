@@ -27,6 +27,6 @@
         "url": "https://github.com/JakobJingleheimer/nodejs-loaders"
     },
     "scripts": {
-        "e2e": "node --import=\"./r.mjs\" e2e.mjs"
+        "e2e": "node --import=\"./register.mjs\" e2e.mjs"
     }
 }

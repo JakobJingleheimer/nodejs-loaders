@@ -14,7 +14,7 @@ describe('finding an ESbuild config', () => {
 	let mock_createRequire;
 	/** @type {MockFunctionContext<NoOpFunction>} */
 	let mock_findPackageJSON;
-	/** @type import('./find-esbuild-config.mjs').findEsbuildConfig */
+	/** @type {import('./find-esbuild-config.mjs').findEsbuildConfig} */
 	let findEsbuildConfig;
 
 	before(async () => {
