@@ -1,6 +1,5 @@
-import { createRequire} from 'node:module';
+import { createRequire, findPackageJSON } from 'node:module';
 import { fileURLToPath } from 'node:url';
-import path from 'node:path';
 
 // This config must contain options that are compatible with esbuild's `transform` API.
 let esbuildConfig;
@@ -11,8 +10,10 @@ let esbuildConfig;
 export function findEsbuildConfig(parentURL){
   if (esbuildConfig != null) return esbuildConfig
 
-	const absolutePath = path.resolve(fileURLToPath(parentURL));
-	const esBuildConfigLocus = absolutePath.replace(/\/[^/]+$/, '/esbuild.config.mjs');
+	console.log('parentURL', parentURL)
+
+	const esBuildConfigLocus = findPackageJSON(parentURL, import.meta.url)
+		?.replace('package.json', 'esbuild.config.mjs');
 
 	const req = createRequire(fileURLToPath(parentURL));
   try {

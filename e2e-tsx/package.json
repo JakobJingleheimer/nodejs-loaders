@@ -1,0 +1,10 @@
+{
+  "name": "pfff",
+  "version": "1.0.0",
+  "scripts": {
+    "e2e": "node --import=\"./register.mjs\" e2e.mjs"
+  },
+  "dependencies": {
+    "@nodejs-loaders/tsx": "*"
+  }
+}
