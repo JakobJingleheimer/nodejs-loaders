@@ -1,1 +1,1 @@
-/Users/augustinmauroy/Desktop/nodejs-loaders/fixtures/fixture.jsx
+../../fixtures/fixture.jsx

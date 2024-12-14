@@ -23,7 +23,7 @@ async function resolveTSX(specifier, ctx, nextResolve) {
   // something to contribute to the resolution.
   const ext = getFilenameExt(nextResult.url);
 
-	parentURLs.set(nextResult.url, ctx.parentURL);
+  parentURLs.set(nextResult.url, ctx.parentURL);
 
   if (jsxExts.has(ext)) return {
     ...nextResult,
@@ -47,7 +47,7 @@ async function loadTSX(url, ctx, nextLoad) {
 
   const format = 'module';
   const nextResult = await nextLoad(url, { format });
-  let rawSource = ''+nextResult.source; // byte array → string
+  const rawSource = `${nextResult.source}`; // byte array → string
 
   const esbuildConfig = findEsbuildConfig(parentURLs.get(url));
 
