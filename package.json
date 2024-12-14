@@ -13,13 +13,15 @@
     "plugin"
   ],
   "scripts": {
-    "test": "node --no-warnings --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=./coverage.lcov --test-reporter=spec --test-reporter-destination=stdout --experimental-test-module-mocks --test --test-coverage-include='packages/**/*' --test-coverage-exclude='**/*.spec.mjs' --test-coverage-exclude='**/*.test.mjs' './packages/*/*.spec.mjs' './packages/*/*.test.mjs'"
+    "test:package": "node --no-warnings --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=./coverage.lcov --test-reporter=spec --test-reporter-destination=stdout --experimental-test-module-mocks --test --test-coverage-include='packages/**/*' --test-coverage-exclude='**/*.spec.mjs' --test-coverage-exclude='**/*.test.mjs' './packages/*/*.spec.mjs' './packages/*/*.test.mjs'",
+    "test:e2e-tsx": "node --no-warnings --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=./coverage.lcov --test-reporter=spec --test-reporter-destination=stdout --experimental-test-module-mocks --test --test-coverage-include='./e2e-tsx/**/*' --test-coverage-exclude='**/*.spec.mjs' --test-coverage-exclude='**/*.test.mjs' './e2e-tsx/**/*.spec.mjs' './e2e-tsx/**/*.test.mjs'"
   },
   "repository": {
     "url": "https://github.com/JakobJingleheimer/nodejs-loaders"
   },
   "workspaces": [
-    "./packages/*"
+    "./packages/*",
+    "./e2e/*"
   ],
   "devDependencies": {
     "@types/node": "^22.10.1"

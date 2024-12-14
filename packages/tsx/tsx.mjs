@@ -9,6 +9,8 @@ import { findEsbuildConfig } from './find-esbuild-config.mjs';
  * The load hook needs to know the parent URL to find the esbuild config.
  * But the resolve hook doesn't have access to the parent URL.
  * If you try to pass it as return value from the resolve hook, it will be overwritten by node
+ *
+ * @type {Map<URL['href'], URL['href']>}
  */
 let parentURL = null;
 
@@ -21,7 +23,7 @@ async function resolveTSX(specifier, ctx, nextResolve) {
   // something to contribute to the resolution.
   const ext = getFilenameExt(nextResult.url);
 
-	parentURL = ctx.parentURL;
+	parentURLs.set(nextResult.url, ctx.parentURL);
 
   if (jsxExts.has(ext)) return {
     ...nextResult,
@@ -47,7 +49,7 @@ async function loadTSX(url, ctx, nextLoad) {
   const nextResult = await nextLoad(url, { format });
   let rawSource = ''+nextResult.source; // byte array → string
 
-	const esbuildConfig = findEsbuildConfig(parentURL);
+  const esbuildConfig = findEsbuildConfig(parentURLs.get(url));
 
   if (esbuildConfig.jsx === 'transform') rawSource = `import * as React from 'react';\n${rawSource}`;
 

@@ -7,12 +7,10 @@ let esbuildConfig;
 /**
  * @param {URL['href']} parentURL
  */
-export function findEsbuildConfig(parentURL){
-  if (esbuildConfig != null) return esbuildConfig
+export function findEsbuildConfig(parentURL) {
+  if (esbuildConfig != null) return esbuildConfig;
 
-	console.log('parentURL', parentURL)
-
-	const esBuildConfigLocus = findPackageJSON(parentURL, import.meta.url)
+	const esBuildConfigLocus = findPackageJSON(parentURL)
 		?.replace('package.json', 'esbuild.config.mjs');
 
 	const req = createRequire(fileURLToPath(parentURL));

@@ -30,7 +30,8 @@ jobs:
           cache: 'npm'
       - name: npm clean install
         run: npm ci
-      - run: npm test
+      # We only want to test the package, not the e2e for now
+      - run: node --run test:package
       - name: Publish coverage to Coveralls ${{ matrix.test_number }}
         uses: coverallsapp/github-action@v2
         with:
