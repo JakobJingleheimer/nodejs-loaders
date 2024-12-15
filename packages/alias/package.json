@@ -18,6 +18,7 @@
 		"lodash.get": "^4.4.2"
 	},
   "repository": {
-    "url": "https://github.com/JakobJingleheimer/nodejs-loaders"
+    "type": "git",
+    "url": "https://github.com/nodejs-loaders/nodejs-loaders"
   }
 }

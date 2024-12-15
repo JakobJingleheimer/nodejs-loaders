@@ -21,6 +21,7 @@
     "postcss": "~8.4.38"
   },
   "repository": {
-    "url": "https://github.com/JakobJingleheimer/nodejs-loaders"
+    "type": "git",
+    "url": "https://github.com/nodejs-loaders/nodejs-loaders"
   }
 }
