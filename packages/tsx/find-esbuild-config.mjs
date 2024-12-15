@@ -2,7 +2,7 @@ import { createRequire, findPackageJSON } from 'node:module';
 import { fileURLToPath } from 'node:url';
 
 // This config must contain options that are compatible with esbuild's `transform` API.
-let esbuildConfig;
+export let esbuildConfig;
 
 /**
  * @param {URL['href']} parentURL
@@ -22,11 +22,13 @@ export function findEsbuildConfig(parentURL) {
     process.emitWarning('No esbuild config found in project root. Using default config.')
   }
 
-  return esbuildConfig = Object.assign({
-    jsx: 'automatic',
-    jsxDev: true,
-    jsxFactory: 'React.createElement',
-    loader: 'tsx',
-    minify: true,
-  }, esbuildConfig);
+  return esbuildConfig = Object.assign({}, defaults, esbuildConfig);
 }
+
+export const defaults = {
+	jsx: 'automatic',
+	jsxDev: true,
+	jsxFactory: 'React.createElement',
+	loader: 'tsx',
+	minify: true,
+};

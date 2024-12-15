@@ -12,7 +12,7 @@ import { findEsbuildConfig } from './find-esbuild-config.mjs';
  *
  * @type {Map<URL['href'], URL['href']>}
  */
-let parentURL = null;
+export const parentURLs = new Map();
 
 /**
  * @type {import('node:module').ResolveHook}
@@ -24,6 +24,7 @@ async function resolveTSX(specifier, ctx, nextResolve) {
   const ext = getFilenameExt(nextResult.url);
 
   parentURLs.set(nextResult.url, ctx.parentURL);
+  parentURLs.set(nextResult.url, ctx.parentURL ?? nextResult.url);
 
   if (jsxExts.has(ext)) return {
     ...nextResult,
