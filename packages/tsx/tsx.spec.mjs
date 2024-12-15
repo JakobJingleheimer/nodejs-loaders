@@ -1,3 +1,5 @@
+import { before } from 'node:test';
+
 if (process.version.startsWith('v23')) {
 	const assert = await import('node:assert/strict');
 	const { describe, it, mock } = await import('node:test');
@@ -6,9 +8,23 @@ if (process.version.startsWith('v23')) {
 	const { nextLoad } = await import('../../fixtures/nextLoad.fixture.mjs');
 	const { nextResolve } = await import('../../fixtures/nextResolve.fixture.mjs');
 
-	const { jsxExts, tsxExts, load, resolve } = await import('./tsx.mjs');
-
 	describe('JSX & TypeScript loader', { concurrency: true }, () => {
+		let jsxExts, tsxExts, load, resolve;
+
+		before(async () => {
+			// This is necessary because now `load` depends on `resolve` having run.
+			const esbuildConfig = {
+				...(await import('./find-esbuild-config.mjs')).defaults,
+				...(await import('./fixtures/esbuild.config.mjs')).default,
+			};
+			console.log({ esbuildConfig })
+			mock.module('./find-esbuild-config.mjs', {
+				namedExports: { findEsbuildConfig: () => esbuildConfig },
+			});
+
+			({ jsxExts, tsxExts, load, resolve } = await import('./tsx.mjs'));
+		});
+
 		describe('resolve', () => {
 			it('should ignore files that aren’t text', async () => {
 				const result = await resolve('./fixture.ext', {}, nextResolve);
@@ -50,8 +66,6 @@ if (process.version.startsWith('v23')) {
 		});
 
 		describe('load', () => {
-			const parentURL = import.meta.url;
-
 			it('should ignore files that aren’t J|TSX', async () => {
 				const result = await load(import.meta.resolve('../../fixtures/fixture.ext'), {}, nextLoad);
 
@@ -80,16 +94,16 @@ if (process.version.startsWith('v23')) {
 			].join('\n');
 
 			it('should transpile JSX', async () => {
-				const fileUrl = import.meta.resolve('./fixture.jsx');
-				const result = await load(fileUrl, { format: 'jsx', parentURL }, nextLoad);
+				const fileUrl = import.meta.resolve('./fixtures/fixture.jsx');
+				const result = await load(fileUrl, { format: 'jsx' }, nextLoad);
 
 				assert.equal(result.format, 'module');
 				assert.equal(result.source, transpiled);
 			});
 
 			it('should transpile TSX', async () => {
-				const fileUrl = import.meta.resolve('./fixture.tsx');
-				const result = await load(fileUrl, { format: 'tsx', parentURL }, nextLoad);
+				const fileUrl = import.meta.resolve('./fixtures/fixture.tsx');
+				const result = await load(fileUrl, { format: 'tsx' }, nextLoad);
 
 				assert.equal(result.format, 'module');
 				assert.equal(result.source, transpiled);
