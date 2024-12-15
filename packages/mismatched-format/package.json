@@ -19,6 +19,7 @@
 	},
   "repository": {
     "type": "git",
-    "url": "https://github.com/nodejs-loaders/nodejs-loaders"
+    "url": "git+https://github.com/nodejs-loaders/nodejs-loaders.git",
+    "directory": "packages/mismatched-format"
   }
 }

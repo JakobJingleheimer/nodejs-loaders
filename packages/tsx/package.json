@@ -23,8 +23,9 @@
 	"peerDependencies": {
 		"esbuild": "~0.19.5"
 	},
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/nodejs-loaders/nodejs-loaders"
-  }
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/nodejs-loaders/nodejs-loaders.git",
+        "directory": "packages/tsx"
+    }
 }
