@@ -19,8 +19,7 @@
     "url": "https://github.com/JakobJingleheimer/nodejs-loaders"
   },
   "workspaces": [
-    "./packages/*",
-    "./e2e/*"
+    "./packages/*"
   ],
   "devDependencies": {
     "@types/node": "^22.10.1"
