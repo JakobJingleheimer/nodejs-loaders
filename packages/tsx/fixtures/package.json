@@ -1,5 +1,6 @@
 {
   "name": "e2e-tsx",
+  "main": "./main.jsx",
   "dependencies": {
     "@nodejs-loaders/tsx": "*"
   }

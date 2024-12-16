@@ -94,7 +94,7 @@ if (process.version.startsWith('v23')) {
 			].join('\n');
 
 			it('should transpile JSX', async () => {
-				const fileUrl = import.meta.resolve('./fixtures/fixture.jsx');
+				const fileUrl = import.meta.resolve('./fixtures/main.jsx');
 				const result = await load(fileUrl, { format: 'jsx' }, nextLoad);
 
 				assert.equal(result.format, 'module');
@@ -102,7 +102,7 @@ if (process.version.startsWith('v23')) {
 			});
 
 			it('should transpile TSX', async () => {
-				const fileUrl = import.meta.resolve('./fixtures/fixture.tsx');
+				const fileUrl = import.meta.resolve('./fixtures/main.tsx');
 				const result = await load(fileUrl, { format: 'tsx' }, nextLoad);
 
 				assert.equal(result.format, 'module');

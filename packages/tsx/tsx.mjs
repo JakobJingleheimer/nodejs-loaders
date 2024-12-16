@@ -1,3 +1,7 @@
+import path from 'node:path';
+import { cwd } from 'node:process';
+import { pathToFileURL } from 'node:url';
+
 import { transform } from 'esbuild';
 
 import { getFilenameExt } from '@nodejs-loaders/parse-filename';
@@ -22,9 +26,11 @@ async function resolveTSX(specifier, ctx, nextResolve) {
   // Check against the fully resolved URL, not just the specifier, in case another loader has
   // something to contribute to the resolution.
   const ext = getFilenameExt(nextResult.url);
-
-  parentURLs.set(nextResult.url, ctx.parentURL);
-  parentURLs.set(nextResult.url, ctx.parentURL ?? nextResult.url);
+console.log('resolve parentURLs', parentURLs, ctx)
+  parentURLs.set(
+		nextResult.url,
+		ctx.parentURL ?? pathToFileURL(path.join(cwd(), 'whatever.ext')).href,
+	);
 
   if (jsxExts.has(ext)) return {
     ...nextResult,
@@ -49,8 +55,9 @@ async function loadTSX(url, ctx, nextLoad) {
   const format = 'module';
   const nextResult = await nextLoad(url, { format });
   const rawSource = `${nextResult.source}`; // byte array → string
-
-  const esbuildConfig = findEsbuildConfig(parentURLs.get(url));
+console.log('load parentURLs', parentURLs)
+  const esbuildConfig = findEsbuildConfig(url, parentURLs.get(url));
+console.log('load esbuildConfig', esbuildConfig)
 
   if (esbuildConfig.jsx === 'transform') rawSource = `import * as React from 'react';\n${rawSource}`;
 

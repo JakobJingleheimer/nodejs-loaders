@@ -5,12 +5,13 @@ import { fileURLToPath } from 'node:url';
 export let esbuildConfig;
 
 /**
+ * @param {URL['href']} target
  * @param {URL['href']} parentURL
  */
-export function findEsbuildConfig(parentURL) {
+export function findEsbuildConfig(target, parentURL) {
   if (esbuildConfig != null) return esbuildConfig;
 
-	const esBuildConfigLocus = findPackageJSON(parentURL)
+	const esBuildConfigLocus = findPackageJSON(target, target)
 		?.replace('package.json', 'esbuild.config.mjs');
 
 	const req = createRequire(fileURLToPath(parentURL));
