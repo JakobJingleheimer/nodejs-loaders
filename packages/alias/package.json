@@ -17,7 +17,9 @@
 	"dependencies": {
 		"lodash.get": "^4.4.2"
 	},
-  "repository": {
-    "url": "https://github.com/JakobJingleheimer/nodejs-loaders"
-  }
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/nodejs-loaders/nodejs-loaders.git",
+        "directory": "packages/alias"
+    }
 }
