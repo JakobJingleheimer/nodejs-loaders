@@ -1,28 +1,26 @@
 {
-  "version": "1.0.0",
-  "name": "@nodejs-loaders/media",
-  "type": "module",
-  "author": "Jacob Smith",
-  "maintainers": [
-    "Augustin Mauroy"
-  ],
-  "license": "ISC",
-  "main": "./media.mjs",
-  "keywords": [
-    "audio",
-    "customisation hook",
-    "images",
-    "video",
-    "loader",
-    "media",
-    "node.js"
-  ],
-  "dependencies": {
-    "@nodejs-loaders/parse-filename": "1.0.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nodejs-loaders/nodejs-loaders.git",
-    "directory": "packages/media"
-  }
+    "version": "1.0.0",
+    "name": "@nodejs-loaders/media",
+    "type": "module",
+    "author": "Jacob Smith",
+    "maintainers": ["Augustin Mauroy"],
+    "license": "ISC",
+    "main": "./media.mjs",
+    "keywords": [
+        "audio",
+        "customisation hook",
+        "images",
+        "video",
+        "loader",
+        "media",
+        "node.js"
+    ],
+    "dependencies": {
+        "@nodejs-loaders/parse-filename": "1.0.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/nodejs-loaders/nodejs-loaders.git",
+        "directory": "packages/media"
+    }
 }

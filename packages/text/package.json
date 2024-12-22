@@ -1,25 +1,18 @@
 {
-  "version": "1.0.0",
-  "name": "@nodejs-loaders/text",
-  "type": "module",
-  "author": "Jacob Smith",
-  "maintainers": [
-    "Augustin Mauroy"
-  ],
-  "license": "ISC",
-  "main": "./text.mjs",
-  "keywords": [
-    "customisation hook",
-    "loader",
-    "node.js",
-    "plain text"
-  ],
-  "dependencies": {
-    "@nodejs-loaders/parse-filename": "1.0.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nodejs-loaders/nodejs-loaders.git",
-    "directory": "packages/text"
-  }
+    "version": "1.0.0",
+    "name": "@nodejs-loaders/text",
+    "type": "module",
+    "author": "Jacob Smith",
+    "maintainers": ["Augustin Mauroy"],
+    "license": "ISC",
+    "main": "./text.mjs",
+    "keywords": ["customisation hook", "loader", "node.js", "plain text"],
+    "dependencies": {
+        "@nodejs-loaders/parse-filename": "1.0.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/nodejs-loaders/nodejs-loaders.git",
+        "directory": "packages/text"
+    }
 }

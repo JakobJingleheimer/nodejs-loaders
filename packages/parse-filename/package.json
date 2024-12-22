@@ -1,16 +1,14 @@
 {
-  "version": "1.0.0",
-  "name": "@nodejs-loaders/parse-filename",
-  "type": "module",
-  "author": "Jacob Smith",
-  "maintainers": [
-    "Augustin Mauroy"
-  ],
-  "license": "ISC",
-  "main": "./parse-filename.mjs",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nodejs-loaders/nodejs-loaders.git",
-    "directory": "packages/parse-filename"
-  }
+    "version": "1.0.0",
+    "name": "@nodejs-loaders/parse-filename",
+    "type": "module",
+    "author": "Jacob Smith",
+    "maintainers": ["Augustin Mauroy"],
+    "license": "ISC",
+    "main": "./parse-filename.mjs",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/nodejs-loaders/nodejs-loaders.git",
+        "directory": "packages/parse-filename"
+    }
 }
