@@ -2,8 +2,8 @@
 
 <img src="https://raw.githubusercontent.com/JakobJingleheimer/nodejs-loaders/refs/heads/main/logo.svg" height="100" width="100" alt="@node.js loaders logo" />
 
-[![npm version](https://img.shields.io/npm/v/nodejs-loaders/media.svg)](https://www.npmjs.com/package/nodejs-loaders/css-module)
-![size](https://img.shields.io/github/languages/code-size/JakobJingleheimer/nodejs-loaders/css-module)
+[![npm version](https://img.shields.io/npm/v/@nodejs-loaders/media.svg)](https://www.npmjs.com/package/nodejs-loaders/css-module)
+![unpacked size](https://img.shields.io/npm/unpacked-size/@nodejs-loaders/css-module)
 
 **Environment**: test
 

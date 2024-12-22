@@ -1,16 +1,25 @@
 {
-    "version": "1.0.0",
-    "name": "@nodejs-loaders/mismatched-format",
-    "type": "module",
-    "author": "Jacob Smith",
-    "maintainers": ["Augustin Mauroy"],
-    "license": "ISC",
-    "main": "./mismatched-format.mjs",
-    "keywords": ["customisation hook", "loader", "misconfiguration", "node.js"],
-    "dependencies": {
-        "@nodejs-loaders/parse-filename": "1.0.0"
-    },
-    "repository": {
-        "url": "https://github.com/JakobJingleheimer/nodejs-loaders"
-    }
+	"version": "1.0.0",
+	"name": "@nodejs-loaders/mismatched-format",
+	"type": "module",
+	"author": "Jacob Smith",
+	"maintainers": [
+		"Augustin Mauroy"
+	],
+  "license": "ISC",
+	"main": "./mismatched-format.mjs",
+	"keywords": [
+		"customisation hook",
+		"loader",
+		"misconfiguration",
+		"node.js"
+	],
+	"dependencies": {
+    "@nodejs-loaders/parse-filename": "1.0.0"
+	},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nodejs-loaders/nodejs-loaders.git",
+    "directory": "packages/mismatched-format"
+  }
 }
