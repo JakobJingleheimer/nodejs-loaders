@@ -7,20 +7,26 @@ import _get from 'lodash.get';
 
 const projectRoot = pathToFileURL(`${process.cwd()}/`);
 
-const aliases = await readConfigFile('tsconfig.json')
+const aliases = await readConfigFile('tsconfig.json');
 
 if (!aliases) console.warn(
   'Alias loader was registered but no "paths" were found in tsconfig.json',
   'This loader will behave as a noop (but you should probably remove it if you aren’t using it).',
 );
 
+/**
+ * @type {import('node:module').LoadHook}
+ */
 function resolveAlias(specifier, ctx, next) {
   return (aliases ? resolveAliases : next)(specifier, ctx, next);
 }
 export { resolveAlias as resolve }
 
+/**
+ * @type {import('node:module').LoadHook}
+ */
 export async function resolveAliases(specifier, ctx, next) {
-  for (const [key, dest] of aliases) {
+  for (const [key, dest] of /** @type {AliasMap} */ (aliases)) {
     if (specifier === key) return next(dest, ctx);
     if (specifier.startsWith(key)) return next(specifier.replace(key, dest));
   }
@@ -39,10 +45,14 @@ export function readConfigFile(filename) {
     .catch((err) => { if (err.code !== 'ENOENT') throw err });
 }
 
+/**
+ * @typedef {Map<string, string>} AliasMap
+ */
+
 function buildAliasMaps(config) {
   if (!config) return;
 
-  const aliases = new Map();
+  const aliases = /** @type {AliasMap} */ (new Map());
 
   for (const rawKey of Object.keys(config)) {
     const alias = config[rawKey][0];

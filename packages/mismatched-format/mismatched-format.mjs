@@ -4,23 +4,9 @@ import { containsCJS } from './contains-cjs.mjs';
 
 
 /**
- * @typedef {{
- *   format: string,
- *   parentURL: URL['href']
- * }} LoadContext
- */
-/**
- * @callback LoadHook
- * @param {URL['href']} url
- * @param {LoadContext} ctx
- * @param {LoadHook} next
- * @returns {Promise<{ format: string, source: Buffer|string }>}
- */
-
-/**
  * This loader attempts to detect and override misconfigured packages, such as those that declare
  * themselves as ESM but are actually CJS, and vice versa.
- * @type {LoadHook}
+ * @type {import('node:module').LoadHook}
  */
 function loadMismatchedFormat(url, ctx, next) {
   if (!exts.has(getFilenameExt(url))) return next(url);
