@@ -5,10 +5,14 @@ import { nextResolve } from '../../fixtures/nextResolve.fixture.mjs';
 import { nextLoad } from '../../fixtures/nextLoad.fixture.mjs';
 import { resolve, load } from './jsonc.mjs';
 
-describe('jsonc loader', { concurrency: true }, () => {
+describe('JSONC loader', { concurrency: true }, () => {
 	describe('resolve', () => {
 		it('should recognise jsonc files', async () => {
-			const result = await resolve('./fixture.jsonc', { importAttributes: { type: 'jsonc' } }, nextResolve);
+			const result = await resolve(
+				'./fixture.jsonc',
+				{ importAttributes: { type: 'jsonc' } },
+				nextResolve,
+			);
 
 			assert.deepEqual(result, {
 				format: 'jsonc',
@@ -26,7 +30,11 @@ describe('jsonc loader', { concurrency: true }, () => {
 		});
 
 		it('should ignore files that aren’t json at all', async () => {
-			const result = await resolve('../../fixtures/fixture.ext', {}, nextResolve);
+			const result = await resolve(
+				'../../fixtures/fixture.ext',
+				{},
+				nextResolve,
+			);
 
 			assert.deepEqual(result, {
 				format: 'unknown',
@@ -35,17 +43,49 @@ describe('jsonc loader', { concurrency: true }, () => {
 		});
 
 		it('should handle specifiers with appending data', async () => {
-			await assertSuffixedSpecifiers(resolve, './fixture.jsonc', 'jsonc', { importAttributes: { type: 'jsonc' } });
+			await assertSuffixedSpecifiers(resolve, './fixture.jsonc', 'jsonc', {
+				importAttributes: { type: 'jsonc' },
+			});
+		});
+
+		it('should ignore json files that aren’t jsonc', async () => {
+			const result = await resolve(
+				'./fixture.txt',
+				{ importAttributes: { type: 'jsonc' } },
+				nextResolve,
+			);
+
+			assert.deepEqual(result, {
+				format: 'unknown',
+				url: './fixture.txt',
+			});
+		});
+
+		it('should ignore json files that aren’t jsonc', async () => {
+			const result = await resolve(
+				'./fixture.jsonc',
+				{ importAttributes: { type: 'json' } },
+				nextResolve,
+			);
+
+			assert.deepEqual(result, {
+				format: 'unknown',
+				url: './fixture.jsonc',
+			});
 		});
 	});
 
 	describe('load', () => {
 		it('should handle files with comments', async () => {
-			const result = await load(import.meta.resolve('./fixture.jsonc'), { format: 'jsonc' }, nextLoad);
+			const result = await load(
+				import.meta.resolve('./fixture.jsonc'),
+				{ format: 'jsonc' },
+				nextLoad,
+			);
 
 			const expected = [
 				'{\n',
-				'\t                  \n' ,
+				'\t                  \n',
 				'\t"foo": "bar",\n',
 				'\t  \n',
 				'\t                     \n',

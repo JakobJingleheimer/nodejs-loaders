@@ -1,25 +1,25 @@
 {
-	"version": "1.0.0",
-	"name": "@nodejs-loaders/jsonc",
-	"type": "module",
-	"author": "Augustin Mauroy",
-	"maintainers": [
-		"Jacob Smith"
-	],
-	"license": "ISC",
-	"main": "./jsonc.mjs",
-	"keywords": [
-		"customisation hook",
-		"loader",
-		"node.js",
-		"json with comments",
-		"jsonc"
-	],
-	"repository": {
-		"url": "https://github.com/JakobJingleheimer/nodejs-loaders"
-	},
-	"dependencies": {
-		"@nodejs-loaders/parse-filename": "1.0.0",
-		"strip-json-comments": "^5.0.0"
-	}
+  "version": "1.0.0",
+  "name": "@nodejs-loaders/jsonc",
+  "type": "module",
+  "author": "Augustin Mauroy",
+  "maintainers": ["Jacob Smith"],
+  "license": "ISC",
+  "main": "./jsonc.mjs",
+  "keywords": [
+    "customisation hook",
+    "loader",
+    "node.js",
+    "json with comments",
+    "jsonc"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nodejs-loaders/nodejs-loaders.git",
+    "directory": "packages/media"
+  },
+  "dependencies": {
+    "@nodejs-loaders/parse-filename": "1.0.0",
+    "strip-json-comments": "^5.0.0"
+  }
 }
