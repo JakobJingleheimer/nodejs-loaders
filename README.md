@@ -22,6 +22,7 @@ node
 	--loader=@nodejs-loaders/jsonc \
   --loader=@nodejs-loaders/media \
   --loader=@nodejs-loaders/text \
+	--loader=@nodejs-loaders/yaml \
   ./main.js
 ```
 
@@ -33,10 +34,12 @@ node
 * [JSONC loader](./packages/jsonc/)
 * [Media loader](./packages/media/)
 * [Text loader](./packages/text/)
+* [YAML loader](./packages/yaml/)
 
 ## Project-official loaders
 
 These loaders are officially maintained by their respective projects and are recommended (they're the most up-to-date and have the best support).
 
+* [Aurelia loader](https://github.com/aurelia/loader-nodejs)
 * [MDX loader](https://mdxjs.com/packages/node-loader/)
 * [SWC register](https://github.com/swc-project/swc-node/tree/master/packages/register#swc-noderegister)

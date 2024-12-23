@@ -1,25 +1,23 @@
 {
+  "name": "@nodejs-loaders/yaml",
+  "description": "YAML loader for Node.js",
   "version": "1.0.0",
-  "name": "@nodejs-loaders/tsx",
   "type": "module",
-  "author": "Jacob Smith",
-  "maintainers": ["Augustin Mauroy"],
+  "author": "Augustin Mauroy",
+  "maintainers": ["Jacob Smith"],
   "license": "ISC",
-  "main": "./tsx.mjs",
   "keywords": [
     "customisation hook",
     "loader",
     "node.js",
-    "typescript"
+    "yaml"
   ],
   "engines": {
-    "node": "^23.2 || ^22.13"
+    "node": ">20"
   },
   "dependencies": {
-    "@nodejs-loaders/parse-filename": "1.0.0"
-  },
-  "peerDependencies": {
-    "esbuild": "~0.19.5"
+    "@nodejs-loaders/parse-filename": "1.0.0",
+    "yaml": "^2.6.0"
   },
   "repository": {
     "type": "git",
