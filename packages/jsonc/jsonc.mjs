@@ -22,10 +22,11 @@ export { resolveJSONC as resolve };
  * @type {import('node:module').LoadHook}
  */
 async function loadJSONC(url, ctx, nextLoad) {
-	if (ctx.format !== 'jsonc') return nextLoad(url);
 	const nextResult = await nextLoad(url, ctx);
 
-	const rawSource = '' + nextResult.source;
+	if (ctx.format !== 'jsonc') return nextResult;
+
+	const rawSource = '' + nextResult.source; // byte array → string
 	const stripped = stripJsonComments(rawSource);
 
 	return {
