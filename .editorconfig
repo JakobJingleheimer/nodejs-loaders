@@ -6,9 +6,13 @@ end_of_line = lf
 charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
+tab_width = 4
 
 [*.json]
 indent_style = space
+indent_size = 2
+# that enusre that the `keywords` key is always on the same line as the opening brace
+max_line_length = 50
 
 [*.{yaml,yml}]
 indent_style = space
