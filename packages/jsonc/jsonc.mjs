@@ -1,4 +1,3 @@
-import { getFilenameExt } from '@nodejs-loaders/parse-filename';
 import stripJsonComments from 'strip-json-comments';
 
 /**
@@ -6,9 +5,8 @@ import stripJsonComments from 'strip-json-comments';
  */
 async function resolveJSONC(specifier, ctx, nextResolve) {
 	const nextResult = await nextResolve(specifier);
-	const ext = getFilenameExt(nextResult.url);
 
-	if (ext === '.jsonc' && ctx.importAttributes.type === 'jsonc')
+	if (ctx.importAttributes?.type === 'jsonc')
 		return {
 			...nextResult,
 			format: 'jsonc',
