@@ -51,14 +51,14 @@ describe('YAML loader', { concurrency: true }, () => {
 		const ctx = { format: 'yaml' };
 		const nextLoad = async (url, options) => ({
 			source: [
-			'key1: value1',
-			'key2:',
-			'  - item1',
-			'  - item2',
-			'key3:',
-			'  subkey1: subvalue1',
-			'  subkey2: subvalue2'
-			].join('\n')
+				'key1: value1',
+				'key2:',
+				'  - item1',
+				'  - item2',
+				'key3:',
+				'  subkey1: subvalue1',
+				'  subkey2: subvalue2',
+			].join('\n'),
 		});
 
 		const result = await load(url, ctx, nextLoad);
@@ -67,8 +67,8 @@ describe('YAML loader', { concurrency: true }, () => {
 			key2: ['item1', 'item2'],
 			key3: {
 				subkey1: 'subvalue1',
-				subkey2: 'subvalue2'
-			}
+				subkey2: 'subvalue2',
+			},
 		});
 	});
 });

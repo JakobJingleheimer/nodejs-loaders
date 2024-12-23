@@ -18,7 +18,7 @@ async function resolveYaml(specifier, ctx, nextResolve) {
 
 	return nextResult;
 }
-export { resolveYaml as resolve }
+export { resolveYaml as resolve };
 
 /**
  * @type {import('node:module').LoadHook}
@@ -36,4 +36,4 @@ async function loadYaml(url, ctx, nextLoad) {
 		source,
 	};
 }
-export { loadYaml as load }
+export { loadYaml as load };
