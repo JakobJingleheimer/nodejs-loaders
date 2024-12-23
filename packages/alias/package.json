@@ -6,7 +6,12 @@
   "maintainers": ["Augustin Mauroy"],
   "license": "ISC",
   "main": "./alias.mjs",
-  "keywords": ["customisation hook", "loader", "node.js", "path alias"],
+  "keywords": [
+    "customisation hook",
+    "loader",
+    "node.js",
+    "path alias"
+  ],
   "dependencies": {
     "lodash.get": "^4.4.2"
   },

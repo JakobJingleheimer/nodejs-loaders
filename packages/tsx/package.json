@@ -6,7 +6,12 @@
   "maintainers": ["Augustin Mauroy"],
   "license": "ISC",
   "main": "./tsx.mjs",
-  "keywords": ["customisation hook", "loader", "node.js", "typescript"],
+  "keywords": [
+    "customisation hook",
+    "loader",
+    "node.js",
+    "typescript"
+  ],
   "engines": {
     "node": "^23.2 || ^22.13"
   },

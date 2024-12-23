@@ -6,7 +6,12 @@
   "maintainers": ["Augustin Mauroy"],
   "license": "ISC",
   "main": "./css-module.mjs",
-  "keywords": ["customisation hook", "css modules", "loader", "node.js"],
+  "keywords": [
+    "customisation hook",
+    "css modules",
+    "loader",
+    "node.js"
+  ],
   "dependencies": {
     "@nodejs-loaders/parse-filename": "1.0.0"
   },

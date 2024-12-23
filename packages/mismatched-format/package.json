@@ -6,7 +6,12 @@
   "maintainers": ["Augustin Mauroy"],
   "license": "ISC",
   "main": "./mismatched-format.mjs",
-  "keywords": ["customisation hook", "loader", "misconfiguration", "node.js"],
+  "keywords": [
+    "customisation hook",
+    "loader",
+    "misconfiguration",
+    "node.js"
+  ],
   "dependencies": {
     "@nodejs-loaders/parse-filename": "1.0.0"
   },
