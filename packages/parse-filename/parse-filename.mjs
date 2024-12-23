@@ -19,7 +19,8 @@ export function stripExtras(f) {
  */
 export function getFilenameParts(resolvedUrl) {
 	const pathname = URL.canParse(resolvedUrl)
-		? new URL(resolvedUrl).pathname
+		? // biome-ignore format: we want to keep the parentheses
+			(new URL(resolvedUrl)).pathname
 		: resolvedUrl;
 
 	const ext = getFilenameExt(pathname);
