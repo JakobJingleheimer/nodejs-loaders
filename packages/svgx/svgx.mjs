@@ -8,6 +8,7 @@ const nonWords = /[\W$]/;
 
 /**
  * Read an SVG file (which is text) and build a react component that returns the SVG.
+ * @type {import('node:module').LoadHook}
  */
 async function loadSVGX(url, ctx, next) {
   const { ext, ...others } = getFilenameParts(url);
@@ -23,7 +24,11 @@ async function loadSVGX(url, ctx, next) {
   }
 
   const base = pascalCase(others.base);
-  const source = `export default function ${base}() { return (\n${(await next(url, { format: 'jsx' })).source}); }`;
+	const svg = (await next(url, {
+		// @ts-ignore
+		format: 'jsx',
+	})).source;
+  const source = `export default function ${base}() { return (\n${svg}); }`;
 
   return {
     ...ctx,

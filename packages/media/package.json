@@ -8,6 +8,7 @@
   ],
   "license": "ISC",
   "main": "./media.mjs",
+  "types": "./media.d.mts",
   "keywords": [
     "audio",
     "customisation hook",

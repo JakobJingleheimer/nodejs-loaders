@@ -8,6 +8,7 @@
   ],
   "license": "ISC",
   "main": "./css-module.mjs",
+  "types": "./css-module.d.mts",
   "keywords": [
     "customisation hook",
     "css modules",

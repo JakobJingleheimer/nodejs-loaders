@@ -11,6 +11,9 @@ export function getFilenameExt(f) {
 	return path.extname(stripExtras(f));
 }
 
+/**
+ * @param {string} f
+ */
 export function stripExtras(f) {
   return f.split('?')[0].split('#')[0];
 }

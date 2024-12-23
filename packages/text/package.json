@@ -8,6 +8,7 @@
   ],
   "license": "ISC",
   "main": "./text.mjs",
+  "types": "./text.d.mts",
   "keywords": [
     "customisation hook",
     "loader",

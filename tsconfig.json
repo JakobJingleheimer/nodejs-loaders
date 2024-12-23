@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "declarationMap": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "esModuleInterop": true,
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "target": "ESNext",
+  },
+  "include": ["./packages"],
+  "exclude": [
+    "**/fixtures/**/*",
+    "**/*/fixture.*",
+    "**/*/*.config.*",
+    "**/*/*.fixture.*",
+    "**/*/*.spec.*",
+    "**/*/*.test.*",
+  ],
+}
