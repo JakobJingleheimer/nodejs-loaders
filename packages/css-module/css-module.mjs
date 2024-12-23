@@ -5,53 +5,55 @@ import postcss from 'postcss';
 
 import { stripExtras } from '@nodejs-loaders/parse-filename';
 
-
 async function resolveCSSModule(specifier, ctx, nextResolve) {
-  const nextResult = await nextResolve(specifier);
+	const nextResult = await nextResolve(specifier);
 
-  if (!stripExtras(specifier).endsWith('.module.css')) return nextResult;
+	if (!stripExtras(specifier).endsWith('.module.css')) return nextResult;
 
-  return {
-    ...ctx,
-    format: 'css-module',
-    url: nextResult.url,
-  };
+	return {
+		...ctx,
+		format: 'css-module',
+		url: nextResult.url,
+	};
 }
-export { resolveCSSModule as resolve }
+export { resolveCSSModule as resolve };
 
 async function loadCSSModule(url, ctx, nextLoad) {
-  const nextResult = await nextLoad(url, ctx);
+	const nextResult = await nextLoad(url, ctx);
 
-  if (ctx.format !== 'css-module') return nextResult;
+	if (ctx.format !== 'css-module') return nextResult;
 
-  const rawSource = '' + nextResult.source;
-  const parsed = parseCssToObject(rawSource);
+	const rawSource = '' + nextResult.source;
+	const parsed = parseCssToObject(rawSource);
 
-  return {
-    format: 'json',
-    source: JSON.stringify(parsed),
-  };
+	return {
+		format: 'json',
+		source: JSON.stringify(parsed),
+	};
 }
-export { loadCSSModule as load }
+export { loadCSSModule as load };
 
 function parseCssToObject(rawSource) {
-  const output = new Map(); // Map is best for mutation
+	const output = new Map(); // Map is best for mutation
 
-  const postcssResult = postcss.parse(rawSource).toJSON();
+	const postcssResult = postcss.parse(rawSource).toJSON();
 
-  for (const rule of postcssResult.nodes) parseCssToObjectRecursive(rule, output);
+	for (const rule of postcssResult.nodes)
+		parseCssToObjectRecursive(rule, output);
 
-  return Object.fromEntries(output);
+	return Object.fromEntries(output);
 }
 
 function parseCssToObjectRecursive(node, output) {
-  if (node.type === 'rule') {
-    const classnames = node.selector.match(SELECTOR_TO_CLASS_NAME_RGX) ?? new Array();
+	if (node.type === 'rule') {
+		const classnames =
+			node.selector.match(SELECTOR_TO_CLASS_NAME_RGX) ?? new Array();
 
-    for (const classname of classnames) output.set(classname, classname);
-  }
+		for (const classname of classnames) output.set(classname, classname);
+	}
 
-  if (node.nodes) for (const child of node.nodes) parseCssToObjectRecursive(child, output);
+	if (node.nodes)
+		for (const child of node.nodes) parseCssToObjectRecursive(child, output);
 }
 
 /**

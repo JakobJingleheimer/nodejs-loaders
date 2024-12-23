@@ -3,9 +3,7 @@
   "name": "@nodejs-loaders/text",
   "type": "module",
   "author": "Jacob Smith",
-  "maintainers": [
-    "Augustin Mauroy"
-  ],
+  "maintainers": ["Augustin Mauroy"],
   "license": "ISC",
   "main": "./text.mjs",
   "keywords": [
