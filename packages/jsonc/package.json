@@ -1,0 +1,26 @@
+{
+  "version": "1.0.0",
+  "name": "@nodejs-loaders/jsonc",
+  "description": "A ESM loader for JSONC files",
+  "type": "module",
+  "author": "Augustin Mauroy",
+  "maintainers": ["Jacob Smith"],
+  "license": "ISC",
+  "main": "./jsonc.mjs",
+  "keywords": [
+    "customisation hook",
+    "loader",
+    "node.js",
+    "json with comments",
+    "jsonc"
+  ],
+  "dependencies": {
+    "@nodejs-loaders/parse-filename": "^1.0.0",
+    "strip-json-comments": "^5.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nodejs-loaders/nodejs-loaders.git",
+    "directory": "packages/media"
+  }
+}
