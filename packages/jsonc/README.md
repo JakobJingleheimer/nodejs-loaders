@@ -24,6 +24,8 @@ import data from './data.jsonc' with { type: 'jsonc' };
 > [!WARNING]
 > The `jsonc` import attribute is required to use this loader and case-sensitive. So make sure to use `jsonc` and not `JSONC` or `Jsonc`.
 
+We do that because Node.js have same behavior for JSON file so we want to have same behavior for JSONC file.
+
 <details>
 <summary>Supported file extensions</summary>
 

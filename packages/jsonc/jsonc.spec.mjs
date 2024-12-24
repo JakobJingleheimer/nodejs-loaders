@@ -56,43 +56,23 @@ describe('JSONC loader', { concurrency: true }, () => {
 			);
 
 			assert.deepEqual(result, {
-				format: 'jsonc',
+				format: 'unknown',
 				url: './fixture.txt',
 			});
 		});
 
-		it('importAttributes have last word', async () => {
+		it('should ignore json if the import attribute is set', async () => {
 			const result = await resolve(
-				'./fixture.jsonc',
-				{ importAttributes: { type: 'jsonc' } },
+				'./fixture.json',
+				{
+					importAttributes: { type: 'jsonc' },
+				},
 				nextResolve,
 			);
-
-			assert.deepEqual(result, {
-				format: 'jsonc',
-				url: './fixture.jsonc',
-			});
-		});
-
-		it('should ignore json files that aren’t jsonc', async () => {
-			const result = await resolve('./fixture.json', {}, nextResolve);
 
 			assert.deepEqual(result, {
 				format: 'unknown',
 				url: './fixture.json',
-			});
-		});
-
-		it('should ignore files that aren’t json at all', async () => {
-			const result = await resolve(
-				'../../fixtures/fixture.ext',
-				{},
-				nextResolve,
-			);
-
-			assert.deepEqual(result, {
-				format: 'unknown',
-				url: '../../fixtures/fixture.ext',
 			});
 		});
 	});

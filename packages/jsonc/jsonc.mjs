@@ -1,3 +1,4 @@
+import { getFilenameExt } from '@nodejs-loaders/parse-filename';
 import stripJsonComments from 'strip-json-comments';
 
 /**
@@ -5,12 +6,19 @@ import stripJsonComments from 'strip-json-comments';
  */
 async function resolveJSONC(specifier, ctx, nextResolve) {
 	const nextResult = await nextResolve(specifier);
+	const ext = getFilenameExt(nextResult.url);
 
-	if (ctx.importAttributes?.type === 'jsonc')
+	/**
+	 * On Node.js v20, v22, v23 the extension **and** the `importAttributes`
+	 * are needed to import correctly json files. So we want to have same
+	 * behavior than Node.js.
+	 */
+	if (ext === '.jsonc' && ctx.importAttributes?.type === 'jsonc') {
 		return {
 			...nextResult,
 			format: 'jsonc',
 		};
+	}
 
 	return nextResult;
 }
