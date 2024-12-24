@@ -19,13 +19,17 @@ function resolveAlias(specifier, ctx, next) {
 }
 export { resolveAlias as resolve };
 
-export async function resolveAliases(specifier, ctx, next) {
+export function resolveAliases(specifier, ctx, next) {
 	for (const [key, dest] of aliases) {
-		if (specifier === key) return next(dest, ctx);
-		if (specifier.startsWith(key)) return next(specifier.replace(key, dest));
+		if (specifier === key) {
+			return next(dest, ctx);
+		}
+		if (specifier.startsWith(key)) {
+			return next(specifier.replace(key, dest), ctx);
+		}
 	}
 
-	return next(specifier);
+	return next(specifier, ctx);
 }
 
 export function readConfigFile(filename) {
