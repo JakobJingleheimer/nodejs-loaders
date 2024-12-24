@@ -1,6 +1,7 @@
 {
   "version": "1.0.0",
   "name": "@nodejs-loaders/jsonc",
+  "description": "A ESM loader for JSONC files",
   "type": "module",
   "author": "Augustin Mauroy",
   "maintainers": ["Jacob Smith"],
