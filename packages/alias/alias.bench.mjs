@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { spawnPromisified } from '../../utils/spawn-promisified.mjs';
 
 const suite = new Suite({
-	reporter: chartReport
+	reporter: chartReport,
 });
 
 const cwd = fileURLToPath(import.meta.resolve('./fixtures'));
