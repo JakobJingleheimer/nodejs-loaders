@@ -12,26 +12,29 @@ async function loadMismatchedFormat(url, ctx, next) {
 
 	// Ensure the ESMLoader is used to read the contents.
 	// It may throw, in which case we'll probably get a telling error we can use to know it was CJS.
-	return next(url, { ...ctx, format: 'module' })
-		// the fact that this function is async for this to be used in `module.register`
-		// @ts-ignore - so then is needed and `next()` can't be sync
-		.then((result) => {
-			if (containsCJS('' + result.source)) {
-				throw new Error('CommonJS');
-			}
+	return (
+		next(url, { ...ctx, format: 'module' })
+			// the fact that this function is async for this to be used in `module.register`
+			// @ts-ignore - so then is needed and `next()` can't be sync
+			.then((result) => {
+				if (containsCJS('' + result.source)) {
+					throw new Error('CommonJS');
+				}
 
-			return result;
-		})
-		.catch(async (err) => {
-			if (
-				(err?.message.includes('require') && err?.message.includes('import')) ||
-				err?.message.includes('CommonJS')
-			) {
-				return { format: 'commonjs' };
-			}
+				return result;
+			})
+			.catch(async (err) => {
+				if (
+					(err?.message.includes('require') &&
+						err?.message.includes('import')) ||
+					err?.message.includes('CommonJS')
+				) {
+					return { format: 'commonjs' };
+				}
 
-			throw err;
-		});
+				throw err;
+			})
+	);
 }
 export { loadMismatchedFormat as load };
 
