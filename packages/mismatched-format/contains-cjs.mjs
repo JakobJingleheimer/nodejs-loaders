@@ -1,3 +1,8 @@
+/**
+ *
+ * @param {import('node:module').ModuleSource} source
+ * @returns
+ */
 export function containsCJS(source) {
 	const src = '' + source;
 

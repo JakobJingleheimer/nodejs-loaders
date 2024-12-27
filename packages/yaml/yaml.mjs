@@ -13,6 +13,7 @@ async function resolveYaml(specifier, ctx, nextResolve) {
 	if (ext === '.yaml' || ext === '.yml')
 		return {
 			...nextResult,
+			// @ts-ignore https://github.com/DefinitelyTyped/DefinitelyTyped/pull/71493
 			format: 'yaml',
 		};
 
@@ -24,8 +25,10 @@ export { resolveYaml as resolve };
  * @type {import('node:module').LoadHook}
  */
 async function loadYaml(url, ctx, nextLoad) {
+	// @ts-ignore https://github.com/DefinitelyTyped/DefinitelyTyped/pull/71493
 	if (ctx.format !== 'yaml') return nextLoad(url);
 
+	// @ts-ignore https://github.com/DefinitelyTyped/DefinitelyTyped/pull/71493
 	const nextResult = await nextLoad(url, { format: 'module' });
 	const rawSource = '' + nextResult.source; // byte array → string
 

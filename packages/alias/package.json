@@ -6,6 +6,7 @@
   "maintainers": ["Augustin Mauroy"],
   "license": "ISC",
   "main": "./alias.mjs",
+  "types": "./alias.d.mts",
   "keywords": [
     "customisation hook",
     "loader",

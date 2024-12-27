@@ -6,6 +6,7 @@
   "maintainers": ["Augustin Mauroy"],
   "license": "ISC",
   "main": "./tsx.mjs",
+  "types": "./tsx.d.mts",
   "keywords": [
     "customisation hook",
     "loader",

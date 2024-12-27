@@ -14,13 +14,20 @@ if (!aliases)
 		'This loader will behave as a noop (but you should probably remove it if you aren’t using it).',
 	);
 
+/**
+ * @type {import('node:module').LoadHook}
+ */
 function resolveAlias(specifier, ctx, next) {
 	return (aliases ? resolveAliases : next)(specifier, ctx, next);
 }
 export { resolveAlias as resolve };
 
+/**
+ * @type {import('node:module').LoadHook}
+ */
 export function resolveAliases(specifier, ctx, next) {
-	for (const [key, dest] of aliases) {
+	// biome-ignore format: https://github.com/biomejs/biome/issues/4799
+	for (const [key, dest] of /** @type {AliasMap} */ (aliases)) {
 		if (specifier === key) {
 			return next(dest, ctx);
 		}
@@ -47,10 +54,15 @@ export function readConfigFile(filename) {
 	);
 }
 
+/**
+ * @typedef {Map<string, string>} AliasMap
+ */
+
 function buildAliasMaps(config) {
 	if (!config) return;
 
-	const aliases = new Map();
+	// biome-ignore format: https://github.com/biomejs/biome/issues/4799
+	const aliases = /** @type {AliasMap} */ (new Map());
 
 	for (const rawKey of Object.keys(config)) {
 		const alias = config[rawKey][0];
