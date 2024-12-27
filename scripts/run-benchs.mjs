@@ -6,7 +6,18 @@ import { spawn } from 'node:child_process';
 import { styleText } from 'node:util';
 import { globSync } from 'node:fs';
 
-const files = globSync('**/**.bench.{js,mjs}');
+// hacky way to use work around npm workspaces
+const args = process.argv.slice(2);
+const w =
+	args
+		.find((arg) => arg.startsWith('--w='))
+		?.replace('--w=', '')
+		.trim()
+		.replace('package/', '') ?? '';
+
+if (!w.endsWith('/') && w.length > 0) w.concat('/');
+
+const files = globSync(`packages/${w}**/**.bench.{js,mjs}`);
 
 if (files.length === 0) {
 	console.log(`${styleText(['red'], '✕')} No benchmarks found`);
