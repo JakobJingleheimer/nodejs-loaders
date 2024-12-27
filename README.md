@@ -21,16 +21,16 @@ node
   --loader=@nodejs-loaders/css-module \
   --loader=@nodejs-loaders/media \
   --loader=@nodejs-loaders/text \
-	--loader=@nodejs-loaders/yaml \
+  --loader=@nodejs-loaders/yaml \
   ./main.js
 ```
 
 * [Alias loader](./packages/alias/)
-* [JSX / TSX loader](./packages/tsx/)
-* [SVGX loader](./packages/svgx/)
-* [Mismatched format loader](./packages/mismatched-format/)
 * [CSS Modules loader](./packages/css-module/)
+* [JSX / TSX loader](./packages/tsx/)
 * [Media loader](./packages/media/)
+* [Mismatched format loader](./packages/mismatched-format/)
+* [SVGX loader](./packages/svgx/)
 * [Text loader](./packages/text/)
 * [YAML loader](./packages/yaml/)
 

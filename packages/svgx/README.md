@@ -1,6 +1,6 @@
 # Nodejs Loaders: SVGX
 
-<img src="https://raw.githubusercontent.com/JakobJingleheimer/nodejs-loaders/refs/heads/main/logo.svg" height="100" width="100" alt="@node.js loaders logo" />
+<img src="https://raw.githubusercontent.com/nodejs-loaders/nodejs-loaders/refs/heads/main/logo.svg" height="100" width="100" alt="@node.js loaders logo" />
 
 [![npm version](https://img.shields.io/npm/v/@nodejs-loaders/svgx.svg)](https://www.npmjs.com/package/nodejs-loaders/svgx)
 ![unpacked size](https://img.shields.io/npm/unpacked-size/@nodejs-loaders/svgx)
