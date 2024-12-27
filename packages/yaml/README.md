@@ -7,6 +7,8 @@
 
 **Environment**: test, development
 
+**Compatible APIs**: [`module.register`](https://nodejs.org/api/module.html#moduleregisterspecifier-parenturl-options)
+
 This loader enables importing [YAML](https://yaml.org) files, converting them to a plain javascript object. YAML id commonly used for configuration files, which are often more easily represented in YAML than JSON.
 
 ```yaml

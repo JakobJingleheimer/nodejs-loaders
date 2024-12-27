@@ -9,6 +9,8 @@
 
 This loader returns the specifier (truncated from project root / current working directory) as the default export:
 
+**Compatible APIs**: [`module.register`](https://nodejs.org/api/module.html#moduleregisterspecifier-parenturl-options)
+
 ```js
 import photo from './team.jpg'; // photo = '[…]/team.jpg'
 ```

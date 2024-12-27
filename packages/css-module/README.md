@@ -7,6 +7,8 @@
 
 **Environment**: test
 
+**Compatible APIs**: [`module.register`](https://nodejs.org/api/module.html#moduleregisterspecifier-parenturl-options)
+
 This loads the module as a plain-object of simple key-value pairs of the css specifiers like:
 
 ```css

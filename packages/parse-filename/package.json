@@ -1,11 +1,15 @@
 {
   "version": "1.0.0",
   "name": "@nodejs-loaders/parse-filename",
+  "description": "@nodejs-loaders utilities to parse filenames",
   "type": "module",
   "author": "Jacob Smith",
   "maintainers": ["Augustin Mauroy"],
   "license": "ISC",
   "main": "./parse-filename.mjs",
+  "engines": {
+    "node": ">=22"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nodejs-loaders/nodejs-loaders.git",

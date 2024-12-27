@@ -1,6 +1,7 @@
 {
   "version": "1.0.0",
   "name": "@nodejs-loaders/media",
+  "description": "Media loader for Node.js",
   "type": "module",
   "author": "Jacob Smith",
   "maintainers": ["Augustin Mauroy"],
@@ -16,6 +17,9 @@
     "media",
     "node.js"
   ],
+  "engines": {
+    "node": ">=22"
+  },
   "dependencies": {
     "@nodejs-loaders/parse-filename": "1.0.0"
   },
