@@ -1,3 +1,4 @@
+//@ts-nocheck - until https://github.com/nodejs-loaders/nodejs-loaders/pull/54 is merged
 import { createRequire, findPackageJSON } from 'node:module';
 import process from 'node:process';
 import { fileURLToPath } from 'node:url';

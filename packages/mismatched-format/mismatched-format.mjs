@@ -7,12 +7,14 @@ import { containsCJS } from './contains-cjs.mjs';
  * themselves as ESM but are actually CJS, and vice versa.
  * @type {import('node:module').LoadHook}
  */
-function loadMismatchedFormat(url, ctx, next) {
+async function loadMismatchedFormat(url, ctx, next) {
 	if (!exts.has(getFilenameExt(url))) return next(url);
 
 	// Ensure the ESMLoader is used to read the contents.
 	// It may throw, in which case we'll probably get a telling error we can use to know it was CJS.
 	return next(url, { ...ctx, format: 'module' })
+		// the fact that this function is async for this to be used in `module.register`
+		// @ts-ignore - so then is needed and `next()` can't be sync
 		.then((result) => {
 			if (containsCJS('' + result.source)) {
 				throw new Error('CommonJS');
