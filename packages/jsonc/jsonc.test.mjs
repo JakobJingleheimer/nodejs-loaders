@@ -5,17 +5,19 @@ import { fileURLToPath } from 'node:url';
 
 import { spawnPromisified } from '../../utils/spawn-promisified.mjs';
 
-const TEST_CASE = ['json', 'jsonc'];
+// biome-ignore lint: i know what i'm doing 😎
+const stripAnsi = (str) => str.replace(/(\u001b\[[0-9;]*m)/g, '');
+
+const expected = "{ foo: 'bar', baz: 'qux', quux: [ 'corge', 'grault' ] }\n";
 
 describe('jsonc (e2e)', () => {
-	for (const type of TEST_CASE) {
+	describe('json', () => {
 		const cwd = fileURLToPath(import.meta.resolve('./fixtures'));
 		const e2eTest = fileURLToPath(
-			import.meta.resolve(`./fixtures/e2e-${type}.mjs`),
+			import.meta.resolve('./fixtures/e2e-json.mjs'),
 		);
-		const jsoncMsgRgx = /"foo": "bar"/;
 
-		it(`${type} should work with \`--loader\``, async () => {
+		it('should work with `--loader`', async () => {
 			const { code, stderr, stdout } = await spawnPromisified(
 				execPath,
 				[
@@ -24,15 +26,15 @@ describe('jsonc (e2e)', () => {
 					fileURLToPath(import.meta.resolve('./jsonc.mjs')),
 					e2eTest,
 				],
-				{ cwd },
+				{ cwd, env: { ...process.env, NO_COLOR: '1' } },
 			);
 
 			assert.equal(stderr, '');
-			assert.match(stdout, jsoncMsgRgx);
+			assert.equal(stripAnsi(stdout), expected);
 			assert.equal(code, 0);
 		});
 
-		it(`${type} should work with \`module.register\``, async () => {
+		it('should work with `module.register`', async () => {
 			const { code, stderr, stdout } = await spawnPromisified(
 				execPath,
 				[
@@ -41,32 +43,53 @@ describe('jsonc (e2e)', () => {
 					fileURLToPath(import.meta.resolve('./fixtures/register.mjs')),
 					e2eTest,
 				],
-				{ cwd },
+				{ cwd, env: { ...process.env, NO_COLOR: '1' } },
 			);
 
 			assert.equal(stderr, '');
-			assert.match(stdout, jsoncMsgRgx);
+			assert.equal(stripAnsi(stdout), expected);
+			assert.equal(code, 0);
+		});
+	});
+
+	describe('jsonc', () => {
+		const cwd = fileURLToPath(import.meta.resolve('./fixtures'));
+		const e2eTest = fileURLToPath(
+			import.meta.resolve('./fixtures/e2e-jsonc.mjs'),
+		);
+
+		it('should work with `--loader`', async () => {
+			const { code, stderr, stdout } = await spawnPromisified(
+				execPath,
+				[
+					'--no-warnings',
+					'--loader',
+					fileURLToPath(import.meta.resolve('./jsonc.mjs')),
+					e2eTest,
+				],
+				{ cwd, env: { ...process.env, NO_COLOR: '1' } },
+			);
+
+			assert.equal(stderr, '');
+			assert.equal(stripAnsi(stdout), expected);
 			assert.equal(code, 0);
 		});
 
-		// `module.registerHooks` is only available in Node.js v23.0.0 and later
-		if (process.version.startsWith('v23')) {
-			it(`${type} should work with \`module.registerHooks\``, async () => {
-				const { code, stderr, stdout } = await spawnPromisified(
-					execPath,
-					[
-						'--no-warnings',
-						'--import',
-						fileURLToPath(import.meta.resolve('./fixtures/register-hooks.mjs')),
-						e2eTest,
-					],
-					{ cwd },
-				);
+		it('should work with `module.register`', async () => {
+			const { code, stderr, stdout } = await spawnPromisified(
+				execPath,
+				[
+					'--no-warnings',
+					'--import',
+					fileURLToPath(import.meta.resolve('./fixtures/register.mjs')),
+					e2eTest,
+				],
+				{ cwd, env: { ...process.env, NO_COLOR: '1' } },
+			);
 
-				assert.equal(stderr, '');
-				assert.match(stdout, jsoncMsgRgx);
-				assert.equal(code, 0);
-			});
-		}
-	}
+			assert.equal(stderr, '');
+			assert.equal(stripAnsi(stdout), expected);
+			assert.equal(code, 0);
+		});
+	});
 });

@@ -4,8 +4,8 @@ import stripJsonComments from 'strip-json-comments';
 /**
  * @type {import('node:module').ResolveHook}
  */
-function resolveJSONC(specifier, ctx, nextResolve) {
-	const nextResult = nextResolve(specifier);
+async function resolveJSONC(specifier, ctx, nextResolve) {
+	const nextResult = await nextResolve(specifier);
 	const ext = getFilenameExt(nextResult.url);
 
 	/**
@@ -27,14 +27,12 @@ export { resolveJSONC as resolve };
 /**
  * @type {import('node:module').LoadHook}
  */
-function loadJSONC(url, ctx, nextLoad) {
-	const nextResult = nextLoad(url, ctx);
+async function loadJSONC(url, ctx, nextLoad) {
+	const nextResult = await nextLoad(url, ctx);
 
 	if (ctx.format !== 'jsonc') return nextResult;
 
 	const rawSource = '' + nextResult.source; // byte array → string
-
-	console.log('rawSource', rawSource);
 	const stripped = stripJsonComments(rawSource);
 
 	return {

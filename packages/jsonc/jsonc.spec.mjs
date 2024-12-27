@@ -7,8 +7,8 @@ import { resolve, load } from './jsonc.mjs';
 
 describe('JSONC loader', { concurrency: true }, () => {
 	describe('resolve', () => {
-		it('should recognise jsonc files', () => {
-			const result = resolve(
+		it('should recognise jsonc files', async () => {
+			const result = await resolve(
 				'./fixtures/valid.jsonc',
 				{ importAttributes: { type: 'jsonc' } },
 				nextResolve,
@@ -20,8 +20,8 @@ describe('JSONC loader', { concurrency: true }, () => {
 			});
 		});
 
-		it('should ignore json files that aren’t jsonc', () => {
-			const result = resolve('./fixtures/valid.json', {}, nextResolve);
+		it('should ignore json files that aren’t jsonc', async () => {
+			const result = await resolve('./fixtures/valid.json', {}, nextResolve);
 
 			assert.deepEqual(result, {
 				format: 'unknown',
@@ -29,8 +29,12 @@ describe('JSONC loader', { concurrency: true }, () => {
 			});
 		});
 
-		it('should ignore files that aren’t json at all', () => {
-			const result = resolve('../../fixtures/fixture.ext', {}, nextResolve);
+		it('should ignore files that aren’t json at all', async () => {
+			const result = await resolve(
+				'../../fixtures/fixture.ext',
+				{},
+				nextResolve,
+			);
 
 			assert.deepEqual(result, {
 				format: 'unknown',
@@ -49,8 +53,8 @@ describe('JSONC loader', { concurrency: true }, () => {
 			);
 		});
 
-		it('should ignore json files that aren’t jsonc', () => {
-			const result = resolve(
+		it('should ignore json files that aren’t jsonc', async () => {
+			const result = await resolve(
 				'./fixture.txt',
 				{ importAttributes: { type: 'jsonc' } },
 				nextResolve,
@@ -62,8 +66,8 @@ describe('JSONC loader', { concurrency: true }, () => {
 			});
 		});
 
-		it('should ignore json if the import attribute is set', () => {
-			const result = resolve(
+		it('should ignore json if the import attribute is set', async () => {
+			const result = await resolve(
 				'./fixtures/valid.json',
 				{
 					importAttributes: { type: 'jsonc' },
@@ -79,8 +83,8 @@ describe('JSONC loader', { concurrency: true }, () => {
 	});
 
 	describe('load', () => {
-		it('should handle files with comments', () => {
-			const result = load(
+		it('should handle files with comments', async () => {
+			const result = await load(
 				import.meta.resolve('./fixtures/valid.jsonc'),
 				{ format: 'jsonc' },
 				nextLoadSync,
