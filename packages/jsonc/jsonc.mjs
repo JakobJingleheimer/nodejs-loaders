@@ -33,6 +33,8 @@ function loadJSONC(url, ctx, nextLoad) {
 	if (ctx.format !== 'jsonc') return nextResult;
 
 	const rawSource = '' + nextResult.source; // byte array → string
+
+	console.log('rawSource', rawSource);
 	const stripped = stripJsonComments(rawSource);
 
 	return {
