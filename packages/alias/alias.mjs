@@ -25,14 +25,18 @@ export { resolveAlias as resolve };
 /**
  * @type {import('node:module').LoadHook}
  */
-export async function resolveAliases(specifier, ctx, next) {
+export function resolveAliases(specifier, ctx, next) {
 	// biome-ignore format: https://github.com/biomejs/biome/issues/4799
 	for (const [key, dest] of /** @type {AliasMap} */ (aliases)) {
-		if (specifier === key) return next(dest, ctx);
-		if (specifier.startsWith(key)) return next(specifier.replace(key, dest));
+		if (specifier === key) {
+			return next(dest, ctx);
+		}
+		if (specifier.startsWith(key)) {
+			return next(specifier.replace(key, dest), ctx);
+		}
 	}
 
-	return next(specifier);
+	return next(specifier, ctx);
 }
 
 export function readConfigFile(filename) {
