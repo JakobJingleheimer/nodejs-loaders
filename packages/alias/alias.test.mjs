@@ -4,7 +4,9 @@ if (process.version.startsWith('v23')) {
 	const { describe, it } = await import('node:test');
 	const { fileURLToPath } = await import('node:url');
 
-	const { spawnPromisified } = await import('../../utils/spawn-promisified.mjs');
+	const { spawnPromisified } = await import(
+		'../../utils/spawn-promisified.mjs'
+	);
 
 	const { message } = await import('./fixtures/message.mjs');
 

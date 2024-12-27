@@ -48,63 +48,60 @@ describe('alias', () => {
 
 		await test('should de-alias a prefixed specifier', () => {
 			assert.equal(
-				(resolve('…/test.mjs', {}, nextResolve)).url,
+				resolve('…/test.mjs', {}, nextResolve).url,
 				`${base}/src/test.mjs`,
 			);
 		});
 
 		await test('should de-alias a pointer (fully-qualified url) specifier', () => {
-			assert.equal((resolve('ENV', {}, nextResolve)).url, aliases.ENV[0]);
+			assert.equal(resolve('ENV', {}, nextResolve).url, aliases.ENV[0]);
 		});
 
 		await test('should de-alias a pointer (absolute path) specifier', () => {
-			assert.equal(
-				(resolve('VARS', {}, nextResolve)).url,
-				aliases.VARS[0],
-			);
+			assert.equal(resolve('VARS', {}, nextResolve).url, aliases.VARS[0]);
 		});
 
 		await test('should maintain any suffixes on the prefixed specifier', () => {
 			assert.equal(
-				(resolve('…/test.mjs?foo', {}, nextResolve)).url,
+				resolve('…/test.mjs?foo', {}, nextResolve).url,
 				`${base}/src/test.mjs?foo`,
 			);
 			assert.equal(
-				(resolve('…/test.mjs#bar', {}, nextResolve)).url,
+				resolve('…/test.mjs#bar', {}, nextResolve).url,
 				`${base}/src/test.mjs#bar`,
 			);
 			assert.equal(
-				(resolve('…/test.mjs?foo#bar', {}, nextResolve)).url,
+				resolve('…/test.mjs?foo#bar', {}, nextResolve).url,
 				`${base}/src/test.mjs?foo#bar`,
 			);
 		});
 
 		await test('should maintain any suffixes on the pointer (fully-qualified url) specifier', () => {
 			assert.equal(
-				(resolve('ENV?foo', {}, nextResolve)).url,
+				resolve('ENV?foo', {}, nextResolve).url,
 				`${aliases.ENV[0]}?foo`,
 			);
 			assert.equal(
-				(resolve('ENV#bar', {}, nextResolve)).url,
+				resolve('ENV#bar', {}, nextResolve).url,
 				`${aliases.ENV[0]}#bar`,
 			);
 			assert.equal(
-				(resolve('ENV?foo#bar', {}, nextResolve)).url,
+				resolve('ENV?foo#bar', {}, nextResolve).url,
 				`${aliases.ENV[0]}?foo#bar`,
 			);
 		});
 
 		await test('should maintain any suffixes on the pointer (absolute path) specifier', () => {
 			assert.equal(
-				(resolve('VARS?foo', {}, nextResolve)).url,
+				resolve('VARS?foo', {}, nextResolve).url,
 				`${aliases.VARS[0]}?foo`,
 			);
 			assert.equal(
-				(resolve('VARS#bar', {}, nextResolve)).url,
+				resolve('VARS#bar', {}, nextResolve).url,
 				`${aliases.VARS[0]}#bar`,
 			);
 			assert.equal(
-				(resolve('VARS?foo#bar', {}, nextResolve)).url,
+				resolve('VARS?foo#bar', {}, nextResolve).url,
 				`${aliases.VARS[0]}?foo#bar`,
 			);
 		});
