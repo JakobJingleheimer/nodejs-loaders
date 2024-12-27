@@ -1,3 +1,4 @@
+//@ts-nocheck - until https://github.com/nodejs-loaders/nodejs-loaders/pull/54 is merged
 import { transform } from 'esbuild';
 
 import { getFilenameExt } from '@nodejs-loaders/parse-filename';

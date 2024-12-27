@@ -46,6 +46,7 @@ function parseCssToObject(rawSource) {
 
 	const postcssResult = postcss.parse(rawSource).toJSON();
 
+	// @ts-ignore - postcss didn't have types for toJSON
 	for (const rule of postcssResult.nodes)
 		parseCssToObjectRecursive(rule, output);
 

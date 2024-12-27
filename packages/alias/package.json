@@ -1,6 +1,7 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "name": "@nodejs-loaders/alias",
+  "description": "Typescript path alias loader for Node.js",
   "type": "module",
   "author": "Jacob Smith",
   "maintainers": ["Augustin Mauroy"],

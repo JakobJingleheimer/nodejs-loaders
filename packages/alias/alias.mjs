@@ -44,7 +44,8 @@ export function readConfigFile(filename) {
 
 	return (
 		readFile(filepath)
-			.then(JSON.parse)
+			.then((contents) => contents.toString())
+			.then((contents) => JSON.parse(contents))
 			// Get the `compilerOptions.paths` object from the parsed JSON
 			.then((contents) => _get(contents, 'compilerOptions.paths'))
 			.then(buildAliasMaps)
