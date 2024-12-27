@@ -13,19 +13,21 @@ async function resolveTSX(specifier, ctx, nextResolve) {
 	// something to contribute to the resolution.
 	const ext = getFilenameExt(nextResult.url);
 
-	if (jsxExts.has(ext))
+	if (jsxExts.has(ext)) {
 		return {
 			...nextResult,
-			// @ts-ignore
+			// @ts-ignore https://github.com/DefinitelyTyped/DefinitelyTyped/pull/71493
 			format: 'jsx',
 		};
+	}
 
-	if (tsxExts.has(ext))
+	if (tsxExts.has(ext)) {
 		return {
 			...nextResult,
-			// @ts-ignore
+			// @ts-ignore https://github.com/DefinitelyTyped/DefinitelyTyped/pull/71493
 			format: 'tsx',
 		};
+	}
 
 	return nextResult;
 }

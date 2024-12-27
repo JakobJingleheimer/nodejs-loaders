@@ -15,7 +15,7 @@ async function resolveCSSModule(specifier, ctx, nextResolve) {
 
 	return {
 		...ctx,
-		// @ts-ignore
+		// @ts-ignore https://github.com/DefinitelyTyped/DefinitelyTyped/pull/71493
 		format: 'css-module',
 		url: nextResult.url,
 	};
@@ -28,7 +28,7 @@ export { resolveCSSModule as resolve };
 async function loadCSSModule(url, ctx, nextLoad) {
 	const nextResult = await nextLoad(url, ctx);
 
-	// @ts-ignore
+	// @ts-ignore https://github.com/DefinitelyTyped/DefinitelyTyped/pull/71493
 	if (ctx.format !== 'css-module') return nextResult;
 
 	const rawSource = '' + nextResult.source;

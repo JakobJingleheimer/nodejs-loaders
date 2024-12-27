@@ -14,7 +14,7 @@ async function resolveMedia(specifier, ctx, nextResolve) {
 
 	return {
 		...ctx,
-		// @ts-ignore
+		// @ts-ignore https://github.com/DefinitelyTyped/DefinitelyTyped/pull/71493
 		format: 'media',
 		url: nextResult.url,
 	};
@@ -25,7 +25,7 @@ export { resolveMedia as resolve };
  * @type {import('node:module').LoadHook}
  */
 async function loadMedia(url, ctx, nextLoad) {
-	// @ts-ignore
+	// @ts-ignore https://github.com/DefinitelyTyped/DefinitelyTyped/pull/71493
 	if (ctx.format !== 'media') return nextLoad(url);
 
 	const source = `export default '${url.replace(cwd, '[…]')}';`;

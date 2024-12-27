@@ -27,7 +27,7 @@ async function loadSVGX(url, ctx, next) {
 	const base = pascalCase(others.base);
 	const svg = (
 		await next(url, {
-			// @ts-ignore
+			// @ts-ignore https://github.com/DefinitelyTyped/DefinitelyTyped/pull/71493
 			format: 'jsx',
 		})
 	).source;
