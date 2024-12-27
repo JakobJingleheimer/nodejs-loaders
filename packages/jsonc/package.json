@@ -16,7 +16,7 @@
     "jsonc"
   ],
   "engines": {
-    "node": ">=20 || >=22 || >=23"
+    "node": ">=22"
   },
   "dependencies": {
     "@nodejs-loaders/parse-filename": "^1.0.0",
