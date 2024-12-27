@@ -19,7 +19,8 @@
     "pre-commit": "node --run biome:lint:fix; node --run biome:format:fix",
     "test": "node --no-warnings --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=./coverage.lcov --test-reporter=spec --test-reporter-destination=stdout --experimental-test-module-mocks --test --test-coverage-include='packages/**/*' --test-coverage-exclude='**/*.spec.mjs' --test-coverage-exclude='**/*.test.mjs' './packages/*/*.spec.mjs' './packages/*/*.test.mjs'",
     "types:check": "tsc --noEmit",
-    "types:generate": "tsc"
+    "types:generate": "tsc",
+    "bench": "node ./scripts/run-benchs.mjs"
   },
   "repository": {
     "type": "git",
@@ -28,7 +29,8 @@
   "workspaces": ["./packages/*"],
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
-    "@types/node": "^22.10.2"
+    "@types/node": "^22.10.2",
+    "bench-node": "^0.5.0"
   },
   "optionalDependencies": {
     "typescript": "^5.7.2"
