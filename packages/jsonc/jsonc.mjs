@@ -4,8 +4,8 @@ import stripJsonComments from 'strip-json-comments';
 /**
  * @type {import('node:module').ResolveHook}
  */
-async function resolveJSONC(specifier, ctx, nextResolve) {
-	const nextResult = await nextResolve(specifier);
+function resolveJSONC(specifier, ctx, nextResolve) {
+	const nextResult = nextResolve(specifier);
 	const ext = getFilenameExt(nextResult.url);
 
 	/**
@@ -27,8 +27,8 @@ export { resolveJSONC as resolve };
 /**
  * @type {import('node:module').LoadHook}
  */
-async function loadJSONC(url, ctx, nextLoad) {
-	const nextResult = await nextLoad(url, ctx);
+function loadJSONC(url, ctx, nextLoad) {
+	const nextResult = nextLoad(url, ctx);
 
 	if (ctx.format !== 'jsonc') return nextResult;
 
