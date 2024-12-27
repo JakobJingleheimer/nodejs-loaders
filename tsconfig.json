@@ -8,7 +8,7 @@
     "esModuleInterop": true,
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    "target": "ESNext",
+    "target": "ESNext"
   },
   "include": ["./packages"],
   "exclude": [
@@ -17,6 +17,6 @@
     "**/*/*.config.*",
     "**/*/*.fixture.*",
     "**/*/*.spec.*",
-    "**/*/*.test.*",
-  ],
+    "**/*/*.test.*"
+  ]
 }

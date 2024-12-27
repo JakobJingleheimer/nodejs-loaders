@@ -1,6 +1,5 @@
 import path from 'node:path';
 
-
 /**
  * Some loaders may append query parameters or anchors (URLs allow that). That will dupe
  * path.extname, String::endsWith, etc.
@@ -15,22 +14,23 @@ export function getFilenameExt(f) {
  * @param {string} f
  */
 export function stripExtras(f) {
-  return f.split('?')[0].split('#')[0];
+	return f.split('?')[0].split('#')[0];
 }
 
 /**
  * @param {`/${string}` | URL['href']} resolvedUrl
  */
 export function getFilenameParts(resolvedUrl) {
-  const pathname = URL.canParse(resolvedUrl)
-    ? (new URL(resolvedUrl)).pathname
-    : resolvedUrl;
+	const pathname = URL.canParse(resolvedUrl)
+		? // biome-ignore format: we want to keep the parentheses
+			(new URL(resolvedUrl)).pathname
+		: resolvedUrl;
 
-  const ext = getFilenameExt(pathname);
-  const base = path.basename(pathname, ext);
+	const ext = getFilenameExt(pathname);
+	const base = path.basename(pathname, ext);
 
-  return {
-    base,
-    ext,
-  };
+	return {
+		base,
+		ext,
+	};
 }

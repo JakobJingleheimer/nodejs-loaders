@@ -1,10 +1,5 @@
 import assert from 'node:assert/strict';
-import {
-	before,
-	describe,
-	mock,
-	test,
-} from 'node:test';
+import { before, describe, mock, test } from 'node:test';
 
 import { nextResolve } from '../../fixtures/nextResolve.fixture.mjs';
 
@@ -14,8 +9,8 @@ describe('alias', () => {
 	const base = 'file://';
 	const aliases = {
 		'…/*': ['./src/*'],
-		'ENV': ['https://example.com/env.json'],
-		'VARS': ['/vars.json'],
+		ENV: ['https://example.com/env.json'],
+		VARS: ['/vars.json'],
 	};
 
 	class ENOENT extends Error {
@@ -29,7 +24,9 @@ describe('alias', () => {
 		mock.module('node:url', {
 			namedExports: {
 				...(await import('node:url')),
-				pathToFileURL() { return new URL(base) },
+				pathToFileURL() {
+					return new URL(base);
+				},
 			},
 		});
 	});
@@ -39,7 +36,10 @@ describe('alias', () => {
 
 		before(async () => {
 			mock_readFile.mockImplementation(async function mock_readFile(p) {
-				if (p.includes('/tsconfig.json')) return JSON.stringify({ compilerOptions: { paths: aliases } });
+				if (p.includes('/tsconfig.json'))
+					return JSON.stringify({
+						compilerOptions: { paths: aliases },
+					});
 				throw new ENOENT(); // For any other file access, throw ENOENT
 			});
 
@@ -54,10 +54,7 @@ describe('alias', () => {
 		});
 
 		await test('should de-alias a pointer (fully-qualified url) specifier', async () => {
-			assert.equal(
-				(await resolve('ENV', {}, nextResolve)).url,
-				aliases.ENV[0],
-			);
+			assert.equal((await resolve('ENV', {}, nextResolve)).url, aliases.ENV[0]);
 		});
 
 		await test('should de-alias a pointer (absolute path) specifier', async () => {

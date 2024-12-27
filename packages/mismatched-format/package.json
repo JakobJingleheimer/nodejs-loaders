@@ -3,9 +3,7 @@
   "name": "@nodejs-loaders/mismatched-format",
   "type": "module",
   "author": "Jacob Smith",
-  "maintainers": [
-    "Augustin Mauroy"
-  ],
+  "maintainers": ["Augustin Mauroy"],
   "license": "ISC",
   "main": "./mismatched-format.mjs",
   "types": "./mismatched-format.d.mts",

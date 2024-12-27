@@ -3,9 +3,7 @@
   "name": "@nodejs-loaders/alias",
   "type": "module",
   "author": "Jacob Smith",
-  "maintainers": [
-    "Augustin Mauroy"
-  ],
+  "maintainers": ["Augustin Mauroy"],
   "license": "ISC",
   "main": "./alias.mjs",
   "types": "./alias.d.mts",
@@ -19,8 +17,8 @@
     "lodash.get": "^4.4.2"
   },
   "repository": {
-      "type": "git",
-      "url": "git+https://github.com/nodejs-loaders/nodejs-loaders.git",
-      "directory": "packages/alias"
+    "type": "git",
+    "url": "git+https://github.com/nodejs-loaders/nodejs-loaders.git",
+    "directory": "packages/alias"
   }
 }

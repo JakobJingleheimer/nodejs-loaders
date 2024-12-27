@@ -3,9 +3,7 @@
   "name": "@nodejs-loaders/css-module",
   "type": "module",
   "author": "Jacob Smith",
-  "maintainers": [
-    "Augustin Mauroy"
-  ],
+  "maintainers": ["Augustin Mauroy"],
   "license": "ISC",
   "main": "./css-module.mjs",
   "types": "./css-module.d.mts",
