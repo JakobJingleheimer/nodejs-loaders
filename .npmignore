@@ -1,3 +1,4 @@
 *.spec.*
 *.fixture.*
 fixture.*
+fixtures
