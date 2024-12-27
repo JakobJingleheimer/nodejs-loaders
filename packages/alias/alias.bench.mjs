@@ -1,15 +1,17 @@
-import { Suite } from 'bench-node';
+import { Suite, chartReport } from 'bench-node';
 import { execPath } from 'node:process';
 import { fileURLToPath } from 'node:url';
 
 import { spawnPromisified } from '../../utils/spawn-promisified.mjs';
 
-const suite = new Suite();
+const suite = new Suite({
+	reporter: chartReport
+});
 
 const cwd = fileURLToPath(import.meta.resolve('./fixtures'));
 const e2eTest = fileURLToPath(import.meta.resolve('./fixtures/e2e.mjs'));
 
-suite.add('--loader', async () => {
+suite.add('--loader', { repeatSuite: 2 }, async () => {
 	await spawnPromisified(
 		execPath,
 		[
@@ -22,7 +24,7 @@ suite.add('--loader', async () => {
 	);
 });
 
-suite.add('--import (register)', async () => {
+suite.add('--import (register)', { repeatSuite: 2 }, async () => {
 	await spawnPromisified(
 		execPath,
 		[
@@ -36,7 +38,7 @@ suite.add('--import (register)', async () => {
 });
 
 if (process.version.startsWith('v23')) {
-	suite.add('--import (registerHooks)', async () => {
+	suite.add('--import (registerHooks)', { repeatSuite: 2 }, async () => {
 		await spawnPromisified(
 			execPath,
 			[
