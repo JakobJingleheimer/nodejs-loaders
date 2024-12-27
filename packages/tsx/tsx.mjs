@@ -4,28 +4,38 @@ import { getFilenameExt } from '@nodejs-loaders/parse-filename';
 
 import { findEsbuildConfig } from './find-esbuild-config.mjs';
 
+/**
+ * @type {import('node:module').ResolveHook}
+ */
 async function resolveTSX(specifier, ctx, nextResolve) {
 	const nextResult = await nextResolve(specifier);
 	// Check against the fully resolved URL, not just the specifier, in case another loader has
 	// something to contribute to the resolution.
 	const ext = getFilenameExt(nextResult.url);
 
-	if (jsxExts.has(ext))
+	if (jsxExts.has(ext)) {
 		return {
 			...nextResult,
+			// @ts-ignore https://github.com/DefinitelyTyped/DefinitelyTyped/pull/71493
 			format: 'jsx',
 		};
+	}
 
-	if (tsxExts.has(ext))
+	if (tsxExts.has(ext)) {
 		return {
 			...nextResult,
+			// @ts-ignore https://github.com/DefinitelyTyped/DefinitelyTyped/pull/71493
 			format: 'tsx',
 		};
+	}
 
 	return nextResult;
 }
 export { resolveTSX as resolve };
 
+/**
+ * @type {import('node:module').LoadHook}
+ */
 async function loadTSX(url, ctx, nextLoad) {
 	if (!formats.has(ctx.format)) return nextLoad(url); // not j|tsx
 

@@ -1,4 +1,5 @@
 *.spec.*
+*.test.*
 *.fixture.*
 fixture.*
 fixtures

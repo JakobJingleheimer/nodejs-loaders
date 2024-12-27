@@ -6,6 +6,7 @@
   "maintainers": ["Augustin Mauroy"],
   "license": "ISC",
   "main": "./svgx.mjs",
+  "types": "./svgx.d.mts",
   "keywords": [
     "customisation hook",
     "loader",

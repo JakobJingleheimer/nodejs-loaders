@@ -6,6 +6,7 @@
   "maintainers": ["Augustin Mauroy"],
   "license": "ISC",
   "main": "./mismatched-format.mjs",
+  "types": "./mismatched-format.d.mts",
   "keywords": [
     "customisation hook",
     "loader",
