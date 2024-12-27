@@ -25,7 +25,6 @@ import data from './data.jsonc' with { type: 'jsonc' };
 
 > [!IMPORTANT]
 > For consistency with Node.js's support for `json` imports, an import attribute is required for `jsonc` (case-sensitive: `jsonc`, not `JSONC`).
-> For consistency with Node.js's support for `json` imports, an import attribute is required for `jsonc` (case-sensitive: `jsonc`, not `JSONC`).
 
 <details>
 <summary>Supported file extensions</summary>
