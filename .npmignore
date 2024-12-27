@@ -3,3 +3,4 @@
 *.fixture.*
 fixture.*
 fixtures
+*.bench.*
