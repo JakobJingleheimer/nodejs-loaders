@@ -19,6 +19,7 @@ export function spawnPromisified(...args) {
 
 	/**
 	 * @type {Promise<{ code: number | null, signal: NodeJS.Signals | null, stderr: string, stdout: string }>}
+	 * biome-ignore format: https://github.com/biomejs/biome/issues/4799
 	 */
 	return (new Promise((resolve, reject) => {
 		child.on('close', (code, signal) => {
