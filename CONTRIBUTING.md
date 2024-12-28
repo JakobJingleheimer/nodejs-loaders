@@ -42,15 +42,20 @@ npm install
 node --run test
 ```
 
-8. Let's make some changes!
+8. Run lint and formatting
+```bash
+node --run pre-commit
+```
 
-9. Keep your fork up-to-date with the upstream repository.
+9. Let's make some changes!
+
+10. Keep your fork up-to-date with the upstream repository.
 ```bash
 git fetch upstream
 git merge upstream/main
 ```
 
-10. Once you're ready, push your changes to your fork.
+11. Once you're ready, push your changes to your fork.
 ```bash
 git add .
 git commit -m "describe your changes"
@@ -112,6 +117,12 @@ If you want to introduce a new loader, please follow the steps below:
 > The `repository.url` field must be present. It's use for generating the provenance signature.
 
 3. Create the loader
+
+Your loader have to export [customisaiton hooks](https://nodejs.org/api/module.html#customization-hooks) to be able to customize the loader behavior.
+
+```js
+function
+```
 
 4. Write unit tests
 
