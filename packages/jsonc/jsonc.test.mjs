@@ -4,10 +4,8 @@ import { execPath } from 'node:process';
 import { describe, it } from 'node:test';
 import { fileURLToPath } from 'node:url';
 
-// biome-ignore lint: i know what i'm doing 😎
-const stripAnsi = (str) => str.replace(/(\u001b\[[0-9;]*m)/g, '');
-
-const expected = "{ foo: 'bar', baz: 'qux', quux: [ 'corge', 'grault' ] }\n";
+const encoding = 'utf-8';
+const env = { NO_COLOR: true };
 
 describe('jsonc (e2e)', () => {
 	describe('json', () => {
@@ -16,7 +14,7 @@ describe('jsonc (e2e)', () => {
 			import.meta.resolve('./fixtures/e2e-json.mjs'),
 		);
 
-		it('should work with `--loader`', () => {
+		it('should work with `--loader`', (t) => {
 			const {
 				status: code,
 				stderr,
@@ -29,15 +27,19 @@ describe('jsonc (e2e)', () => {
 					fileURLToPath(import.meta.resolve('./jsonc.mjs')),
 					e2eTest,
 				],
-				{ cwd },
+				{
+					cwd,
+					encoding,
+					env,
+				},
 			);
 
-			assert.equal(stderr.toString(), '');
-			assert.equal(stripAnsi(stdout.toString()), expected);
+			assert.equal(stderr, '');
+			t.assert.snapshot(stdout);
 			assert.equal(code, 0);
 		});
 
-		it('should work with `module.register`', () => {
+		it('should work with `module.register`', (t) => {
 			const {
 				status: code,
 				stderr,
@@ -50,11 +52,15 @@ describe('jsonc (e2e)', () => {
 					fileURLToPath(import.meta.resolve('./fixtures/register.mjs')),
 					e2eTest,
 				],
-				{ cwd },
+				{
+					cwd,
+					encoding,
+					env,
+				},
 			);
 
-			assert.equal(stderr.toString(), '');
-			assert.equal(stripAnsi(stdout.toString()), expected);
+			assert.equal(stderr, '');
+			t.assert.snapshot(stdout);
 			assert.equal(code, 0);
 		});
 	});
@@ -65,7 +71,7 @@ describe('jsonc (e2e)', () => {
 			import.meta.resolve('./fixtures/e2e-jsonc.mjs'),
 		);
 
-		it('should work with `--loader`', () => {
+		it('should work with `--loader`', (t) => {
 			const {
 				status: code,
 				stderr,
@@ -78,15 +84,19 @@ describe('jsonc (e2e)', () => {
 					fileURLToPath(import.meta.resolve('./jsonc.mjs')),
 					e2eTest,
 				],
-				{ cwd, env: { ...process.env } },
+				{
+					cwd,
+					encoding,
+					env,
+				},
 			);
 
-			assert.equal(stderr.toString(), '');
-			assert.equal(stripAnsi(stdout.toString()), expected);
+			assert.equal(stderr, '');
+			t.assert.snapshot(stdout);
 			assert.equal(code, 0);
 		});
 
-		it('should work with `module.register`', () => {
+		it('should work with `module.register`', (t) => {
 			const {
 				status: code,
 				stderr,
@@ -99,11 +109,15 @@ describe('jsonc (e2e)', () => {
 					fileURLToPath(import.meta.resolve('./fixtures/register.mjs')),
 					e2eTest,
 				],
-				{ cwd },
+				{
+					cwd,
+					encoding,
+					env,
+				},
 			);
 
-			assert.equal(stderr.toString(), '');
-			assert.equal(stripAnsi(stdout.toString()), expected);
+			assert.equal(stderr, '');
+			t.assert.snapshot(stdout);
 			assert.equal(code, 0);
 		});
 	});
