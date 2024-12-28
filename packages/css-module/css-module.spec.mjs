@@ -10,11 +10,11 @@ import { resolve, load } from './css-module.mjs';
 describe('css-module loader', { concurrency: true }, () => {
 	describe('resolve', () => {
 		it('should recognise css module files', async () => {
-			const result = await resolve('./fixture.module.css', {}, nextResolve);
+			const result = await resolve('./fixtures/fixture.module.css', {}, nextResolve);
 
 			assert.deepEqual(result, {
 				format: 'css-module',
-				url: './fixture.module.css',
+				url: './fixtures/fixture.module.css',
 			});
 		});
 
@@ -43,7 +43,7 @@ describe('css-module loader', { concurrency: true }, () => {
 		it('should handle specifiers with appending data', async () => {
 			await assertSuffixedSpecifiers(
 				resolve,
-				'./fixture.module.css',
+				'./fixtures/fixture.module.css',
 				'css-module',
 			);
 		});
@@ -52,7 +52,7 @@ describe('css-module loader', { concurrency: true }, () => {
 	describe('load', () => {
 		it('should ignore files that aren’t css-modules', async () => {
 			const result = await load(
-				import.meta.resolve('./fixture.js'),
+				import.meta.resolve('./fixtures/fixture.js'),
 				{ format: 'commonjs' },
 				nextLoad,
 			);
@@ -63,7 +63,7 @@ describe('css-module loader', { concurrency: true }, () => {
 
 		it('should handle files with nested and non-nested comments', async () => {
 			const result = await load(
-				import.meta.resolve('./fixture.module.css'),
+				import.meta.resolve('./fixtures/fixture.module.css'),
 				{ format: 'css-module' },
 				nextLoad,
 			);
