@@ -25,6 +25,6 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nodejs-loaders/nodejs-loaders.git",
-    "directory": "packages/media"
+    "directory": "packages/jsonc"
   }
 }
