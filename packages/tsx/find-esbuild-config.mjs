@@ -1,7 +1,7 @@
+//@ts-nocheck - until https://github.com/nodejs-loaders/nodejs-loaders/pull/54 is merged
 import { createRequire, findPackageJSON } from 'node:module';
 import process from 'node:process';
 import { fileURLToPath } from 'node:url';
-
 
 // This config must contain options that are compatible with esbuild's `transform` API.
 let esbuildConfig;
@@ -10,25 +10,34 @@ let esbuildConfig;
  * @param {URL['href']} parentURL
  */
 export function findEsbuildConfig(parentURL) {
-  if (esbuildConfig != null) return esbuildConfig;
+	if (esbuildConfig != null) return esbuildConfig;
 
-  const esBuildConfigLocus = findPackageJSON(parentURL)
-    ?.replace('package.json', 'esbuild.config.mjs');
-
+	const esBuildConfigLocus = findPackageJSON(parentURL)?.replace(
+		'package.json',
+		'esbuild.config.mjs',
+	);
 	const req = createRequire(fileURLToPath(parentURL));
-  try {
-    esbuildConfig = req(esBuildConfigLocus)?.default;
-  } catch (err) {
-    if (err.code !== 'ENOENT') throw err;
 
-    process.emitWarning('No esbuild config found in project root. Using default config.')
-  }
+	try {
+		esbuildConfig = req(esBuildConfigLocus)?.default;
+	} catch (err) {
+		if (err.code !== 'ENOENT') throw err;
 
-  return esbuildConfig = Object.assign({
-    jsx: 'automatic',
-    jsxDev: true,
-    jsxFactory: 'React.createElement',
-    loader: 'tsx',
-    minify: true,
-  }, esbuildConfig);
+		process.emitWarning(
+			'No esbuild config found in project root. Using default config.',
+		);
+	}
+
+	esbuildConfig = Object.assign(
+		{
+			jsx: 'automatic',
+			jsxDev: true,
+			jsxFactory: 'React.createElement',
+			loader: 'tsx',
+			minify: true,
+		},
+		esbuildConfig,
+	);
+
+	return esbuildConfig;
 }

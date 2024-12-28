@@ -3,11 +3,10 @@
   "name": "@nodejs-loaders/media",
   "type": "module",
   "author": "Jacob Smith",
-  "maintainers": [
-    "Augustin Mauroy"
-  ],
+  "maintainers": ["Augustin Mauroy"],
   "license": "ISC",
   "main": "./media.mjs",
+  "types": "./media.d.mts",
   "keywords": [
     "audio",
     "customisation hook",
@@ -21,6 +20,8 @@
     "@nodejs-loaders/parse-filename": "1.0.0"
   },
   "repository": {
-    "url": "https://github.com/JakobJingleheimer/nodejs-loaders"
+    "type": "git",
+    "url": "git+https://github.com/nodejs-loaders/nodejs-loaders.git",
+    "directory": "packages/media"
   }
 }

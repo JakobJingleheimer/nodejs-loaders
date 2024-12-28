@@ -1,3 +1,6 @@
 *.spec.*
+*.test.*
 *.fixture.*
 fixture.*
+fixtures
+*snap.cjs

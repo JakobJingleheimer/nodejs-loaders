@@ -1,23 +1,25 @@
 {
-	"version": "1.0.0",
-	"name": "@nodejs-loaders/alias",
-	"type": "module",
-	"author": "Jacob Smith",
-	"maintainers": [
-		"Augustin Mauroy"
-	],
+  "version": "1.1.0",
+  "name": "@nodejs-loaders/alias",
+  "description": "Typescript path alias loader for Node.js",
+  "type": "module",
+  "author": "Jacob Smith",
+  "maintainers": ["Augustin Mauroy"],
   "license": "ISC",
-	"main": "./alias.mjs",
-	"keywords": [
-		"customisation hook",
-		"loader",
-		"node.js",
-		"path alias"
-	],
-	"dependencies": {
-		"lodash.get": "^4.4.2"
-	},
+  "main": "./alias.mjs",
+  "types": "./alias.d.mts",
+  "keywords": [
+    "customisation hook",
+    "loader",
+    "node.js",
+    "path alias"
+  ],
+  "dependencies": {
+    "lodash.get": "^4.4.2"
+  },
   "repository": {
-    "url": "https://github.com/JakobJingleheimer/nodejs-loaders"
+    "type": "git",
+    "url": "git+https://github.com/nodejs-loaders/nodejs-loaders.git",
+    "directory": "packages/alias"
   }
 }

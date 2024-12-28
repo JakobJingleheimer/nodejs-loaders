@@ -1,11 +1,5 @@
 import assert from 'node:assert/strict';
-import {
-	before,
-	describe,
-	it,
-	mock,
-} from 'node:test';
-
+import { before, describe, it, mock } from 'node:test';
 
 describe('Mismatched format loader (unit)', () => {
 	/** @type {import('./mismatched-format.mjs').load} */
@@ -23,7 +17,9 @@ describe('Mismatched format loader (unit)', () => {
 
 	describe('when "esm" is actually cjs', () => {
 		it('should detect and report the corrected format', async () => {
-			mock__containsCJS.mockImplementationOnce(function mock__containsCJS() { return true });
+			mock__containsCJS.mockImplementationOnce(function mock__containsCJS() {
+				return true;
+			});
 			const result = await load(
 				import.meta.resolve('./unimportant.js'),
 				{},
@@ -37,22 +33,28 @@ describe('Mismatched format loader (unit)', () => {
 		});
 
 		it('should detect and report the corrected format', async () => {
-			mock__containsCJS.mockImplementationOnce(function mock__containsCJS() { return false });
+			mock__containsCJS.mockImplementationOnce(function mock__containsCJS() {
+				return false;
+			});
 			const result = await load(
 				import.meta.resolve('./unimportant.js'),
 				{},
-				async () => { throw new Error('require and import') },
+				async () => {
+					throw new Error('require and import');
+				},
 			);
 
 			assert.equal(result.format, 'commonjs');
 		});
 
 		it('should detect and report the corrected format', async () => {
-			mock__containsCJS.mockImplementationOnce(() => false)
+			mock__containsCJS.mockImplementationOnce(() => false);
 			const result = await load(
 				import.meta.resolve('./unimportant.js'),
 				{},
-				async () => { throw new Error('CommonJS') },
+				async () => {
+					throw new Error('CommonJS');
+				},
 			);
 
 			assert.equal(result.format, 'commonjs');

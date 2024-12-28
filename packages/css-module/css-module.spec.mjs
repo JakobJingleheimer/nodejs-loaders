@@ -7,15 +7,18 @@ import { nextLoad } from '../../fixtures/nextLoad.fixture.mjs';
 
 import { resolve, load } from './css-module.mjs';
 
-
 describe('css-module loader', { concurrency: true }, () => {
 	describe('resolve', () => {
 		it('should recognise css module files', async () => {
-			const result = await resolve('./fixture.module.css', {}, nextResolve);
+			const result = await resolve(
+				'./fixtures/fixture.module.css',
+				{},
+				nextResolve,
+			);
 
 			assert.deepEqual(result, {
 				format: 'css-module',
-				url: './fixture.module.css',
+				url: './fixtures/fixture.module.css',
 			});
 		});
 
@@ -29,7 +32,11 @@ describe('css-module loader', { concurrency: true }, () => {
 		});
 
 		it('should ignore files that aren’t css at all', async () => {
-			const result = await resolve('../../fixtures/fixture.ext', {}, nextResolve);
+			const result = await resolve(
+				'../../fixtures/fixture.ext',
+				{},
+				nextResolve,
+			);
 
 			assert.deepEqual(result, {
 				format: 'unknown',
@@ -38,31 +45,46 @@ describe('css-module loader', { concurrency: true }, () => {
 		});
 
 		it('should handle specifiers with appending data', async () => {
-			await assertSuffixedSpecifiers(resolve, './fixture.module.css', 'css-module');
+			await assertSuffixedSpecifiers(
+				resolve,
+				'./fixtures/fixture.module.css',
+				'css-module',
+			);
 		});
 	});
 
 	describe('load', () => {
 		it('should ignore files that aren’t css-modules', async () => {
-			const result = await load(import.meta.resolve('./fixture.js'), { format: 'commonjs' }, nextLoad);
+			const result = await load(
+				import.meta.resolve('./fixtures/fixture.js'),
+				{ format: 'commonjs' },
+				nextLoad,
+			);
 
 			assert.equal(result.format, 'commonjs');
 			assert.equal(result.source, `export = 'foo';\n`);
 		});
 
 		it('should handle files with nested and non-nested comments', async () => {
-			const result = await load(import.meta.resolve('./fixture.module.css'), { format: 'css-module' }, nextLoad);
+			const result = await load(
+				import.meta.resolve('./fixtures/fixture.module.css'),
+				{ format: 'css-module' },
+				nextLoad,
+			);
 
 			assert.equal(result.format, 'json');
-			assert.deepEqual(result.source, JSON.stringify({
-				Foo: 'Foo',
-				Bar: 'Bar',
-				Qux: 'Qux',
-				Zed: 'Zed',
-				img: 'img',
-				nested: 'nested',
-				something: 'something'
-			}));
+			assert.deepEqual(
+				result.source,
+				JSON.stringify({
+					Foo: 'Foo',
+					Bar: 'Bar',
+					Qux: 'Qux',
+					Zed: 'Zed',
+					img: 'img',
+					nested: 'nested',
+					something: 'something',
+				}),
+			);
 		});
 	});
 });

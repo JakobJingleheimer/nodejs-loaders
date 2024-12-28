@@ -3,11 +3,10 @@
   "name": "@nodejs-loaders/css-module",
   "type": "module",
   "author": "Jacob Smith",
-  "maintainers": [
-    "Augustin Mauroy"
-  ],
+  "maintainers": ["Augustin Mauroy"],
   "license": "ISC",
   "main": "./css-module.mjs",
+  "types": "./css-module.d.mts",
   "keywords": [
     "customisation hook",
     "css modules",
@@ -21,6 +20,8 @@
     "postcss": "~8.4.38"
   },
   "repository": {
-    "url": "https://github.com/JakobJingleheimer/nodejs-loaders"
+    "type": "git",
+    "url": "git+https://github.com/nodejs-loaders/nodejs-loaders.git",
+    "directory": "packages/css-module"
   }
 }

@@ -3,11 +3,10 @@
   "name": "@nodejs-loaders/text",
   "type": "module",
   "author": "Jacob Smith",
-  "maintainers": [
-    "Augustin Mauroy"
-  ],
+  "maintainers": ["Augustin Mauroy"],
   "license": "ISC",
   "main": "./text.mjs",
+  "types": "./text.d.mts",
   "keywords": [
     "customisation hook",
     "loader",
@@ -18,6 +17,8 @@
     "@nodejs-loaders/parse-filename": "1.0.0"
   },
   "repository": {
-    "url": "https://github.com/JakobJingleheimer/nodejs-loaders"
+    "type": "git",
+    "url": "git+https://github.com/nodejs-loaders/nodejs-loaders.git",
+    "directory": "packages/text"
   }
 }

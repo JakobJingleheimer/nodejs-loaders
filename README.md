@@ -21,20 +21,23 @@ node
   --loader=@nodejs-loaders/css-module \
   --loader=@nodejs-loaders/media \
   --loader=@nodejs-loaders/text \
+  --loader=@nodejs-loaders/yaml \
   ./main.js
 ```
 
 * [Alias loader](./packages/alias/)
-* [JSX / TSX loader](./packages/tsx/)
-* [SVGX loader](./packages/svgx/)
-* [Mismatched format loader](./packages/mismatched-format/)
 * [CSS Modules loader](./packages/css-module/)
+* [JSX / TSX loader](./packages/tsx/)
 * [Media loader](./packages/media/)
+* [Mismatched format loader](./packages/mismatched-format/)
+* [SVGX loader](./packages/svgx/)
 * [Text loader](./packages/text/)
+* [YAML loader](./packages/yaml/)
 
 ## Project-official loaders
 
 These loaders are officially maintained by their respective projects and are recommended (they're the most up-to-date and have the best support).
 
+* [Aurelia loader](https://github.com/aurelia/loader-nodejs)
 * [MDX loader](https://mdxjs.com/packages/node-loader/)
 * [SWC register](https://github.com/swc-project/swc-node/tree/master/packages/register#swc-noderegister)
