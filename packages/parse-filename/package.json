@@ -8,7 +8,7 @@
   "license": "ISC",
   "main": "./parse-filename.mjs",
   "engines": {
-    "node": ">=22"
+    "node": ">=22 || ^20.6.0 || ^18.19.0"
   },
   "repository": {
     "type": "git",

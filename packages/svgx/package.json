@@ -15,7 +15,7 @@
     "svg as jsx"
   ],
   "engines": {
-    "node": ">=22"
+    "node": ">=22 || ^20.6.0 || ^18.19.0"
   },
   "dependencies": {
     "lodash.camelcase": "~4.3.0",

@@ -18,7 +18,7 @@
     "node.js"
   ],
   "engines": {
-    "node": ">=22"
+    "node": ">=22 || ^20.6.0 || ^18.19.0"
   },
   "dependencies": {
     "@nodejs-loaders/parse-filename": "1.0.0"
