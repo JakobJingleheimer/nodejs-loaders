@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import { assertSuffixedSpecifiers } from '../../fixtures/assert-suffixed-specifiers.fixture.mjs';
 import { nextResolve } from '../../fixtures/nextResolve.fixture.mjs';
-import { nextLoadSync } from '../../fixtures/nextLoad.fixture.mjs';
+import { nextLoad } from '../../fixtures/nextLoad.fixture.mjs';
 import { resolve, load } from './jsonc.mjs';
 
 describe('JSONC loader', { concurrency: true }, () => {
@@ -87,7 +87,7 @@ describe('JSONC loader', { concurrency: true }, () => {
 			const result = await load(
 				import.meta.resolve('./fixtures/valid.jsonc'),
 				{ format: 'jsonc' },
-				nextLoadSync,
+				nextLoad,
 			);
 
 			const expected = [
