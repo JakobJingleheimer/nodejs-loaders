@@ -3,4 +3,5 @@
 *.fixture.*
 fixture.*
 fixtures
+*snap.cjs
 *.bench.*
