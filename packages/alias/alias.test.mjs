@@ -13,7 +13,11 @@ describe('alias (e2e)', () => {
 	const msgRgx = new RegExp(message);
 
 	it('should work with `--loader`', () => {
-		const { status: code, stderr, stdout } = spawnSync(
+		const {
+			status: code,
+			stderr,
+			stdout,
+		} = spawnSync(
 			execPath,
 			[
 				'--no-warnings',
@@ -33,7 +37,11 @@ describe('alias (e2e)', () => {
 	});
 
 	it('should work with `module.register`', () => {
-		const { status: code, stderr, stdout } = spawnSync(
+		const {
+			status: code,
+			stderr,
+			stdout,
+		} = spawnSync(
 			execPath,
 			[
 				'--no-warnings',
@@ -54,7 +62,11 @@ describe('alias (e2e)', () => {
 
 	if (process.version.startsWith('v23')) {
 		it('should work with `module.registerHooks`', () => {
-			const { status: code, stderr, stdout } = spawnSync(
+			const {
+				status: code,
+				stderr,
+				stdout,
+			} = spawnSync(
 				execPath,
 				[
 					'--no-warnings',

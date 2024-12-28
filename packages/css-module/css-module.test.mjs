@@ -10,7 +10,11 @@ describe('css-module (e2e)', () => {
 	const e2eTest = fileURLToPath(import.meta.resolve('./fixtures/e2e.mjs'));
 
 	it('should work with `--loader`', (t) => {
-		const { status: code, stderr, stdout } = spawnSync(
+		const {
+			status: code,
+			stderr,
+			stdout,
+		} = spawnSync(
 			execPath,
 			[
 				'--no-warnings',
@@ -31,7 +35,11 @@ describe('css-module (e2e)', () => {
 	});
 
 	it('should work with `module.register`', (t) => {
-		const { status: code, stderr, stdout } = spawnSync(
+		const {
+			status: code,
+			stderr,
+			stdout,
+		} = spawnSync(
 			execPath,
 			[
 				'--no-warnings',

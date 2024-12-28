@@ -10,7 +10,11 @@ import { resolve, load } from './css-module.mjs';
 describe('css-module loader', { concurrency: true }, () => {
 	describe('resolve', () => {
 		it('should recognise css module files', async () => {
-			const result = await resolve('./fixtures/fixture.module.css', {}, nextResolve);
+			const result = await resolve(
+				'./fixtures/fixture.module.css',
+				{},
+				nextResolve,
+			);
 
 			assert.deepEqual(result, {
 				format: 'css-module',
