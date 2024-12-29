@@ -1,0 +1,25 @@
+{
+  "name": "@nodejs-loaders/npm-protocol",
+  "description": "NPM protocol loader for Node.js",
+  "version": "1.0.0",
+  "type": "module",
+  "author": "Augustin Mauroy",
+  "maintainers": ["Jacob Smith"],
+  "license": "ISC",
+  "main": "./npm-protocol.mjs",
+  "types": "./npm-protocol.d.mts",
+  "keywords": [
+    "customisation hook",
+    "loader",
+    "node.js",
+    "npm"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nodejs-loaders/nodejs-loaders.git",
+    "directory": "packages/npm-protocolyaml"
+  }
+}
