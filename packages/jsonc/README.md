@@ -13,6 +13,10 @@ To import a JSONC file in node, it must have a `.jsonc` file extension **and** a
 
 ```js
 import data from './data.jsonc' with { type: 'jsonc' };
+
+// OR
+
+const data = await import('./data.jsonc', { with { type: 'jsonc' } });
 ```
 
 ```jsonc
