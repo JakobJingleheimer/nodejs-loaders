@@ -6,6 +6,8 @@
   "author": "Augustin Mauroy",
   "maintainers": ["Jacob Smith"],
   "license": "ISC",
+  "main": "./yaml.mjs",
+  "types": "./yaml.d.mts",
   "keywords": [
     "customisation hook",
     "loader",
@@ -13,7 +15,7 @@
     "yaml"
   ],
   "engines": {
-    "node": ">20"
+    "node": ">=22 || ^20.6.0 || ^18.19.0"
   },
   "dependencies": {
     "@nodejs-loaders/parse-filename": "1.0.0",
@@ -22,6 +24,6 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nodejs-loaders/nodejs-loaders.git",
-    "directory": "packages/tsx"
+    "directory": "packages/yaml"
   }
 }

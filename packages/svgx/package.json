@@ -1,6 +1,7 @@
 {
   "version": "1.0.0",
   "name": "@nodejs-loaders/svgx",
+  "description": "SVG loader for Node.js",
   "type": "module",
   "author": "Jacob Smith",
   "maintainers": ["Augustin Mauroy"],
@@ -13,6 +14,9 @@
     "node.js",
     "svg as jsx"
   ],
+  "engines": {
+    "node": ">=22 || ^20.6.0 || ^18.19.0"
+  },
   "dependencies": {
     "lodash.camelcase": "~4.3.0",
     "lodash.upperfirst": "~4.3.1",

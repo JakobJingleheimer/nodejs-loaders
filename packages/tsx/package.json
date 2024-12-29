@@ -1,6 +1,7 @@
 {
   "version": "1.0.0",
   "name": "@nodejs-loaders/tsx",
+  "description": "jsx/ts/tsx loader for Node.js based on esbuild",
   "type": "module",
   "author": "Jacob Smith",
   "maintainers": ["Augustin Mauroy"],
