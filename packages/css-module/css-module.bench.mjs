@@ -8,7 +8,6 @@ const suite = new Suite({
 });
 
 const cwd = fileURLToPath(import.meta.resolve('./fixtures'));
-const encoding = 'utf-8';
 const e2eTest = fileURLToPath(import.meta.resolve('./fixtures/e2e.mjs'));
 
 suite.add('--loader', { repeatSuite: 2 }, () => {
@@ -20,7 +19,7 @@ suite.add('--loader', { repeatSuite: 2 }, () => {
 			fileURLToPath(import.meta.resolve('./alias.mjs')),
 			e2eTest,
 		],
-		{ cwd, encoding, env: { NO_COLOR: true } },
+		{ cwd },
 	);
 });
 
@@ -33,6 +32,8 @@ suite.add('--import (register)', { repeatSuite: 2 }, () => {
 			fileURLToPath(import.meta.resolve('./fixtures/register.mjs')),
 			e2eTest,
 		],
-		{ cwd, encoding, env: { NO_COLOR: true } },
+		{ cwd },
 	);
 });
+
+suite.run();
