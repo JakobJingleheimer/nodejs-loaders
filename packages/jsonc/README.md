@@ -9,7 +9,7 @@
 
 **Compatible APIs**: [`module.register`](https://nodejs.org/api/module.html#moduleregisterspecifier-parenturl-options)
 
-To import JSONC files when using this loader, you will have to use `jsonc` as the file extension **and** in the [import attribute](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import/with).
+To import a JSONC file in node, it must have a `.jsonc` file extension **and** an [import attribute](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import/with) in the import statement (for consistency with Node.js's support for `json` imports):
 
 ```js
 import data from './data.jsonc' with { type: 'jsonc' };
