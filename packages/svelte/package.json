@@ -1,6 +1,6 @@
 {
   "name": "@nodejs-loaders/svelte",
-  "description": "A svelte loader for Node.js",
+  "description": "Extend Node to support svelte via customization hooks",
   "version": "1.0.0",
   "type": "module",
   "author": "Augustin Mauroy",
@@ -9,9 +9,9 @@
   "main": "./svelte.mjs",
   "types": "./svelte.d.mts",
   "keywords": [
-    "customisation hook",
+    "customisation hooks",
     "loader",
-    "node.js",
+    "node",
     "svelte"
   ],
   "engines": {
@@ -24,6 +24,6 @@
   },
   "dependencies": {
     "@nodejs-loaders/parse-filename": "^1.0.0",
-    "svelte": "^5.16.0"
+    "svelte": "^5.0.0"
   }
 }
