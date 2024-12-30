@@ -21,7 +21,7 @@ describe('svelte loader', { concurrency: true }, () => {
 			});
 		});
 
-		it('should recognize svelte files', async () => {
+		it('should recognise svelte files', async () => {
 			const result = await resolve('./fixture.svelte', {}, nextResolve);
 
 			assert.deepEqual(result, {
