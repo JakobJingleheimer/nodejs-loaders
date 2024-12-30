@@ -13,6 +13,13 @@ This loader enables loading modules using the `npm:` protocol in Node.js. This s
 
 There is discussion within Node.js to introduce native support for this feature: [nodejs/node#44492](https://github.com/nodejs/node/issues/44492)
 
+## Usage
+
+After installing the loader and registering it with Node.js, you can use the `npm:` protocol to import modules from npm. For example:
+
 ```js
 import express from 'npm:express';
 ```
+
+> [!NOTE]
+> The resolution still happens in the `node_modules` directory, so you must have the package installed.
