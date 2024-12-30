@@ -20,8 +20,8 @@ if (!w.endsWith('/') && w.length > 0) w.concat('/');
 const files = globSync(`packages/${w}**/**.bench.{js,mjs}`);
 
 if (files.length === 0) {
-	console.log(`${styleText(['red'], '✕')} No benchmarks found`);
-} else {
+	new Error(`${styleText(['red'], '✕')} No benchmarks found`);
+}
 	console.log(`${styleText(['green'], '✓')} Found ${files.length} benchmarks`);
 
 	for (const file of files) {
