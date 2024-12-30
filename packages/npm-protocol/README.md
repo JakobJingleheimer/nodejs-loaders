@@ -7,14 +7,12 @@
 
 **Environments**: dev, test
 
-
 **Compatible APIs**: [`module.register`](https://nodejs.org/api/module.html#moduleregisterspecifier-parenturl-options), [`module.registerHooks`](https://nodejs.org/api/module.html#moduleregisterhooksoptions)
 
-<!--
-TODO(@AugustinMauroy): Add a description of the package + examples
--->
+This loader allows you to load modules using the `npm:` protocol in Node.js. This syntact is introduce by Deno to [import npm packages](https://docs.deno.com/runtime/fundamentals/node/#using-npm-packages).
 
-Ref about npm protocol:
-https://docs.deno.com/runtime/fundamentals/node/#using-npm-packages
-https://yarnpkg.com/protocol/npm
-https://github.com/nodejs/node/issues/44492
+Keep as mind that this loader may be deprecated in the future, if Node.js introduce a native support for this feature. [issue about `npm:` protocol](https://github.com/nodejs/node/issues/44492)
+
+```js
+import express from 'npm:express';
+```
