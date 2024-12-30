@@ -25,7 +25,7 @@ It's useful for importing Svelte components in Node.js environments, such as tes
 > [Svelte documentation](https://svelte.dev/docs/svelte/svelte-js-files) about theses files.
 
 > [!NOTE]
-> Feature based on [svelte-kit](https://svelte.dev/docs/kit/introduction) isn't supported yet. _if you want to contribute, please open an issue or a pull request_.
+> Features based on [svelte-kit](https://svelte.dev/docs/kit/introduction) aren't supported yet. Pull requests welcome 🙂
 
 **Alternatives**
 
