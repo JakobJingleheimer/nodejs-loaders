@@ -1,6 +1,7 @@
 {
   "version": "1.0.0",
   "name": "@nodejs-loaders/css-module",
+  "description": "A Node.js loader for css files",
   "type": "module",
   "author": "Jacob Smith",
   "maintainers": ["Augustin Mauroy"],
@@ -13,6 +14,9 @@
     "loader",
     "node.js"
   ],
+  "engines": {
+    "node": ">=22 || ^20.6.0 || ^18.19.0"
+  },
   "dependencies": {
     "@nodejs-loaders/parse-filename": "1.0.0"
   },

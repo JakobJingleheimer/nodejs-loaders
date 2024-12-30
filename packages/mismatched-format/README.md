@@ -7,6 +7,8 @@
 
 **Environments**: dev, test
 
+**Compatible APIs**: [`module.register`](https://nodejs.org/api/module.html#moduleregisterspecifier-parenturl-options)
+
 > [!important]
 > This loader works in most but not necessarily all cases. If you encounter a case where it fails to appropriately correct a mismatch, please open an issue and include the inappropriately handled module, what it claimed to be, and what the loader resolved the format to.
 

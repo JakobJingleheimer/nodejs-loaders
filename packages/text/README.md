@@ -7,6 +7,8 @@
 
 **Environment**: test
 
+**Compatible APIs**: [`module.register`](https://nodejs.org/api/module.html#moduleregisterspecifier-parenturl-options)
+
 This loader handles files that are effectively plain text.
 
 <details>
