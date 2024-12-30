@@ -31,8 +31,8 @@ for (const file of files) {
 	});
 
 	if (proc.status === 0) {
-		console.log(`${styleText(['green'], '✓')} ${file}`);
+		console.log(`${styleText(['green'], '✓')} Successfully ran ${file}\n`);
 	} else {
-		console.error(`${styleText(['red'], '✕')} ${file}`);
+		console.error(`${styleText(['red'], '✕')} Failed to run ${file}\n`);
 	}
 }
