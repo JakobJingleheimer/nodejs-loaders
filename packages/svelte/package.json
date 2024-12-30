@@ -4,9 +4,7 @@
   "version": "1.0.0",
   "type": "module",
   "author": "Augustin Mauroy",
-  "maintainers": [
-    "Jacob Smith"
-  ],
+  "maintainers": ["Jacob Smith"],
   "license": "ISC",
   "main": "./svelte.mjs",
   "types": "./svelte.d.mts",

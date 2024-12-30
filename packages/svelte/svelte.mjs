@@ -5,7 +5,6 @@ import { stripExtras } from '@nodejs-loaders/parse-filename';
  * @type {import('node:module').ResolveHook}
  */
 async function resolveSvelte(specifier, ctx, nextResolve) {
-
 	const nextResult = await nextResolve(specifier);
 
 	if (!stripExtras(specifier).endsWith('.svelte')) return nextResult;
@@ -16,7 +15,6 @@ async function resolveSvelte(specifier, ctx, nextResolve) {
 		format: 'svelte',
 		url: nextResult.url,
 	};
-
 }
 export { resolveSvelte as resolve };
 
@@ -33,7 +31,7 @@ async function loadSvelte(url, ctx, nextLoad) {
 	const compiled = compile(rawSource, {});
 
 	return {
-		format: "module",
+		format: 'module',
 		source: compiled.js.code,
 	};
 }
