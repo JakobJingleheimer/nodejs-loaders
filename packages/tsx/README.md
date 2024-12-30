@@ -7,6 +7,8 @@
 
 **Environment**: test
 
+**Compatible APIs**: [`module.register`](https://nodejs.org/api/module.html#moduleregisterspecifier-parenturl-options)
+
 > [!TIP]
 > If you are using _only_ TypeScript (**not** tsx), consider using Node.js's builtin [type stripping](https://nodejs.org/api/typescript.html#type-stripping). This _can_ handle it, but the builtin may provide better/more consisent results.
 
