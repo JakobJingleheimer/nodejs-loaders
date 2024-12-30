@@ -22,17 +22,17 @@ const files = globSync(`packages/${w}**/**.bench.{js,mjs}`);
 if (files.length === 0) {
 	new Error(`${styleText(['red'], '✕')} No benchmarks found`);
 }
-	console.log(`${styleText(['green'], '✓')} Found ${files.length} benchmarks`);
 
-	for (const file of files) {
-		const proc = spawnSync('node', ['--allow-natives-syntax', file], {
-			stdio: 'inherit',
-		});
+console.log(`${styleText(['green'], '✓')} Found ${files.length} benchmarks`);
 
-		if (proc.status === 0) {
-			console.log(`${styleText(['green'], '✓')} ${file}`);
-		} else {
-			console.log(`${styleText(['red'], '✕')} ${file}`);
-		}
+for (const file of files) {
+	const proc = spawnSync('node', ['--allow-natives-syntax', file], {
+		stdio: 'inherit',
+	});
+
+	if (proc.status === 0) {
+		console.log(`${styleText(['green'], '✓')} ${file}`);
+	} else {
+		console.error(`${styleText(['red'], '✕')} ${file}`);
 	}
 }
