@@ -15,7 +15,7 @@
     "svelte"
   ],
   "engines": {
-    "node": "unkown"
+    "node": ">=18"
   },
   "repository": {
     "type": "git",
