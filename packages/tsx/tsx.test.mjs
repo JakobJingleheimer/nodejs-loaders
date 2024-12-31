@@ -21,7 +21,7 @@ describe('JSX & TypeScript loader e2e', () => {
 			],
 			{
 				cwd,
-			}
+			},
 		);
 
 		// console.log(stderr)

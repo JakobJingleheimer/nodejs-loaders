@@ -7,16 +7,19 @@ import { fileURLToPath } from 'node:url';
  * This config must contain options that are compatible with esbuild's `transform` API.
  * @type {Map<URL['href'], ESBuildOptions>}
  */
-export const configs = new Map;
+export const configs = new Map();
 
 /**
  * @param {URL['href']} target
  * @param {URL['href']} parentURL
  */
 export function findEsbuildConfig(target, parentURL) {
-  if (configs.has(target)) return configs.get(target);
+	if (configs.has(target)) return configs.get(target);
 
-	const esBuildConfigLocus = findPackageJSON(target, target)?.replace(PJSON_FNAME, CONFIG_FNAME);
+	const esBuildConfigLocus = findPackageJSON(target, target)?.replace(
+		PJSON_FNAME,
+		CONFIG_FNAME,
+	);
 
 	const req = createRequire(fileURLToPath(parentURL));
 
@@ -38,6 +41,7 @@ export function findEsbuildConfig(target, parentURL) {
 
 const PJSON_FNAME = 'package.json';
 const CONFIG_FNAME = 'esbuild.config.mjs';
+// biome-ignore format: No reason to break the line
 const CONFIG_NOT_FOUND = 'No esbuild config found in project root. Using default config.';
 
 export const defaults = {

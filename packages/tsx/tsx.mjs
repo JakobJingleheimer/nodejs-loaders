@@ -57,7 +57,6 @@ async function loadTSX(url, ctx, nextLoad) {
 	if (!formats.has(ctx.format)) return nextLoad(url); // not (j|t)sx
 
 	const format = 'module';
-// console.log('load parentURLs', parentURLs)
 	const esbuildConfig = findEsbuildConfig(url, parentURLs.get(url));
 
 	// @ts-ignore https://github.com/DefinitelyTyped/DefinitelyTyped/pull/71492
