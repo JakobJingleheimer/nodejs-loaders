@@ -1,13 +1,13 @@
 {
-  "name": "@nodejs-loaders/npm-protocol",
+  "name": "@nodejs-loaders/deno-npm-prefix",
   "description": "NPM protocol loader for Node.js",
   "version": "1.0.0",
   "type": "module",
   "author": "Augustin Mauroy",
   "maintainers": ["Jacob Smith"],
   "license": "ISC",
-  "main": "./npm-protocol.mjs",
-  "types": "./npm-protocol.d.mts",
+  "main": "./deno-npm-prefix.mjs",
+  "types": "./deno-npm-prefix.d.mts",
   "keywords": [
     "customisation hook",
     "loader",
@@ -20,6 +20,6 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nodejs-loaders/nodejs-loaders.git",
-    "directory": "packages/npm-protocolyaml"
+    "directory": "packages/deno-npm-prefixyaml"
   }
 }

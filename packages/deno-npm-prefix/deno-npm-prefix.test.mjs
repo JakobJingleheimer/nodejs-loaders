@@ -4,7 +4,7 @@ import { execPath } from 'node:process';
 import { describe, it } from 'node:test';
 import { fileURLToPath } from 'node:url';
 
-describe('npm-protocol (e2e)', () => {
+describe('deno-npm-prefix (e2e)', () => {
 	const cwd = fileURLToPath(import.meta.resolve('./fixtures'));
 	const encoding = 'utf-8';
 	const e2eTest = fileURLToPath(import.meta.resolve('./fixtures/e2e.mjs'));
@@ -19,7 +19,7 @@ describe('npm-protocol (e2e)', () => {
 			[
 				'--no-warnings',
 				'--loader',
-				fileURLToPath(import.meta.resolve('./npm-protocol.mjs')),
+				fileURLToPath(import.meta.resolve('./deno-npm-prefix.mjs')),
 				e2eTest,
 			],
 			{

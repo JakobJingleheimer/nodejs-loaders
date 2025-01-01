@@ -20,7 +20,7 @@ node
 # sequence here is NOT important:
   --loader=@nodejs-loaders/css-module \
   --loader=@nodejs-loaders/media \
-  --loader=@nodejs-loaders/npm-protocol \
+  --loader=@nodejs-loaders/deno-npm-prefix \
   --loader=@nodejs-loaders/text \
   --loader=@nodejs-loaders/yaml \
   ./main.js
@@ -32,7 +32,7 @@ node
 * [JSX / TSX loader](./packages/tsx/)
 * [Media loader](./packages/media/)
 * [Mismatched format loader](./packages/mismatched-format/)
-* [NPM protocol loader](./packages/npm-protocol/)
+* [NPM protocol loader](./packages/deno-npm-prefix/)
 * [SVGX loader](./packages/svgx/)
 * [Text loader](./packages/text/)
 * [YAML loader](./packages/yaml/)

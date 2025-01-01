@@ -1,5 +1,5 @@
 import module from 'node:module';
 
-import * as npmProtocol from '../npm-protocol.mjs';
+import * as npmProtocol from '../deno-npm-prefix.mjs';
 
 module.registerHooks(npmProtocol);
