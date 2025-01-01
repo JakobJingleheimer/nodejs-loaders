@@ -9,7 +9,7 @@
 
 **Compatible APIs**: [`module.register`](https://nodejs.org/api/module.html#moduleregisterspecifier-parenturl-options), [`module.registerHooks`](https://nodejs.org/api/module.html#moduleregisterhooksoptions)
 
-This loader enables loading modules using the `npm:` protocol in Node.js. This syntax is used most notably by Deno to [import npm packages](https://docs.deno.com/runtime/fundamentals/node/#using-npm-packages).
+This loader enables loading modules using the `npm:` prefix in Node.js. This syntax is used most notably by Deno to [import npm packages](https://docs.deno.com/runtime/fundamentals/node/#using-npm-packages).
 
 There is discussion within Node.js to introduce native support for this feature: [nodejs/node#44492](https://github.com/nodejs/node/issues/44492)
 
