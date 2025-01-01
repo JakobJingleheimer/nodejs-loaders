@@ -28,6 +28,7 @@ node
 
 * [Alias loader](./packages/alias/)
 * [CSS Modules loader](./packages/css-module/)
+* [JSONC loader](./packages/jsonc/)
 * [JSX / TSX loader](./packages/tsx/)
 * [Media loader](./packages/media/)
 * [Mismatched format loader](./packages/mismatched-format/)
