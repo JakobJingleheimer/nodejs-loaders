@@ -28,7 +28,7 @@
   "workspaces": ["./packages/*"],
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
-    "@types/node": "^22.10.2"
+    "@types/node": "^22.10.3"
   },
   "optionalDependencies": {
     "typescript": "^5.7.2"
