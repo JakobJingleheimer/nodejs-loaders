@@ -24,9 +24,6 @@ describe('JSX & TypeScript loader e2e', () => {
 			},
 		);
 
-		// console.log(stderr)
-		// console.log(stdout)
-
 		assert.match(stderr, /Cannot find package 'react' imported from/);
 		assert.equal(stdout, '');
 	});
