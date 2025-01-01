@@ -9,7 +9,7 @@ describe('npm-protocol (e2e)', () => {
 	const encoding = 'utf-8';
 	const e2eTest = fileURLToPath(import.meta.resolve('./fixtures/e2e.mjs'));
 
-	it('should work with `--loader`', (t) => {
+	it('should work with `--loader`', () => {
 		const {
 			status: code,
 			stderr,
