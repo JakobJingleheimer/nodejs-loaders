@@ -1,4 +1,4 @@
-# `npm:` protocol loader for Node.js
+# `npm:` prefix loader for Node.js
 
 <img src="https://raw.githubusercontent.com/nodejs-loaders/nodejs-loaders/refs/heads/main/logo.svg" height="100" width="100" alt="@node.js loaders logo" />
 
@@ -15,7 +15,7 @@ There is discussion within Node.js to introduce native support for this feature:
 
 ## Usage
 
-After installing the loader and registering it with Node.js, you can use the `npm:` protocol to import modules from npm. For example:
+After installing the loader and registering it with Node.js, you can use the `npm:` prefix to import modules from npm. For example:
 
 ```js
 import express from 'npm:express';

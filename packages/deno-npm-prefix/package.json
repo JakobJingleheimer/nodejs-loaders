@@ -1,6 +1,6 @@
 {
   "name": "@nodejs-loaders/deno-npm-prefix",
-  "description": "NPM protocol loader for Node.js",
+  "description": "Support 'npm:' prefix on node via customization hooks",
   "version": "1.0.0",
   "type": "module",
   "author": "Augustin Mauroy",

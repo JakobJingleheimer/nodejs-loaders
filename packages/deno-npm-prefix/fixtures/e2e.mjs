@@ -4,6 +4,6 @@
  */
 import assert from 'node:assert/strict';
 import * as yaml from 'yaml';
-import * as yamlWithNpmProtocol from 'npm:yaml';
+import * as yamlWithNpmPrefix from 'npm:yaml';
 
-assert.strictEqual(yaml, yamlWithNpmProtocol);
+assert.strictEqual(yaml, yamlWithNpmPrefix);
