@@ -5,7 +5,7 @@ import { describe, it } from 'node:test';
 
 import { spawnPromisified } from '../../test/spawn-promisified.mjs';
 
-describe('JSX & TypeScript loader e2e', () => {
+describe('JSX & TypeScript loader (e2e)', () => {
 	/**
 	 * If react isn't found, the transpilation has happened. If there is another error, the
 	 * transpilation failed (kind of hypothetical)
