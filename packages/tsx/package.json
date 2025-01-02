@@ -10,8 +10,10 @@
   "types": "./tsx.d.mts",
   "keywords": [
     "customisation hook",
+    "jsx",
     "loader",
     "node.js",
+    "tsx",
     "typescript"
   ],
   "engines": {
