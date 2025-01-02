@@ -32,7 +32,7 @@ For maintainability, prefer dependencies already used in other loaders. For inst
 
 ### Security
 
-Loaders making network calls will almost surely be rejected.
+Loaders making their own network calls (not just facilitating a user-specified call) will almost surely be rejected. For example, an `https` loader that facilitates `import foo from 'https://example.com/foo' is okay. A loader fetching its own configuration file from a hard-coded `fetch('https://random.com/config')` is not okay.
 
 ## Pull Requests
 
