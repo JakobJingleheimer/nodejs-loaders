@@ -1,13 +1,26 @@
 ## Description
 
+<!--
+	Thank you for your contribution! Please provide details for what and why this PR is needed.
+
+	If it is a bug-fix, please cover the reproduction(s) with unit test(s).
+-->
+
 ## Related Issue
 
 ## Checklist
 
-<!-- You can check the items by adding an `x` between the brackets, like this: `[x]` -->
+<!--
+	You can check the items by adding an `x` between the brackets, like this: - [x]
+-->
 
-- [ ] I have ensured that my code is formatted properly by using `node --run pre-commit`
-- [ ] I have ensured that the test suite is passing correctly by using `node --run test`
-- [ ] If new feature is added, I have ensured that is documented and tested
+<!--
+	See CONTRIBUTING.md for tips opening a PR, like checking for lint.
+-->
+
+The following have been added/updated as appropriate:
+
+- [ ] Documentation, including README(s) and code comments.
+- [ ] Test-cases.
 
 <!-- Thank you for your contribution to the project. Please provide the details of your contribution and ensure that you have checked the items in the checklist. -->
